@@ -95,7 +95,7 @@
 
     @media (max-width: 960px) {
         nav {
-            padding: 10px;
+            padding: 5px;
         }
 
         .view-label {

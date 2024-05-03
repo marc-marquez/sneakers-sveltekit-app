@@ -10,9 +10,9 @@
 
 <style>
     .toast {
-        position: absolute;
-        top: 1vh;
-        width: 40vw;
+        position: fixed;
+        top: 5vh;
+        width: 30vw;
         height: 40px;
         padding: 10px 20px;
         background-color: darkgrey;

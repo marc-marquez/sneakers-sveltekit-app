@@ -3,7 +3,6 @@
 
 	import Header from "../shared/Header.svelte";
 	import Brands from '../components/Brands.svelte';
-    import RowContainer from '../shared/RowContainer.svelte';
 	import ShoeFeatured from '../components/ShoeFeatured.svelte';
     import Filters from '../components/Filters.svelte';
     import ShoeGrid from '../components/ShoeGrid.svelte';
@@ -258,30 +257,30 @@
 				<div class="featured-container">
 					<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 						<ShoeFeatured {currentShoe} {isLoading} {currentBrand} on:getNextShoe={nextShoe} on:getPrevShoe={prevShoe}/>
-						<RowContainer style="flex-wrap: nowrap; align-items: center; justify-content: center; margin-bottom: 20px;">
+						<div class="row-container" style="flex-wrap: nowrap;">
 							<CircleButton handleClick={() => prevShoe()} disabled={currentShoeIndex <= 0}>
 								<i class="fas fa-chevron-left" />
 							</CircleButton>
 							<CircleButton handleClick={() => nextShoe()} disabled={currentShoeIndex >= shoes.length - 1}>
 								<i class="fas fa-chevron-right" />
 							</CircleButton>
-						</RowContainer>
+						</div>
 						{#if shoes[currentShoeIndex]?.title}
-						<RowContainer style="flex-wrap: wrap; margin-bottom: 10px; justify-content: center; margin-bottom: 20px;">
+						<div class="row-container">
 							<h1 style="text-align: center; margin-bottom: 0">{shoes[currentShoeIndex].title}</h1>
-						</RowContainer>
-						<RowContainer style="flex-wrap: wrap; margin-bottom: 30px; justify-content: center;">
+                        </div>
+						<div class="row-container">
 							<StarRating currentRating={currentShoe?.rating} />
-						</RowContainer>
+                        </div>
 						{/if}
 						{#if shoes[currentShoeIndex]?.variants}
-						<RowContainer style="width: 100%; flex-wrap: wrap; margin-bottom: 30px; justify-content: center; align-items: center;">
+						<div class="row-container variants-container">
 							<ShoeVariants shoe={currentShoe} {currentShoeVariant} on:setVariant={setVariant} />
-						</RowContainer>
+                        </div>
 						{/if}
-						<RowContainer style="width: 100%; flex-wrap: wrap;">
+						<div class="row-container actions-container">
 							<ShoeActions shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} />
-						</RowContainer>
+                        </div>
 					</div>
 				</div>
 			{:else if displayFormat === 'grid'}
@@ -342,6 +341,19 @@
         flex:2 1 0%; background-color: white; margin: 10px; position: relative; top: 0px;
     }
 
+    .row-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .variants-container, 
+    .actions-container {
+        width: 50%;
+    }
+
 	@media (max-width: 960px) {
 		.container {
 			flex-direction: column;
@@ -356,5 +368,10 @@
 		main {
 			margin-top: 20px;
 		}
+
+        .variants-container, 
+        .actions-container {
+            width: 90%;
+        }
 	}
 </style>
