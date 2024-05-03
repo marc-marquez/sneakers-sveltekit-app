@@ -371,7 +371,7 @@
 
         .variants-container, 
         .actions-container {
-            width: 90%;
+            width: 100%;
         }
 	}
 </style>
