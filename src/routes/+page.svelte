@@ -243,7 +243,7 @@
 <PageLayout>
 	<main>
 		<div class="container">
-			<div style="background-color: white; padding: 10px; margin: 10px;">
+			<div>
 				<h1 class="hide-show-titles">Select Brand</h1>
 				<Brands {brands} {currentBrand} on:handleSetBrand={(e) => setBrandAndGet(e.detail)} />
 				<h1 class="hide-show-titles">Filters</h1>

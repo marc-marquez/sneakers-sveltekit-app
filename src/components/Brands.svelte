@@ -28,7 +28,6 @@
         .brands-container {
             display: flex;
             flex-direction: column;
-            padding: 10px;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
@@ -68,7 +67,6 @@
                 flex-wrap: wrap;
                 align-items: center;
                 justify-content: center;
-                max-width: 100%;
             }
     
             .brand-button {
