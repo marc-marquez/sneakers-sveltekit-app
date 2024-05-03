@@ -32,7 +32,7 @@
             <button class="category-button"><h2>Cart</h2></button>
         </div> -->
         <div>
-            <span>View: </span>
+            <span class="view-label">View: </span>
             <select class="display-select" bind:value={displayFormat} on:change={handleDisplayFormatChange}>
                 <option value={DISPLAY_FORMAT.featured}>Spotlight</option>
                 <option value={DISPLAY_FORMAT.grid}>Window Shopping</option>
@@ -95,6 +95,14 @@
     @media (max-width: 960px) {
         nav {
             padding: 0 20px;
+        }
+
+        .view-label {
+            display: none;
+        }
+
+        .display-select {
+            padding: 3px 10px;
         }
     }
 </style>

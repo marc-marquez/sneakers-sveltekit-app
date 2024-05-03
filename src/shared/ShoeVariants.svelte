@@ -35,6 +35,9 @@
 		border-radius: 50%;
 		border: 2px solid black;
 		color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 	}
 
 	.variant-button:hover {

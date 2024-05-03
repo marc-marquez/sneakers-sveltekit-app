@@ -215,7 +215,7 @@
 		}, 3000);
 	};
 
-	const getShoeById = (id) => {
+	const getShoeById = (id: string) => {
 		if (!id) { 
 			console.error('No id sent in getShoeById');
 			return; 
@@ -255,10 +255,10 @@
 					<LoadingState />
 				</div>
 			{:else if displayFormat === 'featured'}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px; position: relative; top: 0px;">
+				<div class="featured-container">
 					<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 						<ShoeFeatured {currentShoe} {isLoading} {currentBrand} on:getNextShoe={nextShoe} on:getPrevShoe={prevShoe}/>
-						<RowContainer style="flex-wrap: nowrap; align-items: center; justify-content: center;">
+						<RowContainer style="flex-wrap: nowrap; align-items: center; justify-content: center; margin-bottom: 20px;">
 							<CircleButton handleClick={() => prevShoe()} disabled={currentShoeIndex <= 0}>
 								<i class="fas fa-chevron-left" />
 							</CircleButton>
@@ -267,7 +267,7 @@
 							</CircleButton>
 						</RowContainer>
 						{#if shoes[currentShoeIndex]?.title}
-						<RowContainer style="flex-wrap: wrap; margin-bottom: 10px; justify-content: center;">
+						<RowContainer style="flex-wrap: wrap; margin-bottom: 10px; justify-content: center; margin-bottom: 20px;">
 							<h1 style="text-align: center; margin-bottom: 0">{shoes[currentShoeIndex].title}</h1>
 						</RowContainer>
 						<RowContainer style="flex-wrap: wrap; margin-bottom: 30px; justify-content: center;">
@@ -275,11 +275,11 @@
 						</RowContainer>
 						{/if}
 						{#if shoes[currentShoeIndex]?.variants}
-						<RowContainer style="width: 50%; flex-wrap: wrap; margin-bottom: 30px; justify-content: center; align-items: center;">
+						<RowContainer style="width: 100%; flex-wrap: wrap; margin-bottom: 30px; justify-content: center; align-items: center;">
 							<ShoeVariants shoe={currentShoe} {currentShoeVariant} on:setVariant={setVariant} />
 						</RowContainer>
 						{/if}
-						<RowContainer style="width: 50%; flex-wrap: wrap;">
+						<RowContainer style="width: 100%; flex-wrap: wrap;">
 							<ShoeActions shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} />
 						</RowContainer>
 					</div>
@@ -322,6 +322,7 @@
 		display: flex;
 		flex-direction: column;
 		margin-top: 40px;
+        margin-bottom: 20px;
 		width: 100%;
 	}
 
@@ -336,6 +337,10 @@
 	.hide-show-titles {
 		text-align: center;
 	}
+
+    .featured-container {
+        flex:2 1 0%; background-color: white; margin: 10px; position: relative; top: 0px;
+    }
 
 	@media (max-width: 960px) {
 		.container {

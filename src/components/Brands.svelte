@@ -42,6 +42,7 @@
             margin-bottom: 10px;
             border-left: 5px solid white;
             max-width: 60px;
+            min-width: 30px;
             align-self: center;
         }
     
@@ -72,6 +73,7 @@
                 margin-right: 5px;
                 border-bottom: 5px solid white;
                 max-width: 50px;
+                min-width: 40px;
             }
     
             .brand-button:hover {

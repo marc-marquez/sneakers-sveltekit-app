@@ -39,9 +39,9 @@
 	}
 
 	@media (max-width: 480px) {
-		.circle-button {
+		/* .circle-button {
 			width: 30px;
 			height: 30px;
-		}
+		} */
 	}
 </style>
