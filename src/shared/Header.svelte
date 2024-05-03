@@ -55,8 +55,9 @@
         align-items: center;
         padding: 0 50px;
         background-color: #a6f0ff;
-        border-radius: 50px 0 50px 0;
+        /* border-radius: 50px 0 50px 0; */
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        flex-wrap: nowrap;
     }
 
     h1 {
@@ -94,7 +95,7 @@
 
     @media (max-width: 960px) {
         nav {
-            padding: 0 20px;
+            padding: 10px;
         }
 
         .view-label {

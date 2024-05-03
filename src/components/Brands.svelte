@@ -29,6 +29,9 @@
             display: flex;
             flex-direction: column;
             padding: 10px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
     
         .brands-container::-webkit-scrollbar {
@@ -41,8 +44,7 @@
             border: none;
             margin-bottom: 10px;
             border-left: 5px solid white;
-            max-width: 60px;
-            min-width: 30px;
+            width: 50px;
             align-self: center;
         }
     
@@ -63,7 +65,7 @@
         @media (max-width: 960px){
             .brands-container {
                 flex-direction: row;
-                flex-wrap: nowrap;
+                flex-wrap: wrap;
                 align-items: center;
                 justify-content: center;
                 max-width: 100%;
@@ -72,8 +74,6 @@
             .brand-button {
                 margin-right: 5px;
                 border-bottom: 5px solid white;
-                max-width: 50px;
-                min-width: 40px;
             }
     
             .brand-button:hover {
