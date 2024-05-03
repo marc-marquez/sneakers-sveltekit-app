@@ -38,7 +38,7 @@
                 <option value={DISPLAY_FORMAT.grid}>Window Shopping</option>
                 <option value={DISPLAY_FORMAT.list}>Deep Dive</option>
             </select>
-            <button style="margin-right: 5px;" on:click={openFavorites} disabled={!$FavoritesStore.length}><i class="fa-solid fa-heart"></i></button>
+            <button on:click={openFavorites} disabled={!$FavoritesStore.length}><i class="fa-solid fa-heart"></i></button>
             <button on:click={openCart} disabled={!$CartStore.length}><i class="fa-solid fa-cart-shopping"></i></button>
         </div>
     </nav>
@@ -82,7 +82,7 @@
         border: none;
         background: white;
         padding: 10px;
-        margin: 10px;
+        /* margin: 10px; */
         font-size: 20px;
         font-weight: 900;
         border-radius: 50px;
