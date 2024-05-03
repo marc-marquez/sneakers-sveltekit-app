@@ -18,7 +18,7 @@
             {#if brand === 'Jordan'}
                 <img class="brand-image" alt="{brand} logo" src="https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Jumpman_logo.svg/250px-Jumpman_logo.svg.png" />
             {:else}
-                <img class="brand-image" alt="{brand} logo" src="{`https://logo.clearbit.com/${brand.replace(/\s+/g, '')}.com`}?size=60" />
+                <img class="brand-image" alt="{brand} logo" src="{`https://logo.clearbit.com/${brand.replace(/\s+/g, '')}.com`}?size=100" />
             {/if}
         </button>
         {/each}
@@ -43,7 +43,7 @@
             border: none;
             margin-bottom: 10px;
             border-left: 5px solid white;
-            width: 50px;
+            width: 75px;
             align-self: center;
         }
     
