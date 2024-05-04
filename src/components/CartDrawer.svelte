@@ -1,7 +1,4 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { fly, fade } from "svelte/transition";
-
     import Drawer from "../shared/Drawer.svelte";
     import CartStore from "../stores/CartStore";
 

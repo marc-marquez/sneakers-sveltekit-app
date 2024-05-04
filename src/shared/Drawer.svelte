@@ -1,8 +1,6 @@
 <script lang="ts">
     import { fly } from 'svelte/transition';
-    import { tweened } from 'svelte/motion';
     import { createEventDispatcher } from "svelte";
-	// import { onMount } from 'svelte';
 
     import Overlay from "./Overlay.svelte";
 
@@ -15,41 +13,20 @@
     const closeDrawer = () => {
         dispatch('closeDrawer');
     }
-
-    let transitionDirection = location === 'bottom' ? 'x' : 'y';
-
-    // Define a tweened variable to control the transition
-    const flyX = tweened(0);
-    const flyY = tweened(0);
-
-    // Update the flyX or flyY based on the transition direction
-    $: {
-        if (transitionDirection === 'x') {
-            flyX.set(transitionDirection === 'x' ? 100 : 0);
-        } else {
-            flyY.set(transitionDirection === 'y' ? 100 : 0);
-        }
-    }
-
-    // onMount(() => {
-	// 	if (isDrawerOpen) {
-	// 		dispatch('animateImage');
-	// 	}
-  	// });
 </script>
 
 
 <Overlay handleClick={closeDrawer} />
 
 {#if location === 'bottom'}
-    <div class="drawer {location} {isDrawerOpen ? `${location}-show` : `${location}-hide`}" transition:fly={{y: isDrawerOpen ? 100 : 0 }}>
+    <div class="drawer {location} {isDrawerOpen ? `${location}-show` : `${location}-hide`}" transition:fly|global={{y: isDrawerOpen ? 100 : 0 }}>
         <div class="action">
             <button class="close-button" on:click={closeDrawer}>X</button>
         </div>
         <slot></slot>
     </div>
 {:else}
-    <div class="drawer {location} {isDrawerOpen ? `${location}-show` : `${location}-hide`}" transition:fly={{x: isDrawerOpen ? 100 : 0 }}>
+    <div class="drawer {location} {isDrawerOpen ? `${location}-show` : `${location}-hide`}" transition:fly|global={{x: isDrawerOpen ? 100 : 0 }}>
         <div class="action">
             <button class="close-button" on:click={closeDrawer}>X</button>
         </div>

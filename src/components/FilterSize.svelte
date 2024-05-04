@@ -27,7 +27,8 @@
 
 <style>
     .filter-size {
-        margin-bottom: 20px;
+        margin: 0 5px 20px;
+        flex: 1;
     }
 
     h2 {

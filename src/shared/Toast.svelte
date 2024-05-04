@@ -4,7 +4,7 @@
     export let type: string = '';
 </script>
 
-<div class="toast {type}" in:fly={{ y: -20, duration: 2000 }} out:fly={{ y: 20, duration: 2000 }}>
+<div class="toast {type}" in:fly|global={{ y: -20, duration: 2000 }} out:fly|global={{ y: 20, duration: 2000 }}>
     <p class="message">{message}</p>
 </div>
 
@@ -12,7 +12,7 @@
     .toast {
         position: fixed;
         top: 5vh;
-        width: 30vw;
+        width: 50vw;
         height: 40px;
         padding: 10px 20px;
         background-color: darkgrey;
@@ -21,6 +21,7 @@
         justify-content: center;
         align-items: center;
         z-index: 200;
+        border-radius: 50px;
     }
 
     .success {
@@ -36,5 +37,11 @@
     .message {
         margin: 0;
         text-align: center;
+    }
+
+    @media (max-width: 768px) {
+        .toast {
+            width: 80vw;
+        }
     }
 </style>

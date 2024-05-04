@@ -37,7 +37,7 @@
             <Card on:openDrawer={() => getShoeDetails(shoe.id)}>
                 {#if !isLoading}
                 <div class="image-container">
-                    <img src={shoe.image} alt={shoe.name} in:fly={{ y: -50, duration: 2000 }} />
+                    <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -50, duration: 2000 }} />
                 </div>
                 {/if}
             </Card>

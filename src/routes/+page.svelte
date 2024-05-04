@@ -24,6 +24,7 @@
 	import BRANDS from '../constants/Brands';
 
 	import CurrentShoeStore from '../stores/CurrentShoeStore';
+    import UserStore from '../stores/UserStore';
 
 	let brands = BRANDS;
     let shoes = [];
@@ -39,11 +40,12 @@
 
 	let currentShoeSize = '';
 
-	$: currentShoe = $CurrentShoeStore.currentShoe;
-	$: currentShoeIndex = $CurrentShoeStore.currentShoeIndex;
-	$: currentShoeVariant = $CurrentShoeStore.currentShoeVariant;
+	$: currentShoe = $CurrentShoeStore?.currentShoe;
+	$: currentShoeIndex = $CurrentShoeStore?.currentShoeIndex;
+	$: currentShoeVariant = $CurrentShoeStore?.currentShoeVariant;
 
-	let displayFormat: string = DISPLAY_FORMAT.featured;
+    $: displayFormat = $UserStore?.displayFormat; 
+
 	let currentGender = 'any';
 	let currentAgeGroup = 'adults';
 	
@@ -196,7 +198,12 @@
 	}
 
 	const setDisplayFormat = (e) => {
-		displayFormat = e.detail;
+        UserStore.update(userInfo => {
+            return { 
+                ...userInfo, 
+                displayFormat: e.detail,
+            };
+        });
 	}
 
 	const openCart = () => {
@@ -351,7 +358,7 @@
 
     .variants-container, 
     .actions-container {
-        width: 50%;
+        width: 75%;
     }
 
 	@media (max-width: 960px) {

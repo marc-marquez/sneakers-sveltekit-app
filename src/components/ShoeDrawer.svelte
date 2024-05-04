@@ -29,24 +29,23 @@
 <Drawer on:closeDrawer={toggleDetailsDrawer} isDrawerOpen={isDetailsDrawerOpen}>
     <div class="container">
         <div class="image-container">
-            <img src="{shoe.image}" alt={shoe.title} in:fly={{ y: -50, duration: 2000 }} />
+            <img src="{shoe.image}" alt={shoe.title} in:fly|global={{ y: -15, duration: 2000 }} />
         </div>
         <div class="details-container">
             <h1 style="margin: 0">{shoe.title}</h1>
 
             {#if shoe.description}
-                <p>{@html shoe.description}</p>
+                <p class="description">{@html shoe.description}</p>
             {:else}
-                <p style="width: 100%;">No description available</p>
+                <p class="description">No description available</p>
             {/if}
 
             {#if shoe?.variants}
-            <RowContainer style="width: 100%; flex-wrap: wrap; margin-bottom: 30px; justify-content: start; align-items: center;">
-                <h2 style="margin-right: 10px;">Available Sizes:</h2>
+            <RowContainer style="flex:1; flex-wrap: wrap; margin-bottom: 20px; justify-content: center; align-items: center;">
                 <ShoeVariants {shoe} {currentShoeVariant} on:setVariant={setVariant} />
             </RowContainer>
 
-            <RowContainer style="width: 90%; flex-wrap: wrap;">
+            <RowContainer style="flex:1">
 				<ShoeActions {shoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} />
             </RowContainer>
             {/if}
@@ -76,11 +75,16 @@
         flex-grow: 2;
     }
 
+    .description {
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
     @media (max-width: 720px) {
         .container {
             flex-direction: column;
             max-height: 50%;
-            padding: 5px;
+            padding: 15px;
         }
 
         .details-container {

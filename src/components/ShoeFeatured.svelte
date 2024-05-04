@@ -7,29 +7,44 @@
     export let currentShoe: any = {};
     export let currentBrand: string = '';
 
-    let dispatch = createEventDispatcher();
+    // let imageLoading = true;
+    // $: imgSrc = currentShoe.image;
+
+    // const toggleImageLoading = () => {
+    //     imageLoading = false;
+    // }
+
+    // let dispatch = createEventDispatcher();
+
+    // onMount(() => {
+    //     const img = new Image();
+    //     img.onload = toggleImageLoading;
+    //     img.src = imgSrc;
+    // });
 </script>
 
-<div class="container">
+<div class="shoe-featured">
     {#if currentShoe && !isLoading}
-    <ColumnContainer>
-        <div style="max-width: 600px; text-align: center; position: relative;">
-            {#if currentShoe.image && !currentShoe.image.includes('nft')}
-                <div class="overlap display-1">{currentBrand}.</div>
-                <img src={currentShoe.image} alt={currentShoe.title} in:fly={{ y: -25, duration: 2000 }} />
-            {:else}
-                <div style="font-size: 150px; color: grey; height: 30vh; display: flex; flex-direction: column; justify-content: center;align-self: center;">
-                    <h1>No image found.</h1>
-                    <i class="fa-solid fa-image"></i>
-                </div>
-            {/if}
-        </div>
-    </ColumnContainer>
+        <ColumnContainer>
+            <div style="max-width: 600px; text-align: center; position: relative;">
+                {#if currentShoe.image && !currentShoe.image.includes('nft')}
+                    <div class="overlap display-1">{currentBrand}.</div>
+                    <div class="image-container">
+                        <img src={currentShoe.image} alt={currentShoe.title} in:fly|global={{ y: -25, duration: 2000 }} />
+                    </div>
+                {:else}
+                    <div class="no-image-container">
+                        <h1>No image found.</h1>
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                {/if}
+            </div>
+        </ColumnContainer>
     {/if}
 </div>
 
 <style>
-    .container {
+    .shoe-featured {
         position: relative;
         display: flex;
         align-items: center;
@@ -42,7 +57,16 @@
     img {
         object-fit: contain;
         width: 100%;
+    }
+
+    .no-image-container {
+        font-size: 150px;
+        color: grey;
         height: 30vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-self: center;
     }
 
     .overlap {
