@@ -33,7 +33,7 @@
     .shoe-actions {
         display: flex;
         justify-content: space-between;
-        width: 100%;
+        flex: 1;
     }
 
     button {

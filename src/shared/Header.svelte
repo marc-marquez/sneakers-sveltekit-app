@@ -66,6 +66,8 @@
         border: none;
         background-color: transparent;
         font-size: 24px;
+        margin-left: 10px;
+        padding: 0;
     }
 
     /* .search-input {
