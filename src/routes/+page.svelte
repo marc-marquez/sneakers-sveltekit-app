@@ -368,10 +368,12 @@
 		main {
 			margin-top: 20px;
 		}
+	}
 
+    @media (max-width: 640px) {
         .variants-container, 
         .actions-container {
             width: 100%;
         }
-	}
+    }
 </style>

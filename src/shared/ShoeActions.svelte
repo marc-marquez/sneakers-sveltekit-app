@@ -25,7 +25,7 @@
     {#if shoe?.variants?.[currentShoeVariant]?.price}
         <h2>${shoe.variants[currentShoeVariant]?.price}</h2>
     {:else}
-        <h2>$</h2>
+        <h2>SELECT SIZE</h2>
     {/if}
 </div>
 

@@ -23,25 +23,26 @@
     }
 </script>
 
-<div class="container">
+<div class="filters">
     <FilterAgeGroup {currentAgeGroup} on:ageGroupChange={ageGroupChange} />
     <FilterGender {currentGender} on:genderChange={genderChange} />
     <FilterSize {currentShoeSize} on:sizeChange={sizeChange} />
 </div>
 
 <style>
-    .container {
+    .filters {
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        /* padding: 10px; */
         justify-content: center;
     }
 
     @media (max-width: 960px) {
-        .container {
+        .filters {
             max-width: 100%;
             flex-direction: row;
             flex-wrap: wrap;
+            justify-content: space-around;
         }
     }
 </style>

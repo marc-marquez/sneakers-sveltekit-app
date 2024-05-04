@@ -15,15 +15,25 @@
     }
 </script>
 
-<h2 style="text-align: center;">Select Size</h2>
-<select bind:value={currentShoeSize} on:change={sizeChange}>
-    <option value="">Any</option>
-    {#each sizes as size}
-        <option value={size.toString()}>{size}</option>
-    {/each}
-</select>
+<div class="filter-size">
+    <h2 style="text-align: center;">Select Size</h2>
+    <select bind:value={currentShoeSize} on:change={sizeChange}>
+        <option value="">Any</option>
+        {#each sizes as size}
+            <option value={size.toString()}>{size}</option>
+        {/each}
+    </select>
+</div>
 
 <style>
+    .filter-size {
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+    }
+
     select {
         font-size: 20px;
         background-color: #a6f0ff;
