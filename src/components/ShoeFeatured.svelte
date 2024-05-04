@@ -84,12 +84,14 @@
         max-width: 500px;
         overflow-y: hidden
 	}
+    
+    @media (max-width:  960px) {
+        .image-container {
+            max-width: 400px;
+        }
+    }
 
     @media (max-width:  720px) {
-        img {
-            height: 20vh;
-        }
-
         .display-1 {
             font-size: 2rem;
         }
