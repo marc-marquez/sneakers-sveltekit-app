@@ -5,7 +5,7 @@
 
     const dispatch = createEventDispatcher();
 
-    export let currentShoeVariant = null;
+    export let currentShoeVariant:number|null = null;
 
     const setVariant = (index: number) => {
         let variant = currentShoeVariant === index ? null : index;

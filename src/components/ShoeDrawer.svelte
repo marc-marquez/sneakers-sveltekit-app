@@ -7,9 +7,12 @@
     import ShoeVariants from '../shared/ShoeVariants.svelte';
     import ShoeActions from '../shared/ShoeActions.svelte';
 
+    import UserStore from '../stores/UserStore';
+	import DISPLAY_FORMAT from '../constants/DisplayFormat';
+
     export let isDetailsDrawerOpen: boolean = false;
     export let shoe: any = {};
-    export let currentShoeVariant: number = null;
+    export let currentShoeVariant: number|null = null;
 
     const dispatch = createEventDispatcher();
 
@@ -40,14 +43,16 @@
                 <p class="description">No description available</p>
             {/if}
 
-            {#if shoe?.variants}
-            <RowContainer style="flex:1; flex-wrap: wrap; margin-bottom: 20px; justify-content: center; align-items: center;">
-                <ShoeVariants {shoe} {currentShoeVariant} on:setVariant={setVariant} />
-            </RowContainer>
+            {#if $UserStore.displayFormat !== DISPLAY_FORMAT.featured}
+                {#if shoe?.variants}
+                <RowContainer style="flex:1; flex-wrap: wrap; margin-bottom: 20px; justify-content: center; align-items: center;">
+                    <ShoeVariants {shoe} {currentShoeVariant} on:setVariant={setVariant} />
+                </RowContainer>
 
-            <RowContainer style="flex:1">
-				<ShoeActions {shoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} />
-            </RowContainer>
+                <RowContainer style="flex:1">
+                    <ShoeActions {shoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} />
+                </RowContainer>
+                {/if}
             {/if}
         </div>
     </div>

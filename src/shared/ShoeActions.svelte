@@ -5,7 +5,7 @@
     import AddToCart from "./AddToCart.svelte";
 
     export let shoe: any = {};
-    export let currentShoeVariant = null;
+    export let currentShoeVariant: number|null = null;
 
     const dispatch = createEventDispatcher();
 

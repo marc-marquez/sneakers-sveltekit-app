@@ -3,7 +3,7 @@
     import { createEventDispatcher } from "svelte";
 
     export let currentShoe: any = <any>{};
-    export let currentShoeVariant: number = null;
+    export let currentShoeVariant: number|null = null;
 
     const dispatch = createEventDispatcher();
 
