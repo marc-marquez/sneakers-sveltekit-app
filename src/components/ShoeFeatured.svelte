@@ -59,6 +59,10 @@
         width: 100%;
     }
 
+    .image-container {
+        min-width: 350px;
+    }
+
     .no-image-container {
         font-size: 150px;
         color: grey;
