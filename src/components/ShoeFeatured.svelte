@@ -57,10 +57,7 @@
     img {
         object-fit: contain;
         width: 100%;
-    }
-
-    .image-container {
-        min-width: 350px;
+        height: 25vh;
     }
 
     .no-image-container {

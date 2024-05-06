@@ -295,8 +295,8 @@
 					<ShoeGrid {shoes} {currentPage} {totalPages} on:getNextPage={getNextPage} on:getPrevPage={getPrevPage} on:getShoeDetails={getShoeDetails} />
 				</div>
 			{:else if displayFormat === 'list'}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px;">
-					<ShoeList {shoes} />
+				<div style="flex:2 1 0%; background-color: white; margin: 10px 20px;">
+					<ShoeList {shoes} {currentPage} {totalPages} on:getNextPage={getNextPage} on:getPrevPage={getPrevPage} on:getShoeDetails={getShoeDetails} />
 				</div>
 			{:else if shoes.length === 0 && !isLoading}
 				<EmptyState />

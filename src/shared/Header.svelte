@@ -6,7 +6,7 @@
 
     export let name: string = '';
 
-    let displayFormat: string = DISPLAY_FORMAT.featured;
+    export let displayFormat: string = DISPLAY_FORMAT.featured;
 
     const dispatch = createEventDispatcher();
 
@@ -31,6 +31,10 @@
             <input type="text" class="search-input" />
             <button class="category-button"><h2>Cart</h2></button>
         </div> -->
+        <div>
+            <a href="/">Shop</a>
+            <a href="/checkout">Checkout</a>
+        </div>
         <div>
             <span class="view-label">View: </span>
             <select class="display-select" bind:value={displayFormat} on:change={handleDisplayFormatChange}>

@@ -34,6 +34,12 @@ h1 {
 	margin-bottom: 1rem;
 }
 
+a {
+	font-weight: 900;
+	font-size: clamp(1rem, 1vw, 2rem);
+	margin: 5px;
+}
+
 h2 {
 	margin-top: 0;
 }

@@ -35,12 +35,14 @@
             <img src="{shoe.image}" alt={shoe.title} in:fly|global={{ y: -15, duration: 2000 }} />
         </div>
         <div class="details-container">
-            <h1 style="margin: 0">{shoe.title}</h1>
+            <h1 style="margin-bottom: 10px">{shoe.title}</h1>
 
-            {#if shoe.description}
-                <p class="description">{@html shoe.description}</p>
-            {:else}
-                <p class="description">No description available</p>
+            {#if $UserStore.displayFormat !== DISPLAY_FORMAT.list}
+                {#if shoe.description}
+                    <p class="description">{@html shoe.description}</p>
+                {:else}
+                    <p class="description">No description available</p>
+                {/if}
             {/if}
 
             {#if $UserStore.displayFormat !== DISPLAY_FORMAT.featured}
