@@ -38,6 +38,7 @@
 	let isFavoritesOpen = false;
 	let isLoading = false;
 	let successToast = false;
+	let favoriteToast = false;
 	let isMenuDrawerOpen = false;
 	let companyName = 'The Drip';
 
@@ -224,6 +225,13 @@
 		}, 3000);
 	};
 
+	const fireFavoriteToast = () => {
+		favoriteToast = true;
+		setTimeout(() => {
+			favoriteToast = false;
+		}, 3000);
+	};
+
 	const getShoeById = (id: string) => {
 		if (!id) { 
 			console.error('No id sent in getShoeById');
@@ -297,7 +305,7 @@
                         </div>
 						{/if}
 						<div class="row-container actions-container">
-							<ShoeActions shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} />
+							<ShoeActions shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} on:fireFavoriteToast={fireFavoriteToast} />
                         </div>
 					</div>
 				</div>
@@ -330,6 +338,10 @@
 
 	{#if successToast}
 		<Toast type="success" message={`Added ${currentShoe.title} (size ${currentShoe.variants?.[currentShoeVariant]?.size}) to cart.`} />
+	{/if}
+
+	{#if favoriteToast}
+		<Toast type="favorite" message={`Added ${currentShoe.title} to favorites.`} />
 	{/if}
 
 	{#if isMenuDrawerOpen}

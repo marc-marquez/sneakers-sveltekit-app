@@ -50,7 +50,14 @@
             </select>
         </div>
         <button on:click={openFavorites} disabled={!$FavoritesStore.length}><i class="fa-solid fa-heart"></i></button>
-        <button on:click={openCart} disabled={!$CartStore.length}><i class="fa-solid fa-cart-shopping"></i></button>
+        <button on:click={openCart} disabled={!$CartStore.length}>
+            <span class="fa-layers fa-fw">
+                <i class="fa-solid fa-cart-shopping"></i>
+                {#if $CartStore.length > 0}
+                    <span class="fa-layers-text" data-fa-transform="shrink-8 down-3">{$CartStore.length}</span>
+                {/if}
+            </span>
+        </button>
     </div>
 </nav>
 

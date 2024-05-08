@@ -1,7 +1,10 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
     import FavoritesStore from "../stores/FavoritesStore";
 
     export let shoe: any = <any>{};
+
+    const dispatch = createEventDispatcher();
 
     $: isFavorited = $FavoritesStore.find((current) => current.id === shoe.id);
 
@@ -17,6 +20,8 @@
         FavoritesStore.update((store) => {
             return [...store, shoe];
         })
+
+        dispatch('fireFavoriteToast');
     }
 </script>
 

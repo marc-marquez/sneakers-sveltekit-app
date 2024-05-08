@@ -29,21 +29,23 @@
     }
 </script>
 
-<button class="add-button" on:click={modifyCart} disabled={currentShoeVariant === null}>
-    <i class="fa-solid fa-cart-plus" />
-</button>
+<button class="add-button" on:click={modifyCart}>Add to Cart</button>
 
 <style>
     .add-button {
-        border: none;
-        background-color: white;
+        border: 1px solid black;
+        background-color: black;
+        padding: 5px 10px;
         font-size: 24px;
-        color: black;
+        color: white;
+        border-radius: 50px;
     }
 
     .add-button:hover {
         cursor: pointer;
-        color: #a6f0ff;
+        background-color: #a6f0ff;
+        border: 1px solid #a6f0ff;
+        color: black;
     }
 
     .add-button:disabled {

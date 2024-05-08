@@ -16,11 +16,15 @@
     const fireSuccessToast = () => {
         dispatch('fireSuccessToast');
     }
+
+    const fireFavoriteToast = () => {
+        dispatch('fireFavoriteToast');
+    }
 </script>
 
 <div class="shoe-actions">
     <button on:click={() => toggleDetailsDrawer()}><i class="fa-solid fa-circle-info"></i></button>
-    <FavoriteButton {shoe} />
+    <FavoriteButton {shoe} on:fireFavoriteToast={fireFavoriteToast} />
     <AddToCart currentShoe={shoe} {currentShoeVariant} on:addToCart={fireSuccessToast} />
     {#if shoe?.variants?.[currentShoeVariant]?.price}
         <h2>${shoe.variants[currentShoeVariant]?.price}</h2>
@@ -34,6 +38,7 @@
         display: flex;
         justify-content: space-around;
         flex: 1;
+        align-items: center;
     }
 
     button {
