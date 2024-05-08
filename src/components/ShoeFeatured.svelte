@@ -88,7 +88,7 @@
         }
 
         .display-1 {
-            bottom: 0;
+            bottom: -1vh;
 		    right: 0;
         }
     }
