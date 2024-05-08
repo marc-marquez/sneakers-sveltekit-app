@@ -25,8 +25,15 @@
         </div>
         <slot></slot>
     </div>
-{:else}
+{:else if location === 'right'}
     <div class="drawer {location} {isDrawerOpen ? `${location}-show` : `${location}-hide`}" transition:fly|global={{x: isDrawerOpen ? 100 : 0 }}>
+        <div class="action">
+            <button class="close-button" on:click={closeDrawer}>X</button>
+        </div>
+        <slot></slot>
+    </div>
+{:else if location === 'left'}
+    <div class="drawer {location} {isDrawerOpen ? `${location}-show` : `${location}-hide`}" transition:fly|global={{x: isDrawerOpen ? -100 : 0 }}>
         <div class="action">
             <button class="close-button" on:click={closeDrawer}>X</button>
         </div>
@@ -67,9 +74,9 @@
         bottom: -300px;
     }
 
+    .left,
     .right {
         top: 0;
-        right: 0;
         max-width: 30vw;
         min-width: 375px;
         border-radius: 0;
@@ -85,10 +92,12 @@
         right: -100px;
     }
 
-    .left {
-        top: 0;
+    .left-show {
         left: 0;
-        width: 20vw;
+    }
+
+    .left-hide {
+        left: -100px;
     }
 
     .close-button {

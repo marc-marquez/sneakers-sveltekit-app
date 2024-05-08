@@ -10,6 +10,7 @@
     import PageLayout from '../shared/PageLayout.svelte';
     import ShoeDrawer from '../components/ShoeDrawer.svelte';
     import FavoritesDrawer from '../components/FavoritesDrawer.svelte';
+	import MenuDrawer from '../components/MenuDrawer.svelte';
 
     import StarRating from '../shared/StarRating.svelte';
     import CircleButton from '../shared/CircleButton.svelte';
@@ -37,6 +38,8 @@
 	let isFavoritesOpen = false;
 	let isLoading = false;
 	let successToast = false;
+	let isMenuDrawerOpen = false;
+	let companyName = 'The Drip';
 
 	let currentShoeSize = '';
 
@@ -244,9 +247,17 @@
 	const toggleFavorites = () => {
 		isFavoritesOpen = !isFavoritesOpen;
 	}
+
+	const openMenu = () => {
+		isMenuDrawerOpen = true;
+	}
+
+	const toggleMenuDrawer = () => {
+		isMenuDrawerOpen = !isMenuDrawerOpen;
+	}
 </script>
 
-<Header name="The Drip" on:displayFormatChange={setDisplayFormat} on:openCart={openCart} on:openFavorites={openFavorites} />
+<Header name={companyName} on:displayFormatChange={setDisplayFormat} on:openCart={openCart} on:openFavorites={openFavorites} on:openMenu={openMenu} />
 <PageLayout>
 	<main>
 		<div class="container">
@@ -319,6 +330,10 @@
 
 	{#if successToast}
 		<Toast type="success" message={`Added ${currentShoe.title} (size ${currentShoe.variants?.[currentShoeVariant]?.size}) to cart.`} />
+	{/if}
+
+	{#if isMenuDrawerOpen}
+		<MenuDrawer {isMenuDrawerOpen} {toggleMenuDrawer} />
 	{/if}
 </PageLayout>
 <!-- <Footer /> -->

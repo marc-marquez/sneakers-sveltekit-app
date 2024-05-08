@@ -1,28 +1,39 @@
 <script lang="ts">
     import PageLayout from "../../shared/PageLayout.svelte";
+
+    let fields = ['name', 'email', 'address', 'city', 'state', 'zip', 'country'];
 </script>
 
 <PageLayout>
-    <h1>Checkout</h1>
-    <div >
-        <form style="display: flex; flex-direction: column; justify-content: center;">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" required>
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" required>
-            <label for="state">State</label>
-            <input type="text" id="state" name="state" required>
-            <label for="zip">Zip</label>
-            <input type="text" id="zip" name="zip" required>
-            <label for="country">Country</label>
-            <input type="text" id="country" name="country" required>
-            <button type="submit">Submit</button>
-        </form>
+    <div class="checkout">
+        <h1>Checkout</h1>
+        <div class="box">
+            <form style="display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+                {#each fields as field}
+                    <div style="display: flex; justify-content: space-between;">
+                        <label for={field}>{field}</label>
+                        <input style="margin-left: 20px;" type="text" id={field} name={field} required>
+                    </div>
+                {/each}
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </div>
 </PageLayout>
 
-<style></style>
+<style>
+    .checkout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .box {
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 10px;
+        flex: 1;
+    }
+
+</style>

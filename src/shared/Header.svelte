@@ -8,6 +8,8 @@
 
     export let displayFormat: string = DISPLAY_FORMAT.featured;
 
+    let showMenu = false;
+
     const dispatch = createEventDispatcher();
 
     const handleDisplayFormatChange = (event) => {
@@ -22,19 +24,23 @@
         dispatch("openFavorites");
     }
 
+    const toggleMenu = () => {
+        dispatch("openMenu");
+    }
+
 </script>
 
-<header>
-    <nav>
-        <h1>{name}</h1>
-        <!-- <div>
-            <input type="text" class="search-input" />
-            <button class="category-button"><h2>Cart</h2></button>
-        </div> -->
-        <div>
+
+<nav>
+    <div style="display: flex; flex-wrap: nowrap;">
+        <button class="mobile-button" on:click={toggleMenu}><i class="fa-solid fa-bars"></i></button>
+        <h1 class="title">{name}</h1>
+        <div class="menu-items">
             <a href="/">Shop</a>
             <a href="/checkout">Checkout</a>
         </div>
+    </div>
+    <div style="display: flex; flex-wrap: nowrap;">
         <div>
             <span class="view-label">View: </span>
             <select class="display-select" bind:value={displayFormat} on:change={handleDisplayFormatChange}>
@@ -43,12 +49,11 @@
                 <option value={DISPLAY_FORMAT.list}>Deep Dive</option>
             </select>
         </div>
-        <div>
-            <button on:click={openFavorites} disabled={!$FavoritesStore.length}><i class="fa-solid fa-heart"></i></button>
-            <button on:click={openCart} disabled={!$CartStore.length}><i class="fa-solid fa-cart-shopping"></i></button>
-        </div>
-    </nav>
-</header>
+        <button on:click={openFavorites} disabled={!$FavoritesStore.length}><i class="fa-solid fa-heart"></i></button>
+        <button on:click={openCart} disabled={!$CartStore.length}><i class="fa-solid fa-cart-shopping"></i></button>
+    </div>
+</nav>
+
 
 <style>
     nav {
@@ -57,13 +62,33 @@
         align-items: center;
         padding: 30px 50px;
         background-color: #a6f0ff;
-        /* border-radius: 50px 0 50px 0; */
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
         flex-wrap: nowrap;
     }
 
+    .menu-items {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        align-items: center;
+        margin-left: 20px;
+    }
+
+    .title {
+        margin-left: 20px;
+    }
+
     h1 {
         margin: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-size: 20px;
+        font-weight: 900;
+        align-items: center;
+        justify-content: center;
     }
 
     button {
@@ -73,12 +98,6 @@
         margin-left: 10px;
         padding: 0;
     }
-
-    /* .search-input {
-        padding: 5px;
-        border-radius: 10px;
-        border: 1px solid lightgrey;
-    } */
 
     span {
         font-family: 'Ostrich Sans', sans-serif;
@@ -97,10 +116,13 @@
         text-align: center;
     }
 
+    .mobile-button {
+        display: none;
+    }
+
     @media (max-width: 960px) {
         nav {
             padding: 30px 10px;
-            justify-content: space-around;
         }
 
         .view-label {
@@ -109,6 +131,14 @@
 
         .display-select {
             padding: 3px 10px;
+        }
+
+        .menu-items {
+            display: none;
+        }
+
+        .mobile-button {
+            display: block;
         }
     }
 </style>
