@@ -36,7 +36,8 @@
         <button class="mobile-button" on:click={toggleMenu}><i class="fa-solid fa-bars"></i></button>
         <h1 class="title">{name}</h1>
         <div class="menu-items">
-            <a href="/">Shop</a>
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
             <a href="/checkout">Checkout</a>
         </div>
     </div>

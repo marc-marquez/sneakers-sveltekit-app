@@ -9,7 +9,10 @@
     <div class="container">
         <div class="menu">
             <div class="item">
-                <a href="/">Shop</a>
+                <a href="/">Home</a>
+            </div>
+            <div class="item">
+                <a href="/shop">Shop</a>
             </div>
             <div class="item">
                 <a href="/checkout">Checkout</a>
