@@ -70,7 +70,7 @@
         display: flex;
         flex-wrap: nowrap;
         gap: 10px;
-        align-items: center;
+        align-items: end;
         margin-left: 20px;
     }
 
@@ -89,6 +89,12 @@
         font-weight: 900;
         align-items: center;
         justify-content: center;
+        border-bottom: 5px solid transparent;
+    }
+
+    a:hover {
+        cursor: pointer;
+        border-bottom: 5px solid white;
     }
 
     button {
@@ -97,6 +103,10 @@
         font-size: 24px;
         margin-left: 10px;
         padding: 0;
+    }
+
+    button:hover {
+        cursor: pointer;
     }
 
     span {
@@ -109,7 +119,6 @@
         border: none;
         background: white;
         padding: 10px;
-        /* margin: 10px; */
         font-size: 20px;
         font-weight: 900;
         border-radius: 50px;
