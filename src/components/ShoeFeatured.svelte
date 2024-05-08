@@ -72,8 +72,8 @@
 
     .overlap {
 		position: absolute;
-		bottom: -1vh;
-		left: 3vw;
+		bottom: -2vh;
+		right: -3vw;
 		z-index: 100;
 		color: rgba(0, 0, 0, 0.1);
         text-align: left;
@@ -86,11 +86,10 @@
         .image-container {
             max-width: 400px;
         }
-    }
 
-    @media (max-width:  720px) {
         .display-1 {
-            font-size: 2rem;
+            bottom: 1vh;
+		    right: 0;
         }
     }
 </style>

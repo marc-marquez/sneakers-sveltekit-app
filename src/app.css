@@ -40,9 +40,8 @@ p {
 }
 
 .display-1 {
-	font-family: "Inter", sans-serif;
-	font-size: clamp(3rem, 8vw, 4rem);
-	font-weight: 900;
+	font-family: "Permanent Marker", sans-serif;
+	font-size: clamp(2rem, 4vw, 3rem);
 }
 
 
