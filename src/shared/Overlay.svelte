@@ -12,7 +12,7 @@
     background-color: rgba(0,0,0,.85);
     top: 0;
     left: 0;
-    z-index: 200;
+    z-index: 100;
 }
 
 .overlay:hover {

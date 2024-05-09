@@ -221,20 +221,6 @@
 		isCartOpen = !isCartOpen;
 	}
 
-	const fireSuccessToast = () => {
-		successToast = true;
-		setTimeout(() => {
-			successToast = false;
-		}, 3000);
-	};
-
-	const fireFavoriteToast = () => {
-		favoriteToast = true;
-		setTimeout(() => {
-			favoriteToast = false;
-		}, 3000);
-	};
-
 	const getShoeById = (id: string) => {
 		if (!id) { 
 			console.error('No id sent in getShoeById');
@@ -329,8 +315,6 @@
 								shoe={currentShoe}
 								{currentShoeVariant}
 								on:toggleDetailsDrawer={toggleDetailsDrawer}
-								on:fireSuccessToast={fireSuccessToast}
-								on:fireFavoriteToast={fireFavoriteToast}
 								on:fireToast={fireToast}
 								on:toggleError={toggleError}
 							/>
@@ -353,7 +337,7 @@
 	</main>
 
 	{#if isDetailsDrawerOpen}
-		<ShoeDrawer shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} {isDetailsDrawerOpen} on:setVariant={setVariant} on:fireSuccessToast={fireSuccessToast} on:fireFavoriteToast={fireFavoriteToast} />
+		<ShoeDrawer shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} {isDetailsDrawerOpen} on:setVariant={setVariant} on:fireToast={fireToast} />
 	{/if}
 
 	{#if isCartOpen}

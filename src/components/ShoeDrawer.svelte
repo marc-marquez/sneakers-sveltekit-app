@@ -26,12 +26,8 @@
         dispatch("setVariant", e.detail);
     };
 
-    const fireSuccessToast = () => {
-        dispatch("fireSuccessToast");
-    };
-
-    const fireFavoriteToast = () => {
-        dispatch("fireFavoriteToast");
+    const fireToast = (e) => {
+        dispatch("fireToast", e.detail);
     };
 
     const toggleError = (e) => {
@@ -75,8 +71,7 @@
                         {shoe}
                         {currentShoeVariant}
                         on:toggleDetailsDrawer={toggleDetailsDrawer}
-                        on:fireSuccessToast={fireSuccessToast}
-                        on:fireFavoriteToast={fireFavoriteToast}
+                        on:fireToast={fireToast}
                         on:toggleError={toggleError}
                     />
                 </RowContainer>

@@ -74,7 +74,7 @@
 		position: absolute;
 		bottom: -2vh;
 		right: -3vw;
-		z-index: 100;
+		z-index: 50;
 		color: rgba(0, 0, 0, 0.1);
         text-align: left;
         word-wrap: break-word;
