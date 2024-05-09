@@ -14,6 +14,8 @@
     export let shoe: any = {};
     export let currentShoeVariant: number|null = null;
 
+    let showError = false;
+
     const dispatch = createEventDispatcher();
 
     const toggleDetailsDrawer = () => {
@@ -26,6 +28,14 @@
 
     const fireSuccessToast = () => {
         dispatch("fireSuccessToast");
+    };
+
+    const fireFavoriteToast = () => {
+        dispatch("fireFavoriteToast");
+    };
+
+    const toggleError = (e) => {
+        showError = e.detail;
     };
 </script>
 
@@ -45,14 +55,30 @@
                 {/if}
             {/if}
 
+            {#if showError}
+                <h1 style="color: red;">Select A Size</h1>
+            {/if}
+
             {#if $UserStore.displayFormat !== DISPLAY_FORMAT.featured}
                 {#if shoe?.variants}
                 <RowContainer style="flex:1; flex-wrap: wrap; margin-bottom: 20px; justify-content: center; align-items: center;">
-                    <ShoeVariants {shoe} {currentShoeVariant} on:setVariant={setVariant} />
+                    <ShoeVariants
+                        {shoe}
+                        {currentShoeVariant}
+                        on:setVariant={setVariant}
+                        on:toggleError={toggleError}
+                    />
                 </RowContainer>
 
                 <RowContainer style="flex:1">
-                    <ShoeActions {shoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} />
+                    <ShoeActions
+                        {shoe}
+                        {currentShoeVariant}
+                        on:toggleDetailsDrawer={toggleDetailsDrawer}
+                        on:fireSuccessToast={fireSuccessToast}
+                        on:fireFavoriteToast={fireFavoriteToast}
+                        on:toggleError={toggleError}
+                    />
                 </RowContainer>
                 {/if}
             {/if}

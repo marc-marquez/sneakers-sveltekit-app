@@ -39,6 +39,7 @@
 	let successToast = false;
 	let favoriteToast = false;
 	let isMenuDrawerOpen = false;
+	let showError = false;
 	let companyName = 'The Drip';
 
 	let currentShoeSize = '';
@@ -262,6 +263,10 @@
 	const toggleMenuDrawer = () => {
 		isMenuDrawerOpen = !isMenuDrawerOpen;
 	}
+
+	const toggleError = (e) => {
+		showError = e.detail;
+	}
 </script>
 
 <Header name={companyName} on:displayFormatChange={setDisplayFormat} on:openCart={openCart} on:openFavorites={openFavorites} on:openMenu={openMenu} />
@@ -298,22 +303,35 @@
 							<StarRating currentRating={currentShoe?.rating} />
                         </div>
 						{/if}
+
+						{#if showError}
+							<h1 style="color: red;">Select A Size</h1>
+						{/if}
+
 						{#if shoes[currentShoeIndex]?.variants}
 						<div class="row-container variants-container">
-							<ShoeVariants shoe={currentShoe} {currentShoeVariant} on:setVariant={setVariant} />
+							<ShoeVariants shoe={currentShoe} {currentShoeVariant} on:setVariant={setVariant} on:toggleError={toggleError} />
                         </div>
 						{/if}
+
 						<div class="row-container actions-container">
-							<ShoeActions shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} on:fireSuccessToast={fireSuccessToast} on:fireFavoriteToast={fireFavoriteToast} />
+							<ShoeActions
+								shoe={currentShoe}
+								{currentShoeVariant}
+								on:toggleDetailsDrawer={toggleDetailsDrawer}
+								on:fireSuccessToast={fireSuccessToast}
+								on:fireFavoriteToast={fireFavoriteToast}
+								on:toggleError={toggleError}
+							/>
                         </div>
 					</div>
 				</div>
 			{:else if displayFormat === 'grid'}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px;">
+				<div style="flex:2 1 0%; background-color: white; margin: 10px; width: 100%;">
 					<ShoeGrid {shoes} {currentPage} {totalPages} on:getNextPage={getNextPage} on:getPrevPage={getPrevPage} on:getShoeDetails={getShoeDetails} />
 				</div>
 			{:else if displayFormat === 'list'}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px 20px;">
+				<div style="flex:2 1 0%; background-color: white; margin: 10px 20px; width: 100%;">
 					<ShoeList {shoes} {currentPage} {totalPages} on:getNextPage={getNextPage} on:getPrevPage={getPrevPage} on:getShoeDetails={getShoeDetails} />
 				</div>
 			{:else if shoes.length === 0 && !isLoading}

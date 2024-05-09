@@ -46,7 +46,7 @@
         position: fixed;
         background-color: #fff;
         color: black;
-        z-index: 500;
+        z-index: 200;
         padding: 10px;
         display: flex;
         flex-direction: column;

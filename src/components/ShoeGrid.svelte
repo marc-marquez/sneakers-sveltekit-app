@@ -2,14 +2,11 @@
     import { fly } from "svelte/transition";
     import { createEventDispatcher } from "svelte";
     import RowContainer from "../shared/RowContainer.svelte";
-    import Card from "../shared/Card.svelte";
-    import ColumnContainer from "../shared/ColumnContainer.svelte";
     import CircleButton from "../shared/CircleButton.svelte";
 
     export let shoes: Array<any> = [];
     export let currentPage: number = 0;
     export let totalPages: number = 0;
-    export let isLoading: boolean = false;
 
     const dispatch = createEventDispatcher();
 
@@ -31,19 +28,17 @@
 </script>
 
 <div class="shoe-grid">
-    <RowContainer style="align-items: flex-start; justify-content: center; flex: 1; align-self: center;">
+    <div class="grid">
         {#each currentShoeList as shoe, index (shoe.id)}
             {#if shoe.image}
-            <Card on:openDrawer={() => getShoeDetails(shoe.id)}>
-                {#if !isLoading}
+            <button on:click={() => getShoeDetails(shoe.id)}>
                 <div class="image-container">
                     <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -50, duration: 2000 }} />
                 </div>
-                {/if}
-            </Card>
+            </button>
             {/if}
         {/each}
-    </RowContainer>
+    </div>
     <RowContainer style="flex-wrap: nowrap; align-items: flex-start; justify-content: center;">
         <CircleButton handleClick={() => getPrevPage()} disabled={currentPage <= 1}>
             <i class="fas fa-chevron-left" />
@@ -64,9 +59,21 @@
         width: 100%
     }
 
-    @media (max-width: 960px) {
-        .image-container {
-            max-width: 100px;
-        }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        place-items: center;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        transform: scale(1.1);
     }
 </style>

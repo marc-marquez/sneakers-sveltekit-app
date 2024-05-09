@@ -10,6 +10,7 @@
     const setVariant = (index: number) => {
         let variant = currentShoeVariant === index ? null : index;
         dispatch("setVariant", variant);
+        dispatch("toggleError", false);
     };
 </script>
 

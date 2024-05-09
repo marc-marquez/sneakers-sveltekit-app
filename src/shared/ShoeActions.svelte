@@ -20,23 +20,25 @@
     const fireFavoriteToast = () => {
         dispatch('fireFavoriteToast');
     }
+
+    const toggleError = (state: boolean) => {
+        dispatch('toggleError', state);
+    }
 </script>
 
 <div class="shoe-actions">
     <button on:click={() => toggleDetailsDrawer()}><i class="fa-solid fa-circle-info"></i></button>
     <FavoriteButton {shoe} on:fireFavoriteToast={fireFavoriteToast} />
-    <AddToCart currentShoe={shoe} {currentShoeVariant} on:addToCart={fireSuccessToast} />
+    <AddToCart currentShoe={shoe} {currentShoeVariant} on:addToCart={fireSuccessToast} on:missingSize={() => toggleError(true)} />
     {#if shoe?.variants?.[currentShoeVariant]?.price}
         <h2>${shoe.variants[currentShoeVariant]?.price}</h2>
-    {:else}
-        <h2>SELECT SIZE</h2>
     {/if}
 </div>
 
 <style>
     .shoe-actions {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         flex: 1;
         align-items: center;
     }

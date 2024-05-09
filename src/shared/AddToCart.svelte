@@ -8,8 +8,13 @@
     const dispatch = createEventDispatcher();
 
     const modifyCart = () => {
-        if (!currentShoe || currentShoeVariant === null) {
-            console.error('No shoe or variant chosen.');
+        if (!currentShoe) {
+            console.error("No shoe selected");
+            return;
+        }
+
+        if (currentShoeVariant === null) {
+            dispatch('missingSize');
             return;
         }
 
