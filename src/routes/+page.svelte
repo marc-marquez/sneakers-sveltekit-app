@@ -1,44 +1,45 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
     import '../app.css'
     import BRANDS from '../constants/Brands';
 
     let words = ['DISTINCTIVE', 'UNIQUE', 'SIGNATURE', 'INDIVIDUAL', 'MEMORABLE', 'ICONIC'];
 
-    const rotateWords = () => {
-        let index = 0;
-        setInterval(() => {
-            if (index === words.length - 1) {
-                index = 0;
-            } else {
-                index++;
-            }
-            document.querySelector('.rotate-words').innerHTML = words[index]+'.';
-        }, 5000);
-    }
-
-    const rotateBrands = () => {
-        let index = 0;
-
-        setInterval(() => {
-            if (index === BRANDS.length - 1) {
-                index = 0;
-            } else {
-                index++;
-            }
-
-            if (BRANDS[index].toString() === 'Jordan') {
-                document.querySelector('.rotate-brands').src = 'https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Jumpman_logo.svg/250px-Jumpman_logo.svg.png';
-            } else {
-                document.querySelector('.rotate-brands').src = `https://logo.clearbit.com/${BRANDS[index].replace(/\s+/g, '')}.com?size=350&format=png`;
-            }
-            document.querySelector('.rotate-brands').alt = BRANDS[index];
-        }, 5000);
-    }
+    let wordIntervalId;
+    let brandIntervalId;
 
     onMount(() => {
-        rotateWords();
-        rotateBrands();
+        let wordIndex = 0;
+        let brandIndex = 0;
+
+        wordIntervalId = setInterval(() => {
+            if (wordIndex === words.length - 1) {
+                wordIndex = 0;
+            } else {
+                wordIndex++;
+            }
+            document.querySelector('.rotate-words').innerHTML = words[wordIndex]+'.';
+        }, 5000);
+
+        brandIntervalId = setInterval(() => {
+            if (brandIndex === BRANDS.length - 1) {
+                brandIndex = 0;
+            } else {
+                brandIndex++;
+            }
+
+            if (BRANDS[brandIndex].toString() === 'Jordan') {
+                document.querySelector('.rotate-brands').src = 'https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Jumpman_logo.svg/250px-Jumpman_logo.svg.png';
+            } else {
+                document.querySelector('.rotate-brands').src = `https://logo.clearbit.com/${BRANDS[brandIndex].replace(/\s+/g, '')}.com?size=350&format=png`;
+            }
+            document.querySelector('.rotate-brands').alt = BRANDS[brandIndex];
+        }, 5000);
+    });
+
+    onDestroy(() => {
+        clearInterval(wordIntervalId);
+        clearInterval(brandIntervalId);
     });
 </script>
 
