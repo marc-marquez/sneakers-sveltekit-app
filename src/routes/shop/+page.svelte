@@ -49,7 +49,9 @@
 	$: currentShoeIndex = $CurrentShoeStore?.currentShoeIndex;
 	$: currentShoeVariant = $CurrentShoeStore?.currentShoeVariant;
 
-    $: displayFormat = $UserStore?.displayFormat; 
+    $: displayFormat = $UserStore?.displayFormat;
+
+	$: toastMessage = `${['add', 'favorite'].includes(showToast) ? 'Added' : 'Removed'} ${currentShoe.title} (size ${currentShoe.variants?.[currentShoeVariant]?.size}) ${['add', 'favorite'].includes(showToast) ? 'to' : 'from'} ${['add', 'remove'].includes(showToast) ? 'cart' : 'favorites'}.`;
 
 	let currentGender = 'any';
 	let currentAgeGroup = 'adults';
@@ -362,13 +364,13 @@
 		<FavoritesDrawer {isFavoritesOpen} {toggleFavorites} />
 	{/if}
 
-	{#if ['add', 'remove'].includes(showToast)}
-		<Toast type={showToast} message={`${showToast === 'favorite' ? 'Added' : 'Removed'} ${currentShoe.title} (size ${currentShoe.variants?.[currentShoeVariant]?.size}) ${showToast === 'favorite' ? 'to' : 'from'} cart.`} />
+	{#if showToast}
+		<Toast type={showToast} message={toastMessage} />
 	{/if}
 
-	{#if ['favorite', 'unfavorite'].includes(showToast)}
+	<!-- {#if ['favorite', 'unfavorite'].includes(showToast)}
 		<Toast type={showToast} message={`${showToast === 'favorite' ? 'Added' : 'Removed'} ${currentShoe.title} ${showToast === 'favorite' ? 'to' : 'from'} favorites.`} />
-	{/if}
+	{/if} -->
 
 	{#if isMenuDrawerOpen}
 		<MenuDrawer {isMenuDrawerOpen} {toggleMenuDrawer} />

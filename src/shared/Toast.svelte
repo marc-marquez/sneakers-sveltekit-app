@@ -34,17 +34,22 @@
 
     .add {
         background-color: darkgreen;
-        color: white;
+        /* color: white; */
     }
 
     .remove {
-        background-color: darkblue;
-        color: white;
+        background-color: darkslategrey;
+        /* color: white; */
     }
 
-    .favorite, .unfavorite {
+    .favorite {
         background-color: darkred;
-        color: white;
+        /* color: white; */
+    }
+
+    .unfavorite {
+        background-color: orangered;
+        /* color: white; */
     }
 
     .message {
