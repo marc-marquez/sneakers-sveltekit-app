@@ -52,14 +52,38 @@
         </div>
     </section>
     <section style="background-color: white; color: black;">
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; justify-content: center;">
             <div style="max-width: 500px;">
                 <img src="https://images.stockx.com/images/Jordan-11-Retro-Space-Jams-2016-Product.jpg" alt="Jordan 11 Retro Space Jams" style="object-fit; width: 100%;"/>
             </div>
             <div class="text tagline">WHERE EVERY STRIDE IS A SIGNATURE STATEMENT.</div>
         </div>
     </section>
-    <section style="background-color: black; color: white;">
+    <section style="background-color: black; color: white; height: 100%;">
+        <div class="grid-container">
+            <div class="image-grid">
+                <div class="image-container">
+                    <img class="image" src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2581&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Red White Jordans" />
+                </div>
+                <div class="image-container">
+                    <img class="image" src="https://images.unsplash.com/photo-1597045566677-8cf032ed6634?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jordan 1" />
+                </div>
+                <div class="image-container">
+                    <img class="image" src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jordan 1" />
+                </div>
+                <div class="image-container">
+                    <img class="image" src="https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jordan 1" />
+                </div>
+                <div class="image-container">
+                    <img class="image" src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=2400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jordan 1" />
+                </div>
+                <div class="image-container">
+                    <img class="image" src="https://images.unsplash.com/photo-1586525198428-225f6f12cff5?q=80&w=3840&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jordan 1" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="background-color: white; color: black;">
         <div class="two-grid">
             <div class="tile rotate-words-tile">
                 <div class="text rotate-words">DISTINCTIVE.</div>
@@ -124,8 +148,39 @@
     }
 
     .rotate-words-tile {
-        background-color: black;
-        color: white;
+        background-color: white;
+        color: black;
+    }
+
+    .grid-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .image-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .image-container {
+        width: 300px;
+        max-width: 300px;
+        height: 450px;
+    }
+
+    .image {
+        object-fit: cover;
+        width: 100%;
+        height: 450px;
+        border-radius: 20px;
+
     }
 
     @media (max-width: 960px) {
@@ -142,5 +197,15 @@
         }
     }
 
+    @media (max-width: 720px) {
+        .image-container {
+            width: 100%;
+            height: 300px;
+        }
+
+        .image {
+            height: 300px;
+        }
+    }
 
 </style>
