@@ -65,7 +65,7 @@
             </div>
             <div class="tile">
                 <div>
-                    <img class="rotate-brands" src={`https://logo.clearbit.com/${BRANDS[0].replace(/\s+/g, '')}.com?size=350`} alt="{BRANDS[0]} Logo" />
+                    <img class="rotate-brands" src={`https://logo.clearbit.com/${BRANDS[0].replace(/\s+/g, '')}.com?size=250`} alt="{BRANDS[0]} Logo" />
                 </div>
             </div>
         </div>
@@ -111,6 +111,7 @@
         display: grid;
         place-items: center;
         padding: 20px;
+        border-radius: 25px;
     }
 
     img {

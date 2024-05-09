@@ -2,7 +2,7 @@
     import { createEventDispatcher } from "svelte";
 
     import FavoriteButton from "./FavoriteButton.svelte";
-    import AddToCart from "./AddToCart.svelte";
+    import AddToCartButton from "./AddToCartButton.svelte";
 
     export let shoe: any = {};
     export let currentShoeVariant: number|null = null;
@@ -13,23 +13,27 @@
         dispatch('toggleDetailsDrawer');
     }
 
-    const fireSuccessToast = () => {
-        dispatch('fireSuccessToast');
-    }
+    // const fireSuccessToast = () => {
+    //     dispatch('fireSuccessToast');
+    // }
 
-    const fireFavoriteToast = () => {
-        dispatch('fireFavoriteToast');
-    }
+    // const fireFavoriteToast = () => {
+    //     dispatch('fireFavoriteToast');
+    // }
 
     const toggleError = (state: boolean) => {
         dispatch('toggleError', state);
+    }
+
+    const fireToast = (e) => {
+        dispatch('fireToast', e.detail);
     }
 </script>
 
 <div class="shoe-actions">
     <button on:click={() => toggleDetailsDrawer()}><i class="fa-solid fa-circle-info"></i></button>
-    <FavoriteButton {shoe} on:fireFavoriteToast={fireFavoriteToast} />
-    <AddToCart currentShoe={shoe} {currentShoeVariant} on:addToCart={fireSuccessToast} on:missingSize={() => toggleError(true)} />
+    <FavoriteButton {shoe} on:fireToast={fireToast} />
+    <AddToCartButton currentShoe={shoe} {currentShoeVariant} on:fireToast={fireToast} on:missingSize={() => toggleError(true)} />
     {#if shoe?.variants?.[currentShoeVariant]?.price}
         <h2>${shoe.variants[currentShoeVariant]?.price}</h2>
     {/if}

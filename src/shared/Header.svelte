@@ -38,6 +38,7 @@
         <div class="menu-items">
             <a href="/">Home</a>
             <a href="/shop">Shop</a>
+            <a href="/favorites">Favorites</a>
             <a href="/checkout">Checkout</a>
         </div>
     </div>
@@ -50,7 +51,7 @@
                 <option value={DISPLAY_FORMAT.list}>Deep Dive</option>
             </select>
         </div>
-        <button on:click={openFavorites} disabled={!$FavoritesStore.length}><i class="fa-solid fa-heart"></i></button>
+        <!-- <button on:click={openFavorites} disabled={!$FavoritesStore.length}><i class="fa-solid fa-heart"></i></button> -->
         <button on:click={openCart} disabled={!$CartStore.length}>
             <span class="fa-layers fa-fw">
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -68,7 +69,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 30px 50px;
+        padding: 20px 10px;
         background-color: #a6f0ff;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
         flex-wrap: nowrap;
@@ -139,11 +140,7 @@
 
     @media (max-width: 960px) {
         nav {
-            padding: 30px 10px;
-        }
-
-        .view-label {
-            display: none;
+            padding: 20px 10px;
         }
 
         .display-select {
@@ -156,6 +153,12 @@
 
         .mobile-button {
             display: block;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .view-label {
+            display: none;
         }
     }
 </style>

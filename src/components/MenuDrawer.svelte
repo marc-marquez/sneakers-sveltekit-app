@@ -15,6 +15,9 @@
                 <a href="/shop">Shop</a>
             </div>
             <div class="item">
+                <a href="/favorites">Favorites</a>
+            </div>
+            <div class="item">
                 <a href="/checkout">Checkout</a>
             </div>
         </div>

@@ -41,23 +41,20 @@
 <ColumnContainer style="flex:1;">
     {#each currentShoeList as shoe (shoe.id)}
     <RowContainer style="padding: 10px; border-top: 5px solid #a6f0ff; flex-wrap: nowrap; width: 100%; justify-content: space-between; align-items: center;">
-            <h1 style="text-align: left; margin-top: 0">{shoe.title}</h1>
+            <h1 style="text-align: left; margin: 0">{shoe.title}</h1>
             {#if shoe.image}
-            <Card on:openDrawer={() => getShoeDetails(shoe.id)}>
-                {#if !isLoading}
+            <button class="shoe-button" on:click={() => getShoeDetails(shoe.id)}>
                 <div class="image-container">
                     <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -50, duration: 2000 }} />
                 </div>
-                {/if}
-            </Card>
+            </button>
             {/if}
-        <!-- </div> -->
     </RowContainer>
     <RowContainer style="padding: 10px; flex-wrap: nowrap; width: 100%;">
         {#if shoe.description}
-                <p style="text-align: left">{@html shoe.description}</p>
+                <p style="text-align: left; margin-bottom: 15px;">{@html shoe.description}</p>
             {:else}
-                <p style="text-align: left;">No description available</p>
+                <p style="text-align: left; margin-bottom: 15px;">No description available</p>
             {/if}
     </RowContainer>
     {/each}
@@ -79,6 +76,12 @@
     img {
         object-fit: contain;
         width: 100%
+    }
+
+    .shoe-button {
+        background-color: transparent;
+        border: none;
+        margin-left: 10px;
     }
 
     @media (max-width: 960px) {

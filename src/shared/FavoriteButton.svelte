@@ -14,6 +14,7 @@
             FavoritesStore.update((store) => {
                 return [...filtered];
             })
+            dispatch('fireToast', 'unfavorite');
             return;
         }
         
@@ -21,7 +22,7 @@
             return [...store, shoe];
         })
 
-        dispatch('fireFavoriteToast');
+        dispatch('fireToast', 'favorite');
     }
 </script>
 

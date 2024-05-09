@@ -4,9 +4,10 @@
     export let type: string = '';
 
     let icons = {
-        success: 'fa-check-circle',
-        failure: 'fa-times-circle',
-        favorite: 'fa-heart'
+        add: 'fa-cart-plus',
+        remove: 'fa-cart-shopping',
+        favorite: 'fa-heart',
+        unfavorite: 'fa-heart-crack'
     }
 </script>
 
@@ -18,8 +19,7 @@
 <style>
     .toast {
         position: fixed;
-        top: 50vh;
-        bottom: 30vh;
+        top: 5vh;
         width: 50vw;
         height: 40px;
         padding: 10px 20px;
@@ -32,17 +32,17 @@
         border-radius: 50px;
     }
 
-    .success {
+    .add {
         background-color: darkgreen;
         color: white;
     }
 
-    .failure {
+    .remove {
         background-color: darkblue;
         color: white;
     }
 
-    .favorite {
+    .favorite, .unfavorite {
         background-color: darkred;
         color: white;
     }

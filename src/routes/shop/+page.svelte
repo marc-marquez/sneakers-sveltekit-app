@@ -41,6 +41,7 @@
 	let isMenuDrawerOpen = false;
 	let showError = false;
 	let companyName = 'The Drip';
+	let showToast = '';
 
 	let currentShoeSize = '';
 
@@ -267,6 +268,13 @@
 	const toggleError = (e) => {
 		showError = e.detail;
 	}
+
+	const fireToast = (e) => {
+		showToast = e.detail;
+		setTimeout(() => {
+			showToast = '';
+		}, 3000);
+	}
 </script>
 
 <Header name={companyName} on:displayFormatChange={setDisplayFormat} on:openCart={openCart} on:openFavorites={openFavorites} on:openMenu={openMenu} />
@@ -321,6 +329,7 @@
 								on:toggleDetailsDrawer={toggleDetailsDrawer}
 								on:fireSuccessToast={fireSuccessToast}
 								on:fireFavoriteToast={fireFavoriteToast}
+								on:fireToast={fireToast}
 								on:toggleError={toggleError}
 							/>
                         </div>
@@ -346,19 +355,19 @@
 	{/if}
 
 	{#if isCartOpen}
-		<CartDrawer {isCartOpen} {toggleCart} />
+		<CartDrawer {isCartOpen} {toggleCart} on:fireToast={fireToast} />
 	{/if}
 
 	{#if isFavoritesOpen}
 		<FavoritesDrawer {isFavoritesOpen} {toggleFavorites} />
 	{/if}
 
-	{#if successToast}
-		<Toast type="success" message={`Added ${currentShoe.title} (size ${currentShoe.variants?.[currentShoeVariant]?.size}) to cart.`} />
+	{#if ['add', 'remove'].includes(showToast)}
+		<Toast type={showToast} message={`${showToast === 'favorite' ? 'Added' : 'Removed'} ${currentShoe.title} (size ${currentShoe.variants?.[currentShoeVariant]?.size}) ${showToast === 'favorite' ? 'to' : 'from'} cart.`} />
 	{/if}
 
-	{#if favoriteToast}
-		<Toast type="favorite" message={`Added ${currentShoe.title} to favorites.`} />
+	{#if ['favorite', 'unfavorite'].includes(showToast)}
+		<Toast type={showToast} message={`${showToast === 'favorite' ? 'Added' : 'Removed'} ${currentShoe.title} ${showToast === 'favorite' ? 'to' : 'from'} favorites.`} />
 	{/if}
 
 	{#if isMenuDrawerOpen}
@@ -402,7 +411,7 @@
 
     .variants-container, 
     .actions-container {
-        width: 75%;
+        width: 50%;
     }
 
 	@media (max-width: 960px) {
@@ -419,6 +428,11 @@
 		main {
 			margin-top: 20px;
 		}
+
+		.variants-container, 
+        .actions-container {
+            width: 75%;
+        }
 	}
 
     @media (max-width: 640px) {

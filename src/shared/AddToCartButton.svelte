@@ -30,7 +30,7 @@
             return [...cart, order];
         });
 
-        dispatch('addToCart');
+        dispatch('fireToast', 'add');
     }
 </script>
 
