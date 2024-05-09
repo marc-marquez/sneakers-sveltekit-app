@@ -72,9 +72,10 @@
         grid-auto-flow: row;
         grid-gap: 20px;
         border: 1px solid darkgrey;
-        background-color: lightgrey;
+        background-color: #a6f0ff;
         border-radius: 5px;
         margin-bottom: 20px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     }
 
     button {
@@ -90,7 +91,7 @@
         form {
             grid-template-columns: 1fr;
             grid-gap: 0;
-            width: 80vw;
+            /* width: 100%; */
         }
 
         .box {

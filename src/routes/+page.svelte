@@ -1,8 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
     import '../app.css'
-	import { fade } from 'svelte/transition';
-    import { tweened } from 'svelte/motion';
     import BRANDS from '../constants/Brands';
 
     let words = ['DISTINCTIVE', 'UNIQUE', 'SIGNATURE', 'INDIVIDUAL', 'MEMORABLE', 'ICONIC'];
@@ -39,30 +37,30 @@
     }
 
     onMount(() => {
-        // rotateWords();
-        // rotateBrands();
+        rotateWords();
+        rotateBrands();
     });
 </script>
 
 <div class="homepage">
-    <section>
+    <section style="background-color: black; color: white;">
         <div style="text-align: left;">
             <div class="text">AUTHENTICALLY.</div>
             <div class="text">YOU<i class="fa-solid fa-droplet fa-beat icon"></i></div>
             <a href="/shop">Find Your Drip</a>
         </div>
     </section>
-    <!-- <section style="background-color: white; color: black;">
-        <div>
-            <div style="text-align: center;">
+    <section style="background-color: white; color: black;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div style="max-width: 500px;">
                 <img src="https://images.stockx.com/images/Jordan-11-Retro-Space-Jams-2016-Product.jpg" alt="Jordan 11 Retro Space Jams" style="object-fit; width: 100%;"/>
             </div>
-            <div class="text">WHERE EVERY STRIDE IS A SIGNATURE STATEMENT.</div>
+            <div class="text tagline">WHERE EVERY STRIDE IS A SIGNATURE STATEMENT.</div>
         </div>
-    </section> -->
-    <!-- <section>
+    </section>
+    <section style="background-color: black; color: white;">
         <div class="two-grid">
-            <div class="tile">
+            <div class="tile rotate-words-tile">
                 <div class="text rotate-words">DISTINCTIVE.</div>
             </div>
             <div class="tile">
@@ -71,7 +69,7 @@
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 </div>
 
 <style>
@@ -79,15 +77,13 @@
         margin: 0 auto;
         scroll-behavior: smooth;
         scroll-snap-type: y mandatory;
-        max-width: 1280px;
     }
 
     section {
         display: grid;
         grid-template-columns: 1fr;
         place-items: center;
-        height: 100vh;
-        /* margin: 100px; */
+        height: 90vh;
     }
 
     .text {
@@ -111,13 +107,9 @@
     }
 
     .tile {
-        /* width: 35vw; */
-        /* width: 100%; */
-        /* height: 300px; */
-        /* background-color: lightgrey; */
+        background-color: white;
         display: grid;
         place-items: center;
-        /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); */
         padding: 20px;
     }
 
@@ -125,20 +117,28 @@
         transition: opacity 0.5s ease;
     }
 
+    .tagline {
+        font-size: clamp(3rem, 6vw, 8rem);
+    }
+
+    .rotate-words-tile {
+        background-color: black;
+        color: white;
+    }
+
     @media (max-width: 960px) {
         .two-grid {
             grid-template-columns: 1fr;
         }
 
-        .tile {
-            /* width: 90vw; */
-            /* height: 20vh; */
-        }
-
         section {
             margin: 0;
         }
+
+        .tagline {
+            text-align: center;
+        }
     }
 
-    
+
 </style>

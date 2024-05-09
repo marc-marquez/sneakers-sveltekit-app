@@ -342,7 +342,7 @@
 	</main>
 
 	{#if isDetailsDrawerOpen}
-		<ShoeDrawer shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} {isDetailsDrawerOpen} on:setVariant={setVariant} on:fireSuccessToast={fireSuccessToast}/>
+		<ShoeDrawer shoe={currentShoe} {currentShoeVariant} on:toggleDetailsDrawer={toggleDetailsDrawer} {isDetailsDrawerOpen} on:setVariant={setVariant} on:fireSuccessToast={fireSuccessToast} on:fireFavoriteToast={fireFavoriteToast} />
 	{/if}
 
 	{#if isCartOpen}
