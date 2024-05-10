@@ -50,7 +50,7 @@
 	$: currentShoeIndex = $CurrentShoeStore?.currentShoeIndex;
 	$: currentShoeVariant = $CurrentShoeStore?.currentShoeVariant;
 
-    $: displayFormat = $UserStore?.displayFormat;
+    $: displayFormat = $UserStore?.displayFormat || DISPLAY_FORMAT.featured;
 
 	$: toastMessage = `${['add', 'favorite'].includes(showToast?.type) ? 'Added' : 'Removed'} ${showToast?.shoe?.title} ${['add', 'favorite'].includes(showToast?.type) ? 'to' : 'from'} ${['add', 'remove'].includes(showToast?.type) ? 'cart' : 'favorites'}.`;
 
