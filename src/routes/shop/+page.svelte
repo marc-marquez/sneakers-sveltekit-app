@@ -50,7 +50,7 @@
 	$: currentShoeIndex = $CurrentShoeStore?.currentShoeIndex;
 	$: currentShoeVariant = $CurrentShoeStore?.currentShoeVariant;
 
-    $: displayFormat = $UserStore?.displayFormat || DISPLAY_FORMAT.featured;
+    // $: displayFormat = $UserStore?.displayFormat || DISPLAY_FORMAT.featured;
 
 	$: toastMessage = `${['add', 'favorite'].includes(showToast?.type) ? 'Added' : 'Removed'} ${showToast?.shoe?.title} ${['add', 'favorite'].includes(showToast?.type) ? 'to' : 'from'} ${['add', 'remove'].includes(showToast?.type) ? 'cart' : 'favorites'}.`;
 
@@ -206,6 +206,7 @@
 	}
 
 	const setDisplayFormat = (e) => {
+		console.log('On change triggered.');
         UserStore.update(userInfo => {
             return { 
                 ...userInfo, 
@@ -274,7 +275,7 @@
 				<h1 class="hide-show-titles">Select Brand</h1>
 				<Brands {brands} {currentBrand} on:handleSetBrand={(e) => setBrandAndGet(e.detail)} />
             	<h1 style="text-align: center">View</h1>
-				<select class="display-select" bind:value={displayFormat} on:change={setDisplayFormat}>
+				<select class="display-select" bind:value={$UserStore.displayFormat} on:change={setDisplayFormat}>
 					<option value={DISPLAY_FORMAT.featured}>Spotlight</option>
 					<option value={DISPLAY_FORMAT.grid}>Window Shopping</option>
 					<option value={DISPLAY_FORMAT.list}>Deep Dive</option>
@@ -287,7 +288,7 @@
 				<div style="flex:2 1 0%; background-color: white; margin: 10px;">
 					<LoadingState />
 				</div>
-			{:else if displayFormat === 'featured'}
+			{:else if $UserStore.displayFormat === 'featured'}
 				<div class="featured-container">
 					<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 						<ShoeFeatured {currentShoe} {isLoading} {currentBrand} on:getNextShoe={nextShoe} on:getPrevShoe={prevShoe}/>
@@ -329,11 +330,11 @@
                         </div>
 					</div>
 				</div>
-			{:else if displayFormat === 'grid'}
+			{:else if $UserStore.displayFormat === 'grid'}
 				<div style="flex:2 1 0%; background-color: white; margin: 10px; width: 100%;">
 					<ShoeGrid {shoes} {currentPage} {totalPages} on:getNextPage={getNextPage} on:getPrevPage={getPrevPage} on:getShoeDetails={getShoeDetails} />
 				</div>
-			{:else if displayFormat === 'list'}
+			{:else if $UserStore.displayFormat === 'list'}
 				<div style="flex:2 1 0%; background-color: white; margin: 10px 20px; width: 100%;">
 					<ShoeList {shoes} {currentPage} {totalPages} on:getNextPage={getNextPage} on:getPrevPage={getPrevPage} on:getShoeDetails={getShoeDetails} />
 				</div>
