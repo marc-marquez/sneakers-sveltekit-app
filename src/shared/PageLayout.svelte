@@ -16,8 +16,9 @@
 	@media (max-width: 960px) {
 		.page-layout {
 			padding: 0;
-			/* margin: 0; */
 			min-width: 375px;
+			display: block;
+
 		}
 	}
 </style>

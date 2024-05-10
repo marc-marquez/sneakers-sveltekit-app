@@ -117,7 +117,7 @@ h1 {
     margin: 0;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 960px) {
     .content {
         grid-template-columns: 1fr;
         grid-gap: 5px;
@@ -128,11 +128,13 @@ h1 {
         "four"
         "three"
         "six";
+        margin: 0;
     }
 
-    .content > * {
-        margin-top: 20px;
-        padding: 20px;
+    .content > div {
+        margin-top: 0;
+        padding: 15px 0;
+        border-radius: 0;
     }
 }
 </style>

@@ -6,11 +6,11 @@
     let toggleMenu = () => {
         console.log('toggle menu');
     };
-    
+
 </script>
 
 <nav>
-    <div style="display: flex; flex-wrap: nowrap;">
+    <div style="display: flex; flex-wrap: nowrap; align-items: baseline;">
         <button class="mobile-button" on:click={toggleMenu}><i class="fa-solid fa-bars"></i></button>
         <h1 class="title">{name}</h1>
         <div class="menu-items">
