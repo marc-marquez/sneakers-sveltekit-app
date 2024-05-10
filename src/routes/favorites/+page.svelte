@@ -17,7 +17,7 @@
     .favorites-page {
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: start;
         height: 100vh;
     }
 </style>

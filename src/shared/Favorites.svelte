@@ -41,4 +41,25 @@
         display: flex;
         flex-direction: column;
     }
+
+    button {
+        border: 1px solid black;
+        background-color: black;
+        padding: 5px 10px;
+        font-size: 24px;
+        color: white;
+        border-radius: 50px;
+    }
+
+    button:hover {
+        cursor: pointer;
+        background-color: #a6f0ff;
+        border: 1px solid #a6f0ff;
+        color: black;
+    }
+
+    button:disabled {
+        cursor: not-allowed;
+        color: grey;
+    }
 </style>
