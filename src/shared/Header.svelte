@@ -22,7 +22,6 @@
 
 </script>
 
-
 <nav>
     <div style="display: flex; flex-wrap: nowrap;">
         <button class="mobile-button" on:click={toggleMenu}><i class="fa-solid fa-bars"></i></button>
@@ -44,7 +43,6 @@
         </button>
     </div>
 </nav>
-
 
 <style>
     nav {

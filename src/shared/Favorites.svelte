@@ -17,7 +17,6 @@
 </script>
 
 <div class="favorites">
-    <h2 style="margin-top: 0; text-decoration: underline;">Your Faves</h2>
     <div class="favorites-list">
         {#each $FavoritesStore as item, i (`${item.id}_${item.size}_${i}`)}
             <FavoriteItem {item} {i} on:fireToast={fireToast} />

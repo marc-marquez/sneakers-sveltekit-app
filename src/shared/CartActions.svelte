@@ -1,6 +1,8 @@
 <script lang="ts">
     import CartStore from "../stores/CartStore";
 
+    export let showEmptyCart = false;
+
     const emptyCart = () => {
         CartStore.update(() => {
             return [];
@@ -13,7 +15,9 @@
 </script>
 
 <div class="cart-actions">
+    {#if showEmptyCart}
     <button on:click={emptyCart}>Empty Cart</button>
+    {/if}
     <button on:click={pay}>Pay</button>
 </div>
 
@@ -26,9 +30,11 @@
         border: 1px solid black;
         background-color: black;
         padding: 10px 20px;
-        font-size: 20px;
+        font-size: 24px;
         color: white;
         border-radius: 50px;
+        width: 100%;
+        margin-bottom: 10px;
     }
 
     button:hover {

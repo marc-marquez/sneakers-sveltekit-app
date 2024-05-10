@@ -266,7 +266,7 @@
 	}
 </script>
 
-<Header name={companyName} on:openCart={openCart} on:openFavorites={openFavorites} on:openMenu={openMenu} />
+<!-- <Header name={companyName} on:openCart={openCart} on:openFavorites={openFavorites} on:openMenu={openMenu} /> -->
 <PageLayout>
 	<main>
 		<div class="container">
