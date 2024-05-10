@@ -30,7 +30,13 @@
             return [...cart, order];
         });
 
-        dispatch('fireToast', 'add');
+        dispatch('fireToast', {
+            type: 'add',
+            shoe: {
+                title: currentShoe.title,
+                size: currentShoe.variants[currentShoeVariant].size
+            }
+        });
     }
 </script>
 

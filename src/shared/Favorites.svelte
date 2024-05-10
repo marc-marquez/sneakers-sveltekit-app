@@ -1,21 +1,26 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
     import FavoritesStore from "../stores/FavoritesStore";
     import FavoriteItem from "./FavoriteItem.svelte";
 
+    const dispatch = createEventDispatcher();
+    
     const emptyList = () => {
         FavoritesStore.update(() => {
             return [];
         })
     };
 
-    
+    const fireToast = (e) => {
+        dispatch('fireToast', e.detail);
+    }
 </script>
 
 <div class="favorites">
     <h2 style="margin-top: 0; text-decoration: underline;">Your Faves</h2>
     <div class="favorites-list">
         {#each $FavoritesStore as item, i (`${item.id}_${item.size}_${i}`)}
-            <FavoriteItem {item} />
+            <FavoriteItem {item} {i} on:fireToast={fireToast} />
         {/each}
     </div>
     {#if $FavoritesStore.length}

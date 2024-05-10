@@ -18,7 +18,7 @@
     {#if $CartStore.length}
         <div class="cart">
             {#each $CartStore as item, i (`${item.id}_${item.size}_${i}`)}
-                <CartItem {item} {i} on:fireToast={fireToast}/>
+                <CartItem {item} {i} on:fireToast={fireToast} />
             {/each}
         </div>
     {:else}

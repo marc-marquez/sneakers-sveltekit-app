@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import FavoritesStore from "../stores/FavoritesStore";
+	import ShoeDrawer from "../components/ShoeDrawer.svelte";
 
     export let shoe: any = <any>{};
 
@@ -14,7 +15,13 @@
             FavoritesStore.update((store) => {
                 return [...filtered];
             })
-            dispatch('fireToast', 'unfavorite');
+            dispatch('fireToast', {
+                type: 'unfavorite',
+                shoe: {
+                    title: shoe.title,
+                    size: shoe.size
+                }
+            });
             return;
         }
         
@@ -22,7 +29,13 @@
             return [...store, shoe];
         })
 
-        dispatch('fireToast', 'favorite');
+        dispatch('fireToast', {
+            type: 'favorite',
+            shoe: {
+                title: shoe.title,
+                size: shoe.size
+            }
+        });
     }
 </script>
 

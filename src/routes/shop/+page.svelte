@@ -22,6 +22,7 @@
     import ShoeActions from '../../shared/ShoeActions.svelte';
 
 	import BRANDS from '../../constants/Brands';
+	import DISPLAY_FORMAT from '../../constants/DisplayFormat';
 
 	import CurrentShoeStore from '../../stores/CurrentShoeStore';
     import UserStore from '../../stores/UserStore';
@@ -51,7 +52,7 @@
 
     $: displayFormat = $UserStore?.displayFormat;
 
-	$: toastMessage = `${['add', 'favorite'].includes(showToast) ? 'Added' : 'Removed'} ${currentShoe.title} (size ${currentShoe.variants?.[currentShoeVariant]?.size}) ${['add', 'favorite'].includes(showToast) ? 'to' : 'from'} ${['add', 'remove'].includes(showToast) ? 'cart' : 'favorites'}.`;
+	$: toastMessage = `${['add', 'favorite'].includes(showToast?.type) ? 'Added' : 'Removed'} ${showToast?.shoe?.title} ${['add', 'favorite'].includes(showToast?.type) ? 'to' : 'from'} ${['add', 'remove'].includes(showToast?.type) ? 'cart' : 'favorites'}.`;
 
 	let currentGender = 'any';
 	let currentAgeGroup = 'adults';
@@ -208,7 +209,7 @@
         UserStore.update(userInfo => {
             return { 
                 ...userInfo, 
-                displayFormat: e.detail,
+                displayFormat: e.target.value,
             };
         });
 	}
@@ -265,15 +266,22 @@
 	}
 </script>
 
-<Header name={companyName} on:displayFormatChange={setDisplayFormat} on:openCart={openCart} on:openFavorites={openFavorites} on:openMenu={openMenu} />
+<Header name={companyName} on:openCart={openCart} on:openFavorites={openFavorites} on:openMenu={openMenu} />
 <PageLayout>
 	<main>
 		<div class="container">
 			<div>
 				<h1 class="hide-show-titles">Select Brand</h1>
 				<Brands {brands} {currentBrand} on:handleSetBrand={(e) => setBrandAndGet(e.detail)} />
+            	<h1 style="text-align: center">View</h1>
+				<select class="display-select" bind:value={displayFormat} on:change={setDisplayFormat}>
+					<option value={DISPLAY_FORMAT.featured}>Spotlight</option>
+					<option value={DISPLAY_FORMAT.grid}>Window Shopping</option>
+					<option value={DISPLAY_FORMAT.list}>Deep Dive</option>
+				</select>
 				<h1 class="hide-show-titles">Filters</h1>
 				<Filters {currentShoeSize} {currentGender} on:sizeChange={setShoeSize} on:genderChange={setGender} on:ageGroupChange={setAgeGroup} />
+				
 			</div>
 			{#if isLoading}
 				<div style="flex:2 1 0%; background-color: white; margin: 10px;">
@@ -315,8 +323,8 @@
 								shoe={currentShoe}
 								{currentShoeVariant}
 								on:toggleDetailsDrawer={toggleDetailsDrawer}
-								on:fireToast={fireToast}
 								on:toggleError={toggleError}
+								on:fireToast={fireToast}
 							/>
                         </div>
 					</div>
@@ -345,16 +353,12 @@
 	{/if}
 
 	{#if isFavoritesOpen}
-		<FavoritesDrawer {isFavoritesOpen} {toggleFavorites} />
+		<FavoritesDrawer {isFavoritesOpen} {toggleFavorites} on:fireToast={fireToast} />
 	{/if}
 
 	{#if showToast}
-		<Toast type={showToast} message={toastMessage} />
+		<Toast type={showToast?.type} message={toastMessage} />
 	{/if}
-
-	<!-- {#if ['favorite', 'unfavorite'].includes(showToast)}
-		<Toast type={showToast} message={`${showToast === 'favorite' ? 'Added' : 'Removed'} ${currentShoe.title} ${showToast === 'favorite' ? 'to' : 'from'} favorites.`} />
-	{/if} -->
 
 	{#if isMenuDrawerOpen}
 		<MenuDrawer {isMenuDrawerOpen} {toggleMenuDrawer} />
@@ -398,6 +402,19 @@
     .variants-container, 
     .actions-container {
         width: 50%;
+    }
+
+	.display-select {
+        font-size: 20px;
+        background-color: #a6f0ff;
+        border: 2px solid #a6f0ff;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 50px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        text-align: center;
+		margin-bottom: 20px;
     }
 
 	@media (max-width: 960px) {

@@ -1,20 +1,12 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
-    import DISPLAY_FORMAT from "../constants/DisplayFormat.js";
     import CartStore from "../stores/CartStore";
-    import FavoritesStore from "../stores/FavoritesStore";
 
     export let name: string = '';
-
-    export let displayFormat: string = DISPLAY_FORMAT.featured;
 
     let showMenu = false;
 
     const dispatch = createEventDispatcher();
-
-    const handleDisplayFormatChange = (event) => {
-        dispatch("displayFormatChange", event.target.value);
-    }
 
     const openCart = () => {
         dispatch("openCart");
@@ -43,21 +35,11 @@
         </div>
     </div>
     <div style="display: flex; flex-wrap: nowrap;">
-        <div>
-            <span class="view-label">View: </span>
-            <select class="display-select" bind:value={displayFormat} on:change={handleDisplayFormatChange}>
-                <option value={DISPLAY_FORMAT.featured}>Spotlight</option>
-                <option value={DISPLAY_FORMAT.grid}>Window Shopping</option>
-                <option value={DISPLAY_FORMAT.list}>Deep Dive</option>
-            </select>
-        </div>
-        <!-- <button on:click={openFavorites} disabled={!$FavoritesStore.length}><i class="fa-solid fa-heart"></i></button> -->
-        <button on:click={openCart} disabled={!$CartStore.length}>
+        <button on:click={openFavorites}><i class="fa-solid fa-heart"></i></button>
+        <button on:click={openCart}>
             <span class="fa-layers fa-fw">
                 <i class="fa-solid fa-cart-shopping"></i>
-                {#if $CartStore.length > 0}
-                    <span class="fa-layers-text" data-fa-transform="shrink-8 down-3">{$CartStore.length}</span>
-                {/if}
+                <span class="fa-layers-text" data-fa-transform="shrink-8 down-3">{$CartStore.length || ''}</span>
             </span>
         </button>
     </div>
@@ -124,16 +106,6 @@
         font-weight: 900;
     }
 
-    .display-select {
-        border: none;
-        background: white;
-        padding: 10px;
-        font-size: 20px;
-        font-weight: 900;
-        border-radius: 50px;
-        text-align: center;
-    }
-
     .mobile-button {
         display: none;
     }
@@ -143,22 +115,12 @@
             padding: 20px 10px;
         }
 
-        .display-select {
-            padding: 3px 10px;
-        }
-
         .menu-items {
             display: none;
         }
 
         .mobile-button {
             display: block;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .view-label {
-            display: none;
         }
     }
 </style>

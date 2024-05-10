@@ -14,7 +14,13 @@
         CartStore.update((cart) => {
             return [...filtered];
         });
-        dispatch('fireToast', 'remove');
+        dispatch('fireToast', {
+            type: 'remove',
+            shoe: {
+                title: item.title,
+                size: item.size
+            }
+        });
     }
 </script>
 

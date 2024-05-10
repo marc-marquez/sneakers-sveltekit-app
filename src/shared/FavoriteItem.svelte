@@ -1,7 +1,11 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
     import FavoritesStore from "../stores/FavoritesStore";
     
     export let item;
+    export let i: number = 0;
+
+    const dispatch = createEventDispatcher();
 
     const removeFromList = (cartItem) => {
         let filtered = $FavoritesStore.filter((item, index) => {
@@ -9,6 +13,13 @@
         });
         FavoritesStore.update((cart) => {
             return [...filtered];
+        });
+        dispatch('fireToast', {
+            type: 'unfavorite',
+            shoe: {
+                title: item.title,
+                size: item.size
+            }
         });
     }
 </script>

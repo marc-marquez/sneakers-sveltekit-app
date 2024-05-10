@@ -13,14 +13,6 @@
         dispatch('toggleDetailsDrawer');
     }
 
-    // const fireSuccessToast = () => {
-    //     dispatch('fireSuccessToast');
-    // }
-
-    // const fireFavoriteToast = () => {
-    //     dispatch('fireFavoriteToast');
-    // }
-
     const toggleError = (state: boolean) => {
         dispatch('toggleError', state);
     }
