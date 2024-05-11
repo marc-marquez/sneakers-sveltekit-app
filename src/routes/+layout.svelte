@@ -3,6 +3,7 @@
     import MenuDrawer from '../components/MenuDrawer.svelte';
     import CartStore from '../stores/CartStore';
     import UserStore from '../stores/UserStore';
+    import { goto } from '$app/navigation';
 
     let name: string = 'The Drip';
 
@@ -15,14 +16,13 @@
         }) 
     };
 
-    //TODO: Fix favorites and cart buttons
-    let openFavorites = () => {
-        console.log('openFavorites');
+    let goToFavorites = () => {
+        goto('/favorites');
     };
 
-    let openCart = () => {
-        console.log('openCart');
-    };
+    let goToCart = () => {
+        goto('/checkout');
+    }
 
 </script>
 
@@ -33,13 +33,11 @@
         <div class="menu-items">
             <a href="/">Home</a>
             <a href="/shop">Shop</a>
-            <a href="/favorites">Favorites</a>
-            <a href="/checkout">Checkout</a>
         </div>
     </div>
     <div style="display: flex; flex-wrap: nowrap;">
-        <button on:click={openFavorites}><i class="fa-solid fa-heart"></i></button>
-        <button on:click={openCart}>
+        <button on:click={goToFavorites}><i class="fa-solid fa-heart"></i></button>
+        <button on:click={goToCart}>
             <span class="fa-layers fa-fw">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="fa-layers-text" data-fa-transform="shrink-8 down-3">{$CartStore.length || ''}</span>
