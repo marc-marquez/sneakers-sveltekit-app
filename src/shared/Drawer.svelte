@@ -122,13 +122,18 @@
     @media (max-width: 960px) {
         .bottom {
             flex-direction: column;
-            max-height: 75%;
+            max-height: 100%;
             overflow-y: auto;
             min-width: 375px;
         }
 
         .right {
             width: 75vw;
+            height: 100vh;
+        }
+
+        .left {
+            width: 100%;
             height: 100vh;
         }
     }
