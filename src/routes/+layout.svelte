@@ -1,10 +1,20 @@
 <script lang="ts">
     import '../app.css'
+    import CartStore from '../stores/CartStore';
 
     let name: string = 'The Drip';
 
+    // TODO: Fix Menu buttons
     let toggleMenu = () => {
-        console.log('toggle menu');
+        console.log('toggleMenu');
+    };
+
+    let openFavorites = () => {
+        console.log('openFavorites');
+    };
+
+    let openCart = () => {
+        console.log('openCart');
     };
 
 </script>
@@ -20,7 +30,7 @@
             <a href="/checkout">Checkout</a>
         </div>
     </div>
-    <!-- <div style="display: flex; flex-wrap: nowrap;">
+    <div style="display: flex; flex-wrap: nowrap;">
         <button on:click={openFavorites}><i class="fa-solid fa-heart"></i></button>
         <button on:click={openCart}>
             <span class="fa-layers fa-fw">
@@ -28,7 +38,7 @@
                 <span class="fa-layers-text" data-fa-transform="shrink-8 down-3">{$CartStore.length || ''}</span>
             </span>
         </button>
-    </div> -->
+    </div>
 </nav>
 <slot />
 
@@ -76,5 +86,35 @@
 
     .mobile-button {
         display: none;
+    }
+
+    button {
+        border: none;
+        background-color: transparent;
+        font-size: 24px;
+        margin-left: 10px;
+        padding: 0;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
+    @media (max-width: 960px) {
+        nav {
+            padding: 20px 10px;
+        }
+
+        .title {
+            margin-left: 10px;
+        }
+
+        .menu-items {
+            display: none;
+        }
+
+        .mobile-button {
+            display: block;
+        }
     }
 </style>

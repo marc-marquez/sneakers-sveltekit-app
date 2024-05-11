@@ -10,9 +10,7 @@
         </div>
         <div class="two"></div>
         <div class="three"></div>
-        <div class="four">
-            <a class="display-text remove-underline" href="/shop">Find Your Drip.</a>
-        </div>
+        <a class="display-text remove-underline four" href="/shop"><span>Find Your Drip<i class="fa-solid fa-droplet fa-beat icon" /></span></a>
         <div class="five"></div>
         <div class="six">
             <h1 class="display-text">Be</h1>
@@ -115,6 +113,10 @@
 
 h1 {
     margin: 0;
+}
+
+.icon {
+    font-size: 1.25rem;
 }
 
 @media (max-width: 960px) {

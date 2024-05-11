@@ -59,8 +59,8 @@
                 <CartTotal />
             </div>
             <CartActions />
+            </div>
         </div>
-    </div>
 <!-- </PageLayout> -->
 
 <style>
@@ -74,8 +74,10 @@
     #cart {
         background-color: #fff;
         padding: 20px;
-        border-radius: 45px;
+        border-radius: 0 45px 45px 0;
         grid-area: cart;
+        display: grid;
+        grid-template-columns: 1fr;
     }
 
     .checkout {
@@ -86,7 +88,7 @@
         /* height: 50vh; */
         margin: 0 auto;
         margin-top: 40px;
-        grid-gap: 20px;
+        grid-gap: 10px;
         border-radius: 50px;
         border: 5px solid #a6f0ff;
         grid-template-areas: "info cart";
