@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
     import PageLayout from "../../shared/PageLayout.svelte";
     import CartItems from "../../shared/CartItems.svelte";
     import CartStore from "../../stores/CartStore";
@@ -10,10 +11,10 @@
     let creditFields = ['number', 'month', 'year', 'cvv'];
     let shippingFields = ['street', 'city', 'state', 'zip', 'country']
 
-    let isCollapsed = true;
-    
-    const toggleCollapse = () => {
-        isCollapsed = !isCollapsed;
+    const dispatch = createEventDispatcher();
+
+    const fireToast = (e) => {
+        dispatch('fireToast', e.detail);
     }
 </script>
 
@@ -54,7 +55,7 @@
         </div>
         <div id="cart">
             <h1 style="text-align: left;">Cart</h1>
-            <CartItems />
+            <CartItems on:fireToast={fireToast} />
             <div style="text-align: right;">
                 <CartTotal />
             </div>
@@ -82,7 +83,7 @@
 
     .checkout {
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: minmax(150px, auto);
         max-width: 1280px;
         /* height: 50vh; */

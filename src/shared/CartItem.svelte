@@ -26,15 +26,15 @@
 
 <div class="cart-item">
     <button class="remove-button" on:click={() => removeFromCart(i)}><i class="fa-solid fa-trash"></i></button>
-    <div style="max-width: 70px; margin-left: 20px">
-        <img style="object: contain; width: 100%;" src={item.image} alt={item.title} />
+    <div class="image-container">
+        <img src={item.image} alt={item.title} />
     </div>
-    <div style="margin-left: 20px; justify-content: start; flex: 2; align-self: center;">
+    <div class="details">
         <p style="margin-bottom: 0">{item.title}</p>
         <p>Size: {item.size}</p>
     </div>
-    <div style="margin-left: 20px; align-self: center;">
-        <p>${item.price}</p>
+    <div class="price">
+        <p>${Number(item.price).toFixed(2)}</p>
     </div>
 </div>
 
@@ -43,6 +43,21 @@
         display: flex;
         justify-content: space-between;
         margin: 10px 0;
+        gap: 20px;
+    }
+
+    .image-container {
+        max-width: 70px;
+    }
+
+    img {
+        object-fit: contain;
+        width: 100%;
+    }
+
+    .details {
+        flex: 2;
+        align-self: center;
     }
 
     .remove-button {
@@ -55,5 +70,9 @@
         cursor: pointer;
         color: red;
         background-color: transparent;
+    }
+
+    .price {
+        align-self: center;
     }
 </style>
