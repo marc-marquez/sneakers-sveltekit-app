@@ -1,22 +1,22 @@
 <script lang="ts">
-    export let style: string = '';
-    export let classes: string = '';
-    export let handleClick;
-    export let disabled: boolean = false;
+	export let style: string = '';
+	export let classes: string = '';
+	export let handleClick;
+	export let disabled: boolean = false;
 </script>
 
-<button class="{classes ? classes : 'circle-button'}" {style} on:click={handleClick} {disabled}>
-    <slot></slot>
+<button class={classes ? classes : 'circle-button'} {style} on:click={handleClick} {disabled}>
+	<slot></slot>
 </button>
 
 <style>
-    .circle-button {
+	.circle-button {
 		background-color: black;
 		border: 2px solid black;
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
-        color: white;
+		color: white;
 		display: flex;
 		justify-content: center;
 		align-items: center;

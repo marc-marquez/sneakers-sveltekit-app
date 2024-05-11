@@ -1,6 +1,5 @@
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store';
 
-const FavoritesStore = writable([
-]);
+const FavoritesStore = writable([]);
 
 export default FavoritesStore;

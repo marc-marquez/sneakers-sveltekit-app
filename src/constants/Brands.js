@@ -7,15 +7,6 @@ const REEBOK = 'Reebok';
 const PUMA = 'Puma';
 const FILA = 'Fila';
 
-const BRANDS = [
-    NIKE,
-    JORDAN,
-    ADIDAS,
-    NEW_BALANCE,
-    CONVERSE,
-    REEBOK,
-    PUMA,
-    FILA
-];
+const BRANDS = [NIKE, JORDAN, ADIDAS, NEW_BALANCE, CONVERSE, REEBOK, PUMA, FILA];
 
 export default BRANDS;

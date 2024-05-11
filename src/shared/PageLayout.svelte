@@ -1,9 +1,9 @@
 <div class="page-layout">
-    <slot></slot>
+	<slot></slot>
 </div>
 
 <style>
-    .page-layout {
+	.page-layout {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

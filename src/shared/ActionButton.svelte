@@ -1,22 +1,21 @@
 <script lang="ts">
-    export let handleClick;
-    // export let disabled: boolean = false;
+	export let handleClick;
 </script>
 
 <button class="button" on:click={handleClick}>
-    <slot></slot>
+	<slot></slot>
 </button>
 
 <style>
-    .button {
+	.button {
 		background-color: black;
 		border: 2px solid black;
 		border-radius: 50%;
-        color: white;
+		color: white;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-        padding: 10px;
+		padding: 10px;
 	}
 
 	.button:hover {
