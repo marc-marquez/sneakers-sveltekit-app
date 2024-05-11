@@ -23,9 +23,9 @@
         {/each}
     </div>
     {#if $FavoritesStore.length}
-        <button on:click={emptyList}>Empty List</button>
+        <button style="margin-top: 20px;" on:click={emptyList}>Empty List</button>
     {:else}
-        <h1>Your list is empty</h1>
+        <h1 style="text-align: center;">Your list is empty</h1>
     {/if}
 </div>
 
@@ -34,12 +34,13 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 20px;
+        padding: 0 20px;
     }
 
     .favorites-list {
         display: flex;
         flex-direction: column;
+        justify-content: center;
     }
 
     button {

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import Header from "../../shared/Header.svelte";
 	import Brands from '../../components/Brands.svelte';
 	import ShoeFeatured from '../../components/ShoeFeatured.svelte';
     import Filters from '../../components/Filters.svelte';
@@ -10,7 +9,6 @@
     import PageLayout from '../../shared/PageLayout.svelte';
     import ShoeDrawer from '../../components/ShoeDrawer.svelte';
     import FavoritesDrawer from '../../components/FavoritesDrawer.svelte';
-	import MenuDrawer from '../../components/MenuDrawer.svelte';
 
     import StarRating from '../../shared/StarRating.svelte';
     import CircleButton from '../../shared/CircleButton.svelte';
@@ -37,11 +35,9 @@
 	let isCartOpen = false;
 	let isFavoritesOpen = false;
 	let isLoading = false;
-	let successToast = false;
-	let favoriteToast = false;
+
 	let isMenuDrawerOpen = false;
 	let showError = false;
-	let companyName = 'The Drip';
 	let showToast = '';
 
 	let currentShoeSize = '';
@@ -213,10 +209,6 @@
         });
 	}
 
-	const openCart = () => {
-		isCartOpen = true;
-	}
-
 	const toggleCart = () => {
 		isCartOpen = !isCartOpen;
 	}
@@ -236,10 +228,6 @@
 
 		return found;
 	};
-
-	const openFavorites = () => {
-		isFavoritesOpen = true;
-	}
 
 	const toggleFavorites = () => {
 		isFavoritesOpen = !isFavoritesOpen;
@@ -265,7 +253,6 @@
 	}
 </script>
 
-<!-- <Header name={companyName} on:openCart={openCart} on:openFavorites={openFavorites} on:openMenu={openMenu} /> -->
 <PageLayout>
 	<main>
 		<div class="container">
@@ -329,7 +316,7 @@
 					</div>
 				</div>
 			{:else if $UserStore.displayFormat === 'grid'}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px; width: 100%;">
+				<div style="flex:2 1 0%; background-color: white; margin: 10px 20px; width: 100%;">
 					<ShoeGrid {shoes} {currentPage} {totalPages} on:getNextPage={getNextPage} on:getPrevPage={getPrevPage} on:getShoeDetails={getShoeDetails} />
 				</div>
 			{:else if $UserStore.displayFormat === 'list'}
@@ -358,12 +345,7 @@
 	{#if showToast}
 		<Toast type={showToast?.type} message={toastMessage} />
 	{/if}
-
-	<!-- {#if isMenuDrawerOpen}
-		<MenuDrawer isMenuDrawerOpen={$UserStore.isMenuOpen} {toggleMenuDrawer} />
-	{/if} -->
 </PageLayout>
-<!-- <Footer /> -->
 
 <style>
 	main {

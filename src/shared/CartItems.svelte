@@ -1,7 +1,6 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import CartStore from "../stores/CartStore";
-	import CartActions from "./CartActions.svelte";
 	import CartItem from "./CartItem.svelte";
 
     const dispatch = createEventDispatcher();
@@ -21,7 +20,7 @@
             {/each}
         </div>
     {:else}
-        <h1>Your cart is empty</h1>
+        <h1 style="text-align: center;">Your cart is empty</h1>
     {/if}
 </div>
 

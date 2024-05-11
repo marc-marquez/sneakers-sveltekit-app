@@ -13,6 +13,10 @@
     $: lowIndex = currentPage === 1 ? 0 : (currentPage * 10);
     $: highIndex = lowIndex + 20;
     $: currentShoeList = shoes?.slice(lowIndex, highIndex);
+    
+    const getLowestPrice = (shoe) => {
+        return Math.min(...shoe.variants.map(variant => variant.price));
+    }
 
     const getPrevPage = () => {
         dispatch('getPrevPage');
@@ -31,11 +35,17 @@
     <div class="grid">
         {#each currentShoeList as shoe, index (shoe.id)}
             {#if shoe.image}
-            <button on:click={() => getShoeDetails(shoe.id)}>
-                <div class="image-container">
-                    <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -50, duration: 2000 }} />
+            <div>
+                <button on:click={() => getShoeDetails(shoe.id)}>
+                    <div class="image-container">
+                        <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -50, duration: 2000 }} />
+                    </div>
+                </button>
+                <div style="padding: .75rem;">
+                    <p style="font-size: .75rem;">{shoe.title}</p>
+                    <p style="font-size: .75rem; color: grey;">From ${getLowestPrice(shoe)}</p>
                 </div>
-            </button>
+            </div>
             {/if}
         {/each}
     </div>
@@ -50,10 +60,6 @@
 </div>
 
 <style>
-    .image-container {
-        max-width: 150px;
-    }
-
     img {
         object-fit: contain;
         width: 100%
@@ -63,7 +69,6 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 20px;
-        padding: 20px;
         place-items: center;
     }
 
