@@ -8,18 +8,10 @@
 <Drawer location="left" isDrawerOpen={isMenuDrawerOpen} on:closeDrawer={toggleMenuDrawer}>
     <div class="container">
         <div class="menu">
-            <div class="item">
-                <a href="/">Home</a>
-            </div>
-            <div class="item">
-                <a href="/shop">Shop</a>
-            </div>
-            <div class="item">
-                <a href="/favorites">Favorites</a>
-            </div>
-            <div class="item">
-                <a href="/checkout">Checkout</a>
-            </div>
+            <a class="item" href="/"><button on:click={toggleMenuDrawer}>Home</button></a>
+            <a class="item" href="/shop"><button on:click={toggleMenuDrawer}>Shop</button></a>
+            <a class="item" href="/favorites"><button on:click={toggleMenuDrawer}>Favorites</button></a>
+            <a class="item" href="/checkout"><button on:click={toggleMenuDrawer}>Checkout</button></a>
         </div>
     </div>
 </Drawer>
@@ -45,14 +37,19 @@
         align-items: center;
         justify-content: center;
         font-size: 24px;
+        font-weight: 900;
+    }
+
+    button {
+        border: none;
+        background-color: transparent;
+        color: black;
+        font-weight: 900;
     }
 
     .item:hover {
         background-color: #a6f0ff;
-    }
-
-    a {
-        text-decoration: none;
-        font-size: 20px;
+        color: white;
+        cursor: pointer;
     }
 </style>

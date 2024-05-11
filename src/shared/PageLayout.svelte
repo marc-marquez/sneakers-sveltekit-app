@@ -17,8 +17,6 @@
 		.page-layout {
 			padding: 0;
 			min-width: 375px;
-			display: block;
-
 		}
 	}
 </style>

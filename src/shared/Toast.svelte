@@ -57,7 +57,7 @@
         text-align: center;
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 960px) {
         .toast {
             width: 80vw;
             top: unset;

@@ -359,9 +359,9 @@
 		<Toast type={showToast?.type} message={toastMessage} />
 	{/if}
 
-	{#if isMenuDrawerOpen}
-		<MenuDrawer {isMenuDrawerOpen} {toggleMenuDrawer} />
-	{/if}
+	<!-- {#if isMenuDrawerOpen}
+		<MenuDrawer isMenuDrawerOpen={$UserStore.isMenuOpen} {toggleMenuDrawer} />
+	{/if} -->
 </PageLayout>
 <!-- <Footer /> -->
 

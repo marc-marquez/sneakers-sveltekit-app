@@ -1,14 +1,21 @@
 <script lang="ts">
     import '../app.css'
+    import MenuDrawer from '../components/MenuDrawer.svelte';
     import CartStore from '../stores/CartStore';
+    import UserStore from '../stores/UserStore';
 
     let name: string = 'The Drip';
 
-    // TODO: Fix Menu buttons
     let toggleMenu = () => {
-        console.log('toggleMenu');
+        UserStore.update((store) => {
+            return {
+                ...store,
+                isMenuOpen: !store.isMenuOpen
+            }
+        }) 
     };
 
+    //TODO: Fix favorites and cart buttons
     let openFavorites = () => {
         console.log('openFavorites');
     };
@@ -41,6 +48,9 @@
     </div>
 </nav>
 <slot />
+{#if $UserStore.isMenuOpen}
+    <MenuDrawer isMenuDrawerOpen={$UserStore.isMenuOpen} toggleMenuDrawer={toggleMenu} />
+{/if}
 
 <style>
     nav {

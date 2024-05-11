@@ -1,23 +1,19 @@
-<script lang="ts">
-    import PageLayout from "../shared/PageLayout.svelte";
-</script>
+<script lang="ts"></script>
 
-<PageLayout>
-    <div class="content">
-        <div class="one">
-            <h1 class="display-text">Authentically.</h1>
-            <h1 class="display-text">You.</h1>
-        </div>
-        <div class="two"></div>
-        <div class="three"></div>
-        <a class="display-text remove-underline four" href="/shop"><span>Find Your Drip<i class="fa-solid fa-droplet fa-beat icon" /></span></a>
-        <div class="five"></div>
-        <div class="six">
-            <h1 class="display-text">Be</h1>
-            <h1 class="display-text">Iconic.</h1>
-        </div>
+<div class="content">
+    <div class="one">
+        <h1 class="display-text">Authentically.</h1>
+        <h1 class="display-text">You.</h1>
     </div>
-</PageLayout>
+    <div class="two"></div>
+    <div class="three"></div>
+    <a class="display-text remove-underline four" href="/shop"><span>Find Your Drip<i class="fa-solid fa-droplet fa-beat icon" /></span></a>
+    <div class="five"></div>
+    <div class="six">
+        <h1 class="display-text">Be</h1>
+        <h1 class="display-text">Iconic.</h1>
+    </div>
+</div>
 
 <style>
 .content {
@@ -38,6 +34,7 @@
     "six six six six six five five five five five five five"
     "six six six six six five five five five five five five"
     ;
+    max-width: 1280px;
 }
 
 .display-text {
@@ -130,12 +127,16 @@ h1 {
         "four"
         "three"
         "six";
-        margin: 0;
+        margin: 10px 0;
     }
 
     .content > div {
         margin-top: 0;
         padding: 15px 0;
+        border-radius: 0;
+    }
+    
+    .four {
         border-radius: 0;
     }
 }
