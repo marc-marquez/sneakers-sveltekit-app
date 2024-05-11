@@ -34,22 +34,18 @@
 
     .add {
         background-color: darkgreen;
-        /* color: white; */
     }
 
     .remove {
         background-color: darkslategrey;
-        /* color: white; */
     }
 
     .favorite {
         background-color: darkred;
-        /* color: white; */
     }
 
     .unfavorite {
         background-color: orangered;
-        /* color: white; */
     }
 
     .message {
@@ -61,7 +57,7 @@
         .toast {
             width: 80vw;
             top: unset;
-            bottom: 5vh;
+            bottom: 15vh;
         }
     }
 </style>

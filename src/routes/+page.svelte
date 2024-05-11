@@ -22,8 +22,7 @@
     grid-template-columns: repeat(12, 1fr);
     grid-auto-rows: minmax(150px, auto);
     grid-gap: 20px;
-    margin-top: 20px;
-    /* height: 100vh; */
+    margin-top: 100px;
     grid-template-areas: 
     "one one one one one one one one two two two two"
     "one one one one one one one one two two two two"
@@ -127,7 +126,7 @@ h1 {
         "four"
         "three"
         "six";
-        margin: 10px 0;
+        margin-top: 70px;
     }
 
     .content > div {

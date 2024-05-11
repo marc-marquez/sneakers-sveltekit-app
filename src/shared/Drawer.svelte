@@ -47,7 +47,6 @@
         background-color: #fff;
         color: black;
         z-index: 200;
-        padding: 10px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -110,6 +109,7 @@
         position: relative;
         top: 0;
         right: 0;
+        margin: 10px;
 	}
 
     .close-button:hover {

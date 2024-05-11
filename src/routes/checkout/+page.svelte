@@ -2,7 +2,6 @@
     import { createEventDispatcher } from "svelte";
     import PageLayout from "../../shared/PageLayout.svelte";
     import CartItems from "../../shared/CartItems.svelte";
-    import CartStore from "../../stores/CartStore";
     import CollapsibleCard from "../../shared/CollapsibleCard.svelte";
 	import CartTotal from "../../shared/CartTotal.svelte";
 	import CartActions from "../../shared/CartActions.svelte";
@@ -18,10 +17,13 @@
     }
 </script>
 
-<!-- <PageLayout> -->
+<PageLayout>
     <div class="checkout">
+        <div id="header-image">
+            <div class="wording">Checkout</div>
+        </div>
         <div id="info">
-            <h1 style="text-align: left;">Checkout</h1>        
+            <h1 style="text-align: left;">The Details</h1>        
             <CollapsibleCard title="Contact Info">
                 <div class="fields">
                     {#each personFields as field}
@@ -54,45 +56,60 @@
             </CollapsibleCard>
         </div>
         <div id="cart">
-            <h1 style="text-align: left;">Cart</h1>
             <CartItems on:fireToast={fireToast} />
             <div style="text-align: right;">
                 <CartTotal />
             </div>
-            <CartActions />
+            <div class="desktop-cart-actions">
+                <CartActions />
             </div>
         </div>
-<!-- </PageLayout> -->
+        <div class="mobile-cart-actions">
+            <CartActions />
+        </div>
+</PageLayout>
 
 <style>
     #info {
         background-color: #efefef;
         padding: 20px;
-        border-radius: 45px 0 0 45px;
         grid-area: info;
     }
 
     #cart {
         background-color: #fff;
         padding: 20px;
-        border-radius: 0 45px 45px 0;
         grid-area: cart;
         display: grid;
         grid-template-columns: 1fr;
     }
 
+    #header-image {
+        grid-area: header;
+        position: relative;
+    }
+
     .checkout {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: minmax(150px, auto);
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: minmax(250px, auto);
         max-width: 1280px;
-        /* height: 50vh; */
         margin: 0 auto;
-        margin-top: 40px;
         grid-gap: 10px;
-        border-radius: 50px;
-        border: 5px solid #a6f0ff;
-        grid-template-areas: "info cart";
+        grid-template-areas: 
+        "header header header"
+        "header header header"
+        "info info cart"
+        "info info cart";
+        width: 100%;
+    }
+
+    .wording {
+        font-size: clamp(6rem, 8vw, 10rem);
+        position: absolute;
+        color: black;
+        bottom: 1rem;
+        left: 2rem;
     }
 
     h1, h2 {
@@ -116,18 +133,47 @@
         font-weight: 900;;
     }
 
-    @media (max-width: 960px) {
+    
+    .mobile-cart-actions {
+        display: none;
+    }
 
+    .desktop-cart-actions {
+        display: block;
+    }
+
+    #header-image {
+        background: url('https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8') no-repeat center/cover;
+        background-position: center bottom -2rem;
+    }
+
+    @media (max-width: 960px) {
         .checkout {
             grid-template-columns: 1fr;
             height: unset;
             border-radius: 0;
             border: none;
-            grid-template-areas: "cart" "info";
+            grid-template-areas: "header" "cart" "info";
+            margin: 0;
+            width: 100%;
         }
 
         #info {
             border-radius: 0;
+        }
+
+        .desktop-cart-actions {
+            display: none;
+        }
+
+        .mobile-cart-actions {
+            display: block;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        #header-image {
+            background-position: center bottom;
         }
     }
 

@@ -37,7 +37,7 @@
     </div>
     <div style="display: flex; flex-wrap: nowrap;">
         <button on:click={goToFavorites}><i class="fa-solid fa-heart"></i></button>
-        <button on:click={goToCart}>
+        <button style="margin-right: 2rem;" on:click={goToCart}>
             <span class="fa-layers fa-fw">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="fa-layers-text" data-fa-transform="shrink-8 down-3">{$CartStore.length || ''}</span>
@@ -59,6 +59,11 @@
         background-color: #a6f0ff;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
         flex-wrap: nowrap;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 50;
     }
 
     .menu-items {

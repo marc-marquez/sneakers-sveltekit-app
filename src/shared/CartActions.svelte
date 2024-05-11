@@ -3,6 +3,8 @@
 
     export let showEmptyCart = false;
 
+    $: isDisabled = $CartStore?.length <= 0;
+
     const emptyCart = () => {
         CartStore.update(() => {
             return [];
@@ -18,7 +20,7 @@
     {#if showEmptyCart}
     <button on:click={emptyCart}>Empty Cart</button>
     {/if}
-    <button on:click={pay}>Pay</button>
+    <button on:click={pay} disabled={isDisabled}>Pay</button>
 </div>
 
 <style>
@@ -46,6 +48,8 @@
 
     button:disabled {
         cursor: not-allowed;
-        color: grey;
+        color: darkgrey;
+        background-color: #efefef;
+        border: 1px solid #efefef;
     }
 </style>

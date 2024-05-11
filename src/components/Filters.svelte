@@ -7,6 +7,8 @@
     export let currentShoeSize: string = 'any';
     export let currentGender: string = 'any';
     export let currentAgeGroup: string = 'adults';
+
+    let showSize = false;
    
     let dispatch = createEventDispatcher();
 
@@ -26,7 +28,9 @@
 <div class="filters">
     <FilterAgeGroup {currentAgeGroup} on:ageGroupChange={ageGroupChange} />
     <FilterGender {currentGender} on:genderChange={genderChange} />
+    {#if showSize}
     <FilterSize {currentShoeSize} on:sizeChange={sizeChange} />
+    {/if}
 </div>
 
 <style>
