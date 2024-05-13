@@ -109,7 +109,7 @@
 		display: none;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		nav {
 			padding: 20px 10px;
 		}

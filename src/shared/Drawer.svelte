@@ -127,7 +127,7 @@
 		color: black;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.bottom {
 			flex-direction: column;
 			max-height: 100%;

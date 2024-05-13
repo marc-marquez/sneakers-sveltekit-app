@@ -86,7 +86,12 @@
 		margin-left: 10px;
 	}
 
-	@media (max-width: 960px) {
+	.shoe-button:hover {
+		transform: scale(1.1);
+		cursor: pointer;
+	}
+
+	@media (max-width: 1024px) {
 		.image-container {
 			max-width: 100px;
 		}

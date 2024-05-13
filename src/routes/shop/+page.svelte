@@ -451,7 +451,7 @@
 		margin-bottom: 20px;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.container {
 			flex-direction: column;
 			align-items: center;
@@ -472,7 +472,7 @@
 		}
 	}
 
-	@media (max-width: 640px) {
+	@media (max-width: 540px) {
 		.variants-container,
 		.actions-container {
 			width: 100%;

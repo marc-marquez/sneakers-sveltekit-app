@@ -73,7 +73,7 @@
 		grid-area: favorites;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.favorites-page {
 			grid-template-columns: 1fr;
 			grid-template-areas:

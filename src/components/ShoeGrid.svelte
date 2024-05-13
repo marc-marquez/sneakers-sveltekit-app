@@ -67,7 +67,7 @@
 
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		grid-template-columns: repeat(4, minmax(150px, 1fr));
 		gap: 20px;
 		place-items: center;
 	}
@@ -80,5 +80,11 @@
 
 	button:hover {
 		transform: scale(1.1);
+	}
+
+	@media (max-width: 768px) {
+		.grid {
+			grid-template-columns: repeat(2, minmax(150px, 1fr));
+		}
 	}
 </style>

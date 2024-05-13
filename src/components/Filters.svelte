@@ -41,7 +41,7 @@
 		justify-content: center;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.filters {
 			max-width: 100%;
 			flex-direction: row;

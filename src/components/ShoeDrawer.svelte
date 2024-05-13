@@ -110,7 +110,7 @@
 		margin-bottom: 20px;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.container {
 			flex-direction: column;
 			max-height: 50%;

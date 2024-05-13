@@ -72,7 +72,7 @@
 		border-left: 5px solid #a6f0ff;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.brands-container {
 			flex-direction: row;
 			flex-wrap: wrap;

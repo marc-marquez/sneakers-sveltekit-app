@@ -32,7 +32,7 @@
 		on:missingSize={() => toggleError(true)}
 	/>
 	{#if shoe?.variants?.[currentShoeVariant]?.price}
-		<h2>${shoe.variants[currentShoeVariant]?.price}</h2>
+		<h1>${shoe.variants[currentShoeVariant]?.price}</h1>
 	{/if}
 </div>
 
@@ -54,7 +54,7 @@
 		cursor: pointer;
 	}
 
-	h2 {
+	h1 {
 		margin: 0;
 		padding: 0;
 	}

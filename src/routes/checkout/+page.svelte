@@ -19,10 +19,10 @@
 
 <PageLayout>
 	<div class="checkout">
-		<div id="header-image">
+		<div class="photo">
 			<div class="wording">Checkout</div>
 		</div>
-		<div id="info">
+		<div class="info">
 			<h1 style="text-align: left;">The Details</h1>
 			<CollapsibleCard title="Contact Info">
 				<div class="fields">
@@ -55,7 +55,7 @@
 				</div>
 			</CollapsibleCard>
 		</div>
-		<div id="cart">
+		<div class="cart">
 			<CartItems on:fireToast={fireToast} />
 			<div style="text-align: right;">
 				<CartTotal />
@@ -71,37 +71,40 @@
 >
 
 <style>
-	#info {
+	.info {
 		background-color: #efefef;
 		padding: 20px;
 		grid-area: info;
+		grid-column: 3/5;
+		grid-row: 1/3;
+		border-radius: 25px;
 	}
 
-	#cart {
+	.cart {
 		background-color: #fff;
 		padding: 20px;
 		grid-area: cart;
 		display: grid;
 		grid-template-columns: 1fr;
-	}
-
-	#header-image {
-		grid-area: header;
-		position: relative;
+		grid-column: 3/5;
+		grid-row: 3/7;
 	}
 
 	.checkout {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		grid-template-rows: minmax(250px, auto);
-		max-width: 1280px;
+		grid-template-columns: repeat(4, 1fr);
+		grid-auto-rows: minmax(150px, auto);
+		grid-gap: 20px;
+		width: 100%;
 		margin: 0 auto;
-		grid-gap: 10px;
 		grid-template-areas:
-			'header header header'
-			'header header header'
-			'info info cart'
-			'info info cart';
+			'photo photo info info'
+			'photo photo info info'
+			'photo photo info info'
+			'photo photo cart cart'
+			'photo photo cart cart'
+			'photo photo cart cart'
+			'photo photo cart cart';
 		width: 100%;
 	}
 
@@ -109,7 +112,7 @@
 		font-size: clamp(6rem, 8vw, 10rem);
 		position: absolute;
 		color: black;
-		bottom: 1rem;
+		top: 1rem;
 		left: 2rem;
 	}
 
@@ -123,16 +126,10 @@
 		grid-template-columns: 1fr 6fr;
 	}
 
-	.box {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-auto-flow: row;
-	}
-
 	label,
 	input {
 		margin: 10px;
-		font-size: 24px;
+		font-size: 16px;
 		font-weight: 900;
 	}
 
@@ -144,39 +141,55 @@
 		display: block;
 	}
 
-	#header-image {
-		background: url('https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8') no-repeat
+	.photo {
+		background: url('https://images.unsplash.com/photo-1600774236920-66c1d506ad3f') no-repeat
 			center/cover;
-		background-position: center bottom -2rem;
+		/* background-position: center bottom -2rem; */
+		grid-area: photo;
+		position: relative;
+		border-radius: 25px;
+		grid-column: 1/3;
+		grid-row: 1/8;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.checkout {
 			grid-template-columns: 1fr;
-			height: unset;
-			border-radius: 0;
-			border: none;
-			grid-template-areas: 'header' 'cart' 'info';
-			margin: 0;
-			width: 100%;
+			/* height: unset; */
+			/* border-radius: 0; */
+			/* border: none; */
+			grid-template-areas: 
+			'photo'
+			'info'
+			'cart';
 		}
 
-		#info {
+		.photo {
+			grid-column: 1/5;
+			grid-row: 1/3;
 			border-radius: 0;
 		}
 
-		.desktop-cart-actions {
+		.info {
+			border-radius: 0;
+			grid-column: 1/5;
+			grid-row: 3/5;
+			
+		}
+
+		.cart {
+			grid-column: 1/5;
+			grid-row: 5/7;
+		}
+
+		/* .desktop-cart-actions {
 			display: none;
-		}
+		} */
 
-		.mobile-cart-actions {
+		/* .mobile-cart-actions {
 			display: block;
 			width: 70%;
 			margin: 0 auto;
-		}
-
-		#header-image {
-			background-position: center bottom;
-		}
+		} */
 	}
 </style>

@@ -4,27 +4,30 @@
 	<div class="one">
 		<h1 class="display-text">Authentically.</h1>
 		<h1 class="display-text">You.</h1>
+		<a class="drip-link" href="/shop">
+			<span>Find Your Drip<i class="fa-solid fa-droplet fa-beat icon" /></span></a
+		>
 	</div>
 	<div class="two"></div>
 	<div class="three"></div>
-	<a class="display-text remove-underline four" href="/shop"
-		><span>Find Your Drip<i class="fa-solid fa-droplet fa-beat icon" /></span></a
-	>
-	<div class="five"></div>
-	<div class="six">
+	<div class="four">
 		<h1 class="display-text">Be</h1>
 		<h1 class="display-text">Iconic.</h1>
+	</div>
+	<div class="five"></div>
+	<div class="six">
+		<h1 class="display-text">Make A</h1>
+		<h1 class="display-text">Statement.</h1>
 	</div>
 </div>
 
 <style>
 	.content {
 		display: grid;
-		margin: 0 auto;
 		grid-template-columns: repeat(12, 1fr);
 		grid-auto-rows: minmax(150px, auto);
 		grid-gap: 20px;
-		margin-top: 100px;
+		margin: 120px auto 20px auto;
 		grid-template-areas:
 			'one one one one one one one one two two two two'
 			'one one one one one one one one two two two two'
@@ -42,10 +45,18 @@
 		font-size: clamp(5rem, 3vw, 8rem);
 	}
 
-	.remove-underline {
+	.drip-link {
 		text-decoration: none;
-		margin: 0;
 		text-align: center;
+		color: #000;
+		font-size: clamp(2rem, 3vw, 3rem);
+		background-color: white;
+		border-radius: 25px;
+	}
+
+	.drip-link:hover {
+		/* color: #fff; */
+		background-color: #a6f0ff
 	}
 
 	.one {
@@ -86,11 +97,11 @@
 		grid-area: four;
 	}
 
-	.four:hover {
+	/* .four:hover {
 		background-color: red;
 		place-content: center;
 		display: grid;
-	}
+	} */
 
 	.five {
 		grid-column: 5/13;
@@ -105,7 +116,7 @@
 		grid-column: 1/5;
 		grid-row: 7/9;
 		border-radius: 25px;
-		background-color: orange;
+		background-color: #9e1938;
 		display: grid;
 		place-content: center;
 		grid-area: six;
@@ -119,7 +130,7 @@
 		font-size: 1.25rem;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.content {
 			grid-template-columns: 1fr;
 			grid-gap: 5px;
@@ -130,7 +141,7 @@
 				'four'
 				'three'
 				'six';
-			margin-top: 70px;
+			margin: 80px 0 10px 0;
 		}
 
 		.content > div {

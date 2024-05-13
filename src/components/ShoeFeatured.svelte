@@ -86,7 +86,7 @@
 		overflow-y: hidden;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1024px) {
 		.image-container {
 			max-width: 400px;
 		}
