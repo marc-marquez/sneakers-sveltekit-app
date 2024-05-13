@@ -60,8 +60,8 @@
 	@media (max-width: 1024px) {
 		.toast {
 			width: 80vw;
-			top: unset;
-			bottom: 15vh;
+			/* top: unset; */
+			/* bottom: 10vh; */
 		}
 	}
 </style>

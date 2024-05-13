@@ -23,7 +23,7 @@
 </script>
 
 <div class="shoe-actions">
-	<button on:click={() => toggleDetailsDrawer()}><i class="fa-solid fa-circle-info"></i></button>
+	<button on:click={toggleDetailsDrawer}><i class="fa-solid fa-circle-info"></i></button>
 	<FavoriteButton {shoe} on:fireToast={fireToast} />
 	<AddToCartButton
 		currentShoe={shoe}

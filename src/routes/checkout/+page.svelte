@@ -71,12 +71,23 @@
 >
 
 <style>
+	.photo {
+		background: url('https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8') no-repeat
+			center/cover;
+		grid-area: photo;
+		position: relative;
+		border-radius: 25px;
+		grid-column: 1/5;
+		grid-row: 1/3;
+		max-height: 70vh;
+	}
+
 	.info {
 		background-color: #efefef;
 		padding: 20px;
 		grid-area: info;
-		grid-column: 3/5;
-		grid-row: 1/3;
+		grid-column: 1/3;
+		grid-row: 3/5;
 		border-radius: 25px;
 	}
 
@@ -87,24 +98,21 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-column: 3/5;
-		grid-row: 3/7;
+		grid-row: 3/5;
 	}
 
 	.checkout {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		grid-auto-rows: minmax(150px, auto);
-		grid-gap: 20px;
+		grid-gap: 10px;
 		width: 100%;
 		margin: 0 auto;
 		grid-template-areas:
-			'photo photo info info'
-			'photo photo info info'
-			'photo photo info info'
-			'photo photo cart cart'
-			'photo photo cart cart'
-			'photo photo cart cart'
-			'photo photo cart cart';
+			'photo photo photo photo'
+			'photo photo photo photo'
+			'info info cart cart'
+			'info info cart cart';
 		width: 100%;
 	}
 
@@ -116,8 +124,7 @@
 		left: 2rem;
 	}
 
-	h1,
-	h2 {
+	h1 {
 		margin: 0;
 	}
 
@@ -141,23 +148,11 @@
 		display: block;
 	}
 
-	.photo {
-		background: url('https://images.unsplash.com/photo-1600774236920-66c1d506ad3f') no-repeat
-			center/cover;
-		/* background-position: center bottom -2rem; */
-		grid-area: photo;
-		position: relative;
-		border-radius: 25px;
-		grid-column: 1/3;
-		grid-row: 1/8;
-	}
+	
 
 	@media (max-width: 1024px) {
 		.checkout {
 			grid-template-columns: 1fr;
-			/* height: unset; */
-			/* border-radius: 0; */
-			/* border: none; */
 			grid-template-areas: 
 			'photo'
 			'info'
@@ -173,23 +168,13 @@
 		.info {
 			border-radius: 0;
 			grid-column: 1/5;
-			grid-row: 3/5;
+			grid-row: 3/4;
 			
 		}
 
 		.cart {
 			grid-column: 1/5;
-			grid-row: 5/7;
+			grid-row: 4/7;
 		}
-
-		/* .desktop-cart-actions {
-			display: none;
-		} */
-
-		/* .mobile-cart-actions {
-			display: block;
-			width: 70%;
-			margin: 0 auto;
-		} */
 	}
 </style>

@@ -72,7 +72,7 @@
 	.two {
 		grid-column: 8/13;
 		grid-row: 1/6;
-		background: url('https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a') no-repeat
+		background: url('https://images.unsplash.com/photo-1586525198428-225f6f12cff5') no-repeat
 			center/cover;
 		border-radius: 25px;
 		grid-area: two;
@@ -81,7 +81,7 @@
 	.three {
 		grid-column: 1/5;
 		grid-row: 3/7;
-		background: url('https://images.unsplash.com/photo-1579338559194-a162d19bf842') no-repeat
+		background: url('https://images.unsplash.com/photo-1611510338559-2f463335092c') no-repeat
 			center/cover;
 		border-radius: 25px;
 		grid-area: three;
@@ -97,18 +97,12 @@
 		grid-area: four;
 	}
 
-	/* .four:hover {
-		background-color: red;
-		place-content: center;
-		display: grid;
-	} */
-
 	.five {
 		grid-column: 5/13;
 		grid-row: 6/9;
 		border-radius: 25px;
-		background: url('https://images.unsplash.com/photo-1552346154-21d32810aba3') no-repeat
-			center/cover;
+		background: url('https://images.unsplash.com/photo-1599069692326-7eeb159e6991') no-repeat
+			bottom/cover;
 		grid-area: five;
 	}
 
@@ -152,6 +146,15 @@
 
 		.four {
 			border-radius: 0;
+		}
+
+		.drip-link {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		.five {
+			background-position: center bottom -6rem;
 		}
 	}
 </style>

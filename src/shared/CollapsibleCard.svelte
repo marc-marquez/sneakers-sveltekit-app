@@ -8,7 +8,7 @@
 
 <div class="collapsible-card">
 	<div class="card-header {isCollapsed ? 'closed' : 'open'}">
-		<h2>{title}</h2>
+		<h1>{title}</h1>
 		<button class="caret" on:click={toggleCollapse}
 			><i class="fa-solid {isCollapsed ? 'fa-caret-down' : 'fa-caret-up'}"></i></button
 		>
@@ -40,7 +40,7 @@
 		padding: 10px 30px;
 	}
 
-	h2 {
+	h1 {
 		margin: 0;
 	}
 

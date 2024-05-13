@@ -24,6 +24,7 @@
 
 	import CurrentShoeStore from '../../stores/CurrentShoeStore';
 	import UserStore from '../../stores/UserStore';
+	import ToastStore from '../../stores/ToastStore';
 
 	let brands = BRANDS;
 	let shoes = [];
@@ -47,6 +48,9 @@
 	$: currentShoeVariant = $CurrentShoeStore?.currentShoeVariant;
 
 	$: toastMessage = `${['add', 'favorite'].includes(showToast?.type) ? 'Added' : 'Removed'} ${showToast?.shoe?.title} ${['add', 'favorite'].includes(showToast?.type) ? 'to' : 'from'} ${['add', 'remove'].includes(showToast?.type) ? 'cart' : 'favorites'}.`;
+
+	
+	// $: console.log($ToastStore);
 
 	let currentGender = 'any';
 	let currentAgeGroup = 'adults';
@@ -247,18 +251,39 @@
 		showError = e.detail;
 	};
 
+	
+	// Add toast to queue
 	const fireToast = (e) => {
+		// ToastStore.update((store) => {
+		// 	return {
+		// 		queue: [...store.queue, e.detail]
+		// 	}
+		// });
 		showToast = e.detail;
 		setTimeout(() => {
 			showToast = '';
 		}, 3000);
 	};
+
+	// Show toast and then remove after 3 seconds
+	// $: if ($ToastStore.queue.length > 0) {
+	// 	showToast = $ToastStore.queue[0];
+	// 	setTimeout(() => {
+	// 		ToastStore.update((store) => {
+	// 			return {
+	// 				queue: store.queue.slice(1)
+	// 			}
+	// 		});
+	// 		showToast = '';
+	// 	}, 5000);
+	// }
+
 </script>
 
 <PageLayout>
 	<main>
 		<div class="container">
-			<div>
+			<div class="options-container">
 				<h1 class="hide-show-titles">Select Brand</h1>
 				<Brands {brands} {currentBrand} on:handleSetBrand={(e) => setBrandAndGet(e.detail)} />
 				<h1 style="text-align: center">View</h1>
@@ -423,6 +448,10 @@
 		margin: 10px;
 		position: relative;
 		top: 0px;
+	}
+
+	.options-container {
+		margin-right: 20px;
 	}
 
 	.row-container {

@@ -13,8 +13,7 @@
 <PageLayout>
 	<div class="favorites-page">
 		<div class="photo">
-			<div class="your wording">Your</div>
-			<div class="faves wording">Faves</div>
+			<div class="faves wording">Your Faves</div>
 		</div>
 		<div class="favorites">
 			<Favorites on:fireToast={fireToast} />
@@ -31,17 +30,14 @@
 		width: 100%;
 		margin: 0 auto;
 		grid-template-areas:
-			'photo photo favorites favorites'
-			'photo photo favorites favorites'
-			'photo photo favorites favorites'
-			'photo photo favorites favorites'
-			'photo photo favorites favorites'
-			'photo photo favorites favorites'
-			'photo photo favorites favorites';
+			'photo photo photo photo'
+			'photo photo photo photo'
+			'favorites favorites favorites favorites'
+			'favorites favorites favorites favorites';
 	}
 
 	.photo {
-		background: url(https://images.unsplash.com/photo-1588117305388-c2631a279f82) no-repeat
+		background: url(https://images.unsplash.com/photo-1552346154-21d32810aba3) no-repeat
 			center/cover;
 		grid-column: 1/3;
 		grid-row: 1/8;
@@ -52,19 +48,14 @@
 	}
 
 	.wording {
-		font-size: clamp(6rem, 8vw, 10rem);
+		font-size: clamp(3rem, 8vw, 7rem);
 		position: absolute;
-	}
-
-	.your {
-		transform: rotate(-90deg);
-		top: 4rem;
-		left: 2rem;
 	}
 
 	.faves {
 		top: 1rem;
-		right: 6rem;
+		left: 2rem;
+		color: white;
 	}
 
 	.favorites {
@@ -80,26 +71,10 @@
 				'photo'
 				'photo'
 				'favorites'
-				'favorites';
 		}
 
 		.photo {
 			border-radius: 0;
-			background-position: center bottom -6rem;
-		}
-
-		.your {
-			transform: rotate(0deg);
-			color: white;
-			top: 0;
-			left: 1rem;
-		}
-
-		.faves {
-			color: white;
-			top: unset;
-			bottom: 0;
-			right: 1rem;
 		}
 	}
 </style>
