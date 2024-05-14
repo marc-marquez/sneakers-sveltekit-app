@@ -4,12 +4,12 @@
 	import ColumnContainer from '../shared/ColumnContainer.svelte';
 	import RowContainer from '../shared/RowContainer.svelte';
 	import CircleButton from '../shared/CircleButton.svelte';
-	import Card from '../shared/Card.svelte';
+	import CurrentShoeStore from '../stores/CurrentShoeStore';
+	import UserStore from '../stores/UserStore';
 
 	export let shoes: Array<any> = [];
 	export let currentPage: number = 0;
 	export let totalPages: number = 0;
-	export let isLoading: boolean = false;
 
 	const dispatch = createEventDispatcher();
 
@@ -25,9 +25,22 @@
 		dispatch('getNextPage');
 	};
 
-	const getShoeDetails = (id: string) => {
-		dispatch('getShoeDetails', id);
-	};
+	const getShoeDetails = (e) => {
+        CurrentShoeStore.update((store) => {
+			return {
+				...store,
+				currentShoe: e,
+				currentShoeVariant: null,
+			};
+		});
+
+		UserStore.update((store) => {
+			return {
+				...store,
+				isDetailsDrawerOpen: true,
+			};
+		});
+    }
 </script>
 
 <RowContainer style="flex-wrap: nowrap; align-items: flex-start; justify-content: end;">
@@ -45,7 +58,7 @@
 		>
 			<h1 style="text-align: left; margin: 0">{shoe.title}</h1>
 			{#if shoe.image}
-				<button class="shoe-button" on:click={() => getShoeDetails(shoe.id)}>
+				<button class="shoe-button" on:click={() => getShoeDetails(shoe)}>
 					<div class="image-container">
 						<!-- <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -25, duration: 2000 }} /> -->
 						<img src={shoe.image} alt={shoe.name} />

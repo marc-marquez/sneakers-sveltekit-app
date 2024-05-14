@@ -22,17 +22,13 @@
 	const getNextPage = () => {
 		dispatch('getNextPage');
 	};
-
-	const getShoeDetails = (e) => {
-		dispatch('getShoeDetails', e.detail);
-	};
 </script>
 
 <div class="shoe-grid">
 	<div class="grid">
 		{#each currentShoeList as shoe, index (shoe.id)}
 			{#if shoe.image}
-				<ShoeCard {shoe} on:getShoeDetails={getShoeDetails} showBorder={false} />
+				<ShoeCard {shoe} showBorder={false} />
 			{/if}
 		{/each}
 	</div>

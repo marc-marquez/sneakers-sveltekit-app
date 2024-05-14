@@ -1,6 +1,7 @@
 <script lang="ts">
-    import { createEventDispatcher } from "svelte";
     import { fly } from 'svelte/transition';
+    import CurrentShoeStore from '../stores/CurrentShoeStore';
+    import UserStore from '../stores/UserStore';
 
     export let shoe: any = <any>{};
     export let orientation: 'horizontal' | 'vertical' = 'vertical';
@@ -9,11 +10,22 @@
     export let customImageStyles: string = '';
     export let showActions: boolean = false;
 
-    const dispatch = createEventDispatcher();
+    const getShoeDetails = (e) => {
+        CurrentShoeStore.update((store) => {
+			return {
+				...store,
+				currentShoe: e,
+                currentShoeVariant: null,
+			};
+		});
 
-    const getShoeDetails = (id: string) => {
-		dispatch('getShoeDetails', id);
-	};
+		UserStore.update((store) => {
+			return {
+				...store,
+				isDetailsDrawerOpen: true,
+			};
+		});
+    }
 
     const getLowestPrice = (shoe) => {
 		return Math.min(...shoe.variants.map((variant) => variant.price));
@@ -21,7 +33,7 @@
 </script>
 
 <div class="shoe-card {orientation} {showBorder ? 'show-border' : ''}" style={customStyles}>
-    <button on:click={() => getShoeDetails(shoe.id)}>
+    <button on:click={() => getShoeDetails(shoe)}>
         <div class="image-container">
             <!-- <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -20, duration: 2000 }} /> -->
             <img src={shoe.image} alt={shoe.name} style={customImageStyles} />

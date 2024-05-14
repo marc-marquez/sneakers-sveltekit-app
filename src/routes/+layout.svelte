@@ -1,13 +1,15 @@
 <script lang="ts">
 	import '../app.css';
 	import MenuDrawer from '../components/MenuDrawer.svelte';
+	import ShoeDrawer from '../components/ShoeDrawer.svelte';
 	import CartStore from '../stores/CartStore';
 	import UserStore from '../stores/UserStore';
+	import CurrentShoeStore from '../stores/CurrentShoeStore';
 	import { goto } from '$app/navigation';
 
 	let name: string = 'The Drip';
 
-	let toggleMenu = () => {
+	const toggleMenu = () => {
 		UserStore.update((store) => {
 			return {
 				...store,
@@ -16,12 +18,39 @@
 		});
 	};
 
-	let goToFavorites = () => {
+	const toggleDetailsDrawer = () => {
+		UserStore.update((store) => {
+			return {
+				...store,
+				isDetailsDrawerOpen: !store.isDetailsDrawerOpen
+			};
+		});
+	};
+
+	const goToFavorites = () => {
 		goto('/favorites');
 	};
 
-	let goToCart = () => {
+	const goToCart = () => {
 		goto('/checkout');
+	};
+
+	const setVariant = (e) => {
+		CurrentShoeStore.update((store) => {
+			return {
+				...store,
+				currentShoeVariant: e.detail
+			};
+		});
+	};
+
+	const fireToast = (e) => {
+		UserStore.update((store) => {
+			return {
+				...store,
+				toast: e.detail
+			};
+		});
 	};
 </script>
 
@@ -49,6 +78,16 @@
 <slot />
 {#if $UserStore.isMenuOpen}
 	<MenuDrawer isMenuDrawerOpen={$UserStore.isMenuOpen} toggleMenuDrawer={toggleMenu} />
+{/if}
+
+{#if $UserStore.isDetailsDrawerOpen}
+	<ShoeDrawer
+		shoe={$CurrentShoeStore.currentShoe}
+		currentShoeVariant={$CurrentShoeStore.currentShoeVariant}
+		on:toggleDetailsDrawer={toggleDetailsDrawer}
+		on:setVariant={setVariant}
+		on:fireToast={fireToast}
+	/>
 {/if}
 
 <style>

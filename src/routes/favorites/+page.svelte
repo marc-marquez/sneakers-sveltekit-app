@@ -4,6 +4,8 @@
 	import ShoeCard from '../../shared/ShoeCard.svelte';
 	import FavoritesStore from '../../stores/FavoritesStore';
 	import EmptyState from '../../shared/EmptyState.svelte';
+	import CurrentShoeStore from '../../stores/CurrentShoeStore';
+	import UserStore from '../../stores/UserStore';
 
 	export let data;
 
@@ -22,7 +24,20 @@
 	};
 
 	const getShoeDetails = (e) => {
-		console.log('Getting shoe details');
+		CurrentShoeStore.update((store) => {
+			return {
+				...store,
+				currentShoe: e,
+				currentShoeVariant: null,
+			};
+		});
+
+		UserStore.update((store) => {
+			return {
+				...store,
+				isDetailsDrawerOpen: true,
+			};
+		});
 	};
 </script>
 
@@ -36,14 +51,14 @@
 			</div>
 			<div class="favorites">
 				{#each $FavoritesStore as favorite}
-					<ShoeCard shoe={favorite} on:getShoeDetails={getShoeDetails} orientation="vertical" customStyles="max-height: 250px;" />
+					<ShoeCard shoe={favorite} on:getShoeDetails={() => getShoeDetails(favorite)} orientation="vertical" customStyles="max-height: 250px;" />
 				{/each}
 			</div>
 			<div class="suggestions-container">
 				<h1>You may also like...</h1>
 				<div class="suggestions">
 					{#each data.hits as shoe}
-						<ShoeCard {shoe} on:getShoeDetails={getShoeDetails} orientation="horizontal" />
+						<ShoeCard {shoe} on:getShoeDetails={() => getShoeDetails(shoe)} orientation="horizontal" />
 					{/each}
 				</div>
 			</div>

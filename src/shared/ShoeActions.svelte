@@ -3,15 +3,13 @@
 
 	import FavoriteButton from './FavoriteButton.svelte';
 	import AddToCartButton from './AddToCartButton.svelte';
+	import CurrentShoeStore from '../stores/CurrentShoeStore';
+	import UserStore from '../stores/UserStore';
 
 	export let shoe: any = {};
 	export let currentShoeVariant: number | null = null;
 
 	const dispatch = createEventDispatcher();
-
-	const toggleDetailsDrawer = () => {
-		dispatch('toggleDetailsDrawer');
-	};
 
 	const toggleError = (state: boolean) => {
 		dispatch('toggleError', state);
@@ -20,10 +18,26 @@
 	const fireToast = (e) => {
 		dispatch('fireToast', e.detail);
 	};
+
+	const getShoeDetails = (e) => {
+        CurrentShoeStore.update((store) => {
+			return {
+				...store,
+				currentShoe: e,
+			};
+		});
+
+		UserStore.update((store) => {
+			return {
+				...store,
+				isDetailsDrawerOpen: true,
+			};
+		});
+    }
 </script>
 
 <div class="shoe-actions">
-	<button on:click={toggleDetailsDrawer}><i class="fa-solid fa-circle-info"></i></button>
+	<button on:click={() => getShoeDetails(shoe)} disabled={$UserStore.isDetailsDrawerOpen}><i class="fa-solid fa-circle-info"></i></button>
 	<FavoriteButton {shoe} on:fireToast={fireToast} />
 	<AddToCartButton
 		currentShoe={shoe}

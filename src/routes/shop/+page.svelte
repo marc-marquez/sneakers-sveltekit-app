@@ -7,7 +7,6 @@
 	import ShoeGrid from '../../components/ShoeGrid.svelte';
 	import ShoeList from '../../components/ShoeList.svelte';
 	import PageLayout from '../../shared/PageLayout.svelte';
-	import ShoeDrawer from '../../components/ShoeDrawer.svelte';
 	import FavoritesDrawer from '../../components/FavoritesDrawer.svelte';
 
 	import StarRating from '../../shared/StarRating.svelte';
@@ -48,9 +47,6 @@
 	$: currentShoeVariant = $CurrentShoeStore?.currentShoeVariant;
 
 	$: toastMessage = `${['add', 'favorite'].includes(showToast?.type) ? 'Added' : 'Removed'} ${showToast?.shoe?.title} ${['add', 'favorite'].includes(showToast?.type) ? 'to' : 'from'} ${['add', 'remove'].includes(showToast?.type) ? 'cart' : 'favorites'}.`;
-
-	
-	// $: console.log($ToastStore);
 
 	let currentGender = 'any';
 	let currentAgeGroup = 'adults';
@@ -109,33 +105,28 @@
 		getData(currentBrand, currentPage, currentGender, currentAgeGroup, currentShoeSize);
 	};
 
-	const toggleDetailsDrawer = () => {
-		isDetailsDrawerOpen = !isDetailsDrawerOpen;
-	};
+	// const getShoeDetails = (e) => {
+	// 	if (!e) {
+	// 		console.error('No shoe provided.');
+	// 		return;
+	// 	}
 
-	const getShoeDetails = (e) => {
-		if (!e.detail) {
-			console.error('No shoe id provided.');
-			return;
-		}
+	// 	CurrentShoeStore.update((shoeInfo) => {
+	// 		return {
+	// 			...shoeInfo,
+	// 			currentShoe: e,
+	// 			currentShoeIndex: originalShoes.findIndex((shoe) => shoe.id === e.id),
+	// 			currentShoeVariant: null
+	// 		};
+	// 	});
 
-		isDetailsDrawerOpen = true;
-		let found = getShoeById(e?.detail);
-
-		if (!found) {
-			console.error('Could not find shoe details.');
-			return;
-		}
-
-		CurrentShoeStore.update((shoeInfo) => {
-			return {
-				...shoeInfo,
-				currentShoe: found,
-				currentShoeIndex: null,
-				currentShoeVariant: null
-			};
-		});
-	};
+	// 	UserStore.update((userInfo) => {
+	// 		return {
+	// 			...userInfo,
+	// 			isDetailsDrawerOpen: true
+	// 		};
+	// 	});
+	// };
 
 	const getNextPage = () => {
 		currentPage += 1;
@@ -237,14 +228,6 @@
 
 	const toggleFavorites = () => {
 		isFavoritesOpen = !isFavoritesOpen;
-	};
-
-	const openMenu = () => {
-		isMenuDrawerOpen = true;
-	};
-
-	const toggleMenuDrawer = () => {
-		isMenuDrawerOpen = !isMenuDrawerOpen;
 	};
 
 	const toggleError = (e) => {
@@ -362,7 +345,6 @@
 							<ShoeActions
 								shoe={currentShoe}
 								{currentShoeVariant}
-								on:toggleDetailsDrawer={toggleDetailsDrawer}
 								on:toggleError={toggleError}
 								on:fireToast={fireToast}
 							/>
@@ -377,7 +359,6 @@
 						{totalPages}
 						on:getNextPage={getNextPage}
 						on:getPrevPage={getPrevPage}
-						on:getShoeDetails={getShoeDetails}
 					/>
 				</div>
 			{:else if $UserStore.displayFormat === 'list'}
@@ -388,7 +369,6 @@
 						{totalPages}
 						on:getNextPage={getNextPage}
 						on:getPrevPage={getPrevPage}
-						on:getShoeDetails={getShoeDetails}
 					/>
 				</div>
 			{:else if shoes.length === 0 && !isLoading}
@@ -396,17 +376,6 @@
 			{/if}
 		</div>
 	</main>
-
-	{#if isDetailsDrawerOpen}
-		<ShoeDrawer
-			shoe={currentShoe}
-			{currentShoeVariant}
-			on:toggleDetailsDrawer={toggleDetailsDrawer}
-			{isDetailsDrawerOpen}
-			on:setVariant={setVariant}
-			on:fireToast={fireToast}
-		/>
-	{/if}
 
 	{#if isCartOpen}
 		<CartDrawer {isCartOpen} {toggleCart} on:fireToast={fireToast} />

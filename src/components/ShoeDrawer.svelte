@@ -8,9 +8,9 @@
 	import ShoeActions from '../shared/ShoeActions.svelte';
 
 	import UserStore from '../stores/UserStore';
+	import CurrentShoeStore from '../stores/CurrentShoeStore';
 	import DISPLAY_FORMAT from '../constants/DisplayFormat';
 
-	export let isDetailsDrawerOpen: boolean = false;
 	export let shoe: any = {};
 	export let currentShoeVariant: number | null = null;
 
@@ -19,11 +19,21 @@
 	const dispatch = createEventDispatcher();
 
 	const toggleDetailsDrawer = () => {
-		dispatch('toggleDetailsDrawer');
+		UserStore.update((store) => {
+			return {
+				...store,
+				isDetailsDrawerOpen: !store.isDetailsDrawerOpen,
+			};
+		});
 	};
 
 	const setVariant = (e) => {
-		dispatch('setVariant', e.detail);
+		CurrentShoeStore.update((store) => {
+			return {
+				...store,
+				currentShoeVariant: e.detail,
+			};
+		});
 	};
 
 	const fireToast = (e) => {
@@ -35,7 +45,7 @@
 	};
 </script>
 
-<Drawer on:closeDrawer={toggleDetailsDrawer} isDrawerOpen={isDetailsDrawerOpen}>
+<Drawer on:closeDrawer={toggleDetailsDrawer} isDrawerOpen={$UserStore.isDetailsDrawerOpen}>
 	<div class="container">
 		<div class="image-container">
 			<img src={shoe.image} alt={shoe.title} in:fly|global={{ y: -15, duration: 2000 }} />
@@ -55,7 +65,7 @@
 				<h1 style="color: red;">Select A Size</h1>
 			{/if}
 
-			{#if $UserStore.displayFormat !== DISPLAY_FORMAT.featured}
+			<!-- {#if $UserStore.displayFormat !== DISPLAY_FORMAT.featured} -->
 				{#if shoe?.variants}
 					<RowContainer
 						style="flex:1; flex-wrap: wrap; margin-bottom: 20px; justify-content: center; align-items: center;"
@@ -72,13 +82,12 @@
 						<ShoeActions
 							{shoe}
 							{currentShoeVariant}
-							on:toggleDetailsDrawer={toggleDetailsDrawer}
 							on:fireToast={fireToast}
 							on:toggleError={toggleError}
 						/>
 					</RowContainer>
 				{/if}
-			{/if}
+			<!-- {/if} -->
 		</div>
 	</div>
 </Drawer>
@@ -109,6 +118,7 @@
 	.description {
 		margin-top: 10px;
 		margin-bottom: 20px;
+		width: 100%;
 	}
 
 	@media (max-width: 1024px) {
