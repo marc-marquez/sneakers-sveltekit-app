@@ -3,6 +3,7 @@
 	import { createEventDispatcher } from 'svelte';
 	import RowContainer from '../shared/RowContainer.svelte';
 	import CircleButton from '../shared/CircleButton.svelte';
+	import ShoeCard from '../shared/ShoeCard.svelte';
 
 	export let shoes: Array<any> = [];
 	export let currentPage: number = 0;
@@ -26,8 +27,8 @@
 		dispatch('getNextPage');
 	};
 
-	const getShoeDetails = (id: string) => {
-		dispatch('getShoeDetails', id);
+	const getShoeDetails = (e) => {
+		dispatch('getShoeDetails', e.detail);
 	};
 </script>
 
@@ -35,17 +36,7 @@
 	<div class="grid">
 		{#each currentShoeList as shoe, index (shoe.id)}
 			{#if shoe.image}
-				<div>
-					<button on:click={() => getShoeDetails(shoe.id)}>
-						<div class="image-container">
-							<img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -50, duration: 2000 }} />
-						</div>
-					</button>
-					<div style="padding: .75rem;">
-						<p style="font-size: .75rem;">{shoe.title}</p>
-						<p style="font-size: .75rem; color: grey;">From ${getLowestPrice(shoe)}</p>
-					</div>
-				</div>
+				<ShoeCard {shoe} on:getShoeDetails={getShoeDetails} showBorder={false} />
 			{/if}
 		{/each}
 	</div>
@@ -60,10 +51,10 @@
 </div>
 
 <style>
-	img {
+	/* img {
 		object-fit: contain;
 		width: 100%;
-	}
+	} */
 
 	.grid {
 		display: grid;
@@ -72,7 +63,7 @@
 		place-items: center;
 	}
 
-	button {
+	/* button {
 		background-color: transparent;
 		border: none;
 		cursor: pointer;
@@ -80,7 +71,7 @@
 
 	button:hover {
 		transform: scale(1.1);
-	}
+	} */
 
 	@media (max-width: 768px) {
 		.grid {

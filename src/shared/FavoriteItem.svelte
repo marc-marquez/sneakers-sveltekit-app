@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import FavoritesStore from '../stores/FavoritesStore';
+	import ShoeCard from './ShoeCard.svelte';
 
 	export let item;
 	export let i: number = 0;
@@ -25,15 +26,7 @@
 </script>
 
 <div class="favorite-item">
-	<button class="remove-button" on:click={() => removeFromList(i)}
-		><i class="fa-solid fa-trash"></i></button
-	>
-	<div style="max-width: 70px; margin-left: 20px">
-		<img style="object: contain; width: 100%;" src={item.image} alt={item.title} />
-	</div>
-	<div style="margin-left: 20px; justify-content: start; flex: 2; align-self: center;">
-		<p style="margin-bottom: 0">{item.title}</p>
-	</div>
+	<ShoeCard shoe={item} />
 </div>
 
 <style>

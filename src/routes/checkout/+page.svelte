@@ -117,7 +117,7 @@
 	}
 
 	.wording {
-		font-size: clamp(6rem, 8vw, 10rem);
+		font-size: clamp(3rem, 8vw, 7rem);
 		position: absolute;
 		color: black;
 		top: 1rem;

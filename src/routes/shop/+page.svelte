@@ -392,7 +392,7 @@
 					/>
 				</div>
 			{:else if shoes.length === 0 && !isLoading}
-				<EmptyState />
+				<EmptyState message="No shoe found." />
 			{/if}
 		</div>
 	</main>
