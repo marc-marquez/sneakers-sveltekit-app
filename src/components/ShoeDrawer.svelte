@@ -98,6 +98,7 @@
 	img {
 		object-fit: contain;
 		width: 100%;
+		aspect-ratio: 1;
 	}
 
 	.details-container {

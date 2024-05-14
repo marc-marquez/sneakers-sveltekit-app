@@ -499,6 +499,10 @@
 		.actions-container {
 			width: 75%;
 		}
+
+		.options-container {
+			margin-right: 0;
+		}
 	}
 
 	@media (max-width: 540px) {

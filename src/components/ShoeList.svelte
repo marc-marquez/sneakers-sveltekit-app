@@ -47,7 +47,8 @@
 			{#if shoe.image}
 				<button class="shoe-button" on:click={() => getShoeDetails(shoe.id)}>
 					<div class="image-container">
-						<img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -25, duration: 2000 }} />
+						<!-- <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -25, duration: 2000 }} /> -->
+						<img src={shoe.image} alt={shoe.name} />
 					</div>
 				</button>
 			{/if}

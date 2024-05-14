@@ -6,6 +6,7 @@
     export let orientation: 'horizontal' | 'vertical' = 'vertical';
     export let showBorder: boolean = true;
     export let customStyles: string = '';
+    export let customImageStyles: string = '';
     export let showActions: boolean = false;
 
     const dispatch = createEventDispatcher();
@@ -22,7 +23,8 @@
 <div class="shoe-card {orientation} {showBorder ? 'show-border' : ''}" style={customStyles}>
     <button on:click={() => getShoeDetails(shoe.id)}>
         <div class="image-container">
-            <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -20, duration: 2000 }} />
+            <!-- <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -20, duration: 2000 }} /> -->
+            <img src={shoe.image} alt={shoe.name} style={customImageStyles} />
         </div>
     </button>
     <div class="details">
@@ -41,12 +43,17 @@
     .shoe-card {
         display: grid;
         grid-template-columns: 1fr;
+        /* grid-auto-rows: 100%; */
         place-items: center;
+        /* background-color: #f0f0f0; */
+        /* width: 100%; */
     }
 
     img {
 		object-fit: contain;
 		width: 100%;
+        aspect-ratio: 1;
+        mix-blend-mode: multiply;
 	}
 
     button {
@@ -57,6 +64,7 @@
 
 	button:hover {
 		transform: scale(1.1);
+        mix-blend-mode: multiply;
 	}
 
     .horizontal {
@@ -65,7 +73,8 @@
     }
 
     .image-container {
-        max-width: 150px; /* 200px */
+        max-width: 150px;
+        /* max-width: 200px; */
     }
     
     .show-border {
@@ -73,11 +82,6 @@
         border-radius: 15px;
         padding: 1rem;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-
-        /* & img {
-            border: 5px solid white;
-            border-radius: 5px;
-        } */
     }
 
     .details {

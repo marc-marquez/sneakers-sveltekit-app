@@ -1,27 +1,44 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Drawer from '../shared/Drawer.svelte';
 
 	export let isMenuDrawerOpen: boolean = false;
 	export let toggleMenuDrawer;
+
+	const goToLink = (link:string) => {
+		goto(link);
+		toggleMenuDrawer();
+	};
+
+	const routes = [
+		{
+			name: 'Home',
+			link: '/'
+		},
+		{
+			name: 'Shop',
+			link: '/shop'
+		},
+		{
+			name: 'Favorites',
+			link: '/favorites'
+		},
+		{
+			name: 'Checkout',
+			link: '/checkout'
+		}
+	];
 </script>
 
 <Drawer location="left" isDrawerOpen={isMenuDrawerOpen} on:closeDrawer={toggleMenuDrawer}>
 	<div class="container">
-		<div class="menu">
-			<a class="item" href="/"><button on:click={toggleMenuDrawer}>Home</button></a>
-			<a class="item" href="/shop"><button on:click={toggleMenuDrawer}>Shop</button></a>
-			<a class="item" href="/favorites"><button on:click={toggleMenuDrawer}>Favorites</button></a>
-			<a class="item" href="/checkout"><button on:click={toggleMenuDrawer}>Checkout</button></a>
-		</div>
+		{#each routes as route}
+			<div class="item" on:click={() => goToLink(route.link)}>{route.name}</div>
+		{/each}
 	</div>
 </Drawer>
 
 <style>
-	.menu {
-		display: flex;
-		flex-direction: column;
-	}
-
 	.container {
 		display: flex;
 		flex-direction: column;
@@ -38,14 +55,9 @@
 		justify-content: center;
 		font-size: 24px;
 		font-weight: 900;
+		padding-left: 10px;
 	}
 
-	button {
-		border: none;
-		background-color: transparent;
-		color: black;
-		font-weight: 900;
-	}
 
 	.item:hover {
 		background-color: #a6f0ff;

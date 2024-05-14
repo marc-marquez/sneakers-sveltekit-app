@@ -15,10 +15,6 @@
 	$: highIndex = lowIndex + 20;
 	$: currentShoeList = shoes?.slice(lowIndex, highIndex);
 
-	const getLowestPrice = (shoe) => {
-		return Math.min(...shoe.variants.map((variant) => variant.price));
-	};
-
 	const getPrevPage = () => {
 		dispatch('getPrevPage');
 	};
@@ -51,27 +47,13 @@
 </div>
 
 <style>
-	/* img {
-		object-fit: contain;
-		width: 100%;
-	} */
-
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(4, minmax(150px, 1fr));
+		grid-auto-rows: 250px;
 		gap: 20px;
 		place-items: center;
 	}
-
-	/* button {
-		background-color: transparent;
-		border: none;
-		cursor: pointer;
-	}
-
-	button:hover {
-		transform: scale(1.1);
-	} */
 
 	@media (max-width: 768px) {
 		.grid {

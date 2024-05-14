@@ -9,14 +9,6 @@
 </div>
 
 <style>
-	/* .container {
-		display: flex;
-		flex-direction: column;
-		height: 45vh;
-		align-items: center;
-		justify-content: center;
-	} */
-
 	.empty-state {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -27,14 +19,9 @@
 	.box {
 		display: grid;
 		place-items: center;
-		background-color: #f0f0f0;
-		/* border-radius: 25px; */
 		padding: 20px;
 		width: 93svw;
-		height: 100svh;
-		background: url('https://images.unsplash.com/photo-1648586383984-5555e558b1a9') no-repeat
-			center/cover;
-		color: white;
+		height: 90svh;
 	}
 
 	h1 {

@@ -61,7 +61,7 @@
 	img {
 		object-fit: contain;
 		width: 100%;
-		height: 25vh;
+		aspect-ratio: 1;
 	}
 
 	.no-image-container {
