@@ -39,7 +39,7 @@
 
 <PageLayout>
 	{#if $FavoritesStore.length === 0}
-		<EmptyState message="No favorites yet" />
+		<EmptyState message="No favorites added" />
 	{:else}
 		<div class="favorites-page">
 			<div class="photo">

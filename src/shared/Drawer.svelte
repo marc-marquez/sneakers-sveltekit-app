@@ -57,8 +57,8 @@
 		z-index: 200;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		justify-content: start;
+		align-items: center;
+		justify-content: center;
 		transition: bottom 0.3s ease;
 		box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
 		width: 100%;
@@ -90,6 +90,7 @@
 		border-radius: 0;
 		height: 100vh;
 		overflow-y: auto;
+		justify-content: flex-start;
 	}
 
 	.right-show {

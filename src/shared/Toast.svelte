@@ -37,11 +37,11 @@
 	onDestroy(() => {
 		clearTimeout(timeoutId);
 		UserStore.update((store) => {
-				return {
-					...store,
-					toast: {}
-				};
-			});
+			return {
+				...store,
+				toast: null
+			};
+		});
 	});
 </script>
 
@@ -56,8 +56,8 @@
 
 <style>
 	.toast {
-		position: absolute;
-		top: 2vh;
+		position: fixed;
+		top: 10vh;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 50vw;
