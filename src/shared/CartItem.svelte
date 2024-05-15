@@ -1,25 +1,31 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import CartStore from '../stores/CartStore';
+	import UserStore from '../stores/UserStore';
 
 	export let item: any = <any>{};
 	export let i: number = 0;
-
-	const dispatch = createEventDispatcher();
 
 	const removeFromCart = (cartItem) => {
 		let filtered = $CartStore.filter((item, index) => {
 			return index !== cartItem;
 		});
+
 		CartStore.update((cart) => {
 			return [...filtered];
 		});
-		dispatch('fireToast', {
-			type: 'remove',
-			shoe: {
-				title: item.title,
-				size: item.size
-			}
+
+		UserStore.update((store) => {
+			return {
+				...store,
+				toast: {
+					type: 'remove',
+					shoe: {
+						title: item.title,
+						size: item.size
+					},
+					isShowing: true
+				}
+			};
 		});
 	};
 </script>

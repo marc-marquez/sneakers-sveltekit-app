@@ -7,11 +7,9 @@
 </script>
 
 <div class="collapsible-card">
-	<div class="card-header {isCollapsed ? 'closed' : 'open'}">
+	<div class="card-header {isCollapsed ? 'closed' : 'open'}" on:click={toggleCollapse}>
 		<h1>{title}</h1>
-		<button class="caret" on:click={toggleCollapse}
-			><i class="fa-solid {isCollapsed ? 'fa-caret-down' : 'fa-caret-up'}"></i></button
-		>
+		<i class="fa-solid {isCollapsed ? 'fa-caret-down' : 'fa-caret-up'}"></i>
 	</div>
 	{#if !isCollapsed}
 		<div class="card-body">
@@ -40,6 +38,10 @@
 		padding: 10px 30px;
 	}
 
+	.card-header:hover {
+		cursor: pointer;
+	}
+
 	h1 {
 		margin: 0;
 	}
@@ -55,13 +57,7 @@
 
 	.card-body {
 		background-color: white;
-		/* height: 100%; */
 		padding: 10px 20px;
 		border-radius: 0px 0px 10px 10px;
-	}
-
-	.caret {
-		border: none;
-		background-color: transparent;
 	}
 </style>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import PageLayout from '../../shared/PageLayout.svelte';
 	import CartItems from '../../shared/CartItems.svelte';
 	import CollapsibleCard from '../../shared/CollapsibleCard.svelte';
@@ -9,12 +8,6 @@
 	let personFields = ['first', 'last', 'email'];
 	let creditFields = ['number', 'month', 'year', 'cvv'];
 	let shippingFields = ['street', 'city', 'state', 'zip', 'country'];
-
-	const dispatch = createEventDispatcher();
-
-	const fireToast = (e) => {
-		dispatch('fireToast', e.detail);
-	};
 </script>
 
 <PageLayout>
@@ -56,7 +49,7 @@
 			</CollapsibleCard>
 		</div>
 		<div class="cart">
-			<CartItems on:fireToast={fireToast} />
+			<CartItems />
 			<div style="text-align: right;">
 				<CartTotal />
 			</div>
@@ -77,8 +70,6 @@
 		grid-area: photo;
 		position: relative;
 		border-radius: 25px;
-		grid-column: 1/5;
-		grid-row: 1/3;
 		max-height: 70vh;
 	}
 
@@ -86,19 +77,17 @@
 		background-color: #efefef;
 		padding: 20px;
 		grid-area: info;
-		grid-column: 1/3;
-		grid-row: 3/5;
 		border-radius: 25px;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.cart {
 		background-color: #fff;
 		padding: 20px;
 		grid-area: cart;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-column: 3/5;
-		grid-row: 3/5;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.checkout {
@@ -111,7 +100,6 @@
 		grid-template-areas:
 			'photo photo photo photo'
 			'photo photo photo photo'
-			'info info cart cart'
 			'info info cart cart';
 		width: 100%;
 	}

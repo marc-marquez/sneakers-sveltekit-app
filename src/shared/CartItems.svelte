@@ -1,22 +1,15 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import CartStore from '../stores/CartStore';
 	import CartItem from './CartItem.svelte';
 
-	const dispatch = createEventDispatcher();
-
 	$: totalCost = $CartStore.reduce((total, current) => total + current.price, 0);
-
-	const fireToast = (e) => {
-		dispatch('fireToast', e.detail);
-	};
 </script>
 
 <div class="cart-items">
 	{#if $CartStore.length}
 		<div class="cart">
 			{#each $CartStore as item, i (`${item.id}_${item.size}_${i}`)}
-				<CartItem {item} {i} on:fireToast={fireToast} />
+				<CartItem {item} {i} />
 			{/each}
 		</div>
 	{:else}
