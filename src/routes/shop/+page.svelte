@@ -190,7 +190,6 @@
 					<option value={DISPLAY_FORMAT.grid}>Window Shopping</option>
 					<option value={DISPLAY_FORMAT.list}>Deep Dive</option>
 				</select>
-				<h1 class="hide-show-titles">Filters</h1>
 				<Filters
 					{currentShoeSize}
 					{currentGender}

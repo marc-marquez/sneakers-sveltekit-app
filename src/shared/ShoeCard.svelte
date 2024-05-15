@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { fly } from 'svelte/transition';
     import CurrentShoeStore from '../stores/CurrentShoeStore';
     import UserStore from '../stores/UserStore';
 
@@ -35,7 +34,6 @@
 <div class="shoe-card {orientation} {showBorder ? 'show-border' : ''}" style={customStyles}>
     <button on:click={() => getShoeDetails(shoe)}>
         <div class="image-container">
-            <!-- <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -20, duration: 2000 }} /> -->
             <img src={shoe.image} alt={shoe.name} style={customImageStyles} />
         </div>
     </button>

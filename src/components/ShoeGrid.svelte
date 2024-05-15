@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 	import RowContainer from '../shared/RowContainer.svelte';
 	import CircleButton from '../shared/CircleButton.svelte';

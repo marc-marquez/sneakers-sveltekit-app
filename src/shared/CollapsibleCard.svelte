@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let title = 'Insert Title';
+	export let title = 'Card Title';
 	let isCollapsed = true;
 	const toggleCollapse = () => {
 		isCollapsed = !isCollapsed;

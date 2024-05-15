@@ -3,7 +3,7 @@
 
 	export let showEmptyCart = false;
 
-	$: isDisabled = $CartStore?.length <= 0;
+	$: isPayDisabled = $CartStore?.length <= 0;
 
 	const emptyCart = () => {
 		CartStore.update(() => {
@@ -20,7 +20,7 @@
 	{#if showEmptyCart}
 		<button on:click={emptyCart}>Empty Cart</button>
 	{/if}
-	<button on:click={pay} disabled={isDisabled}>Pay</button>
+	<button on:click={pay} disabled={isPayDisabled}>Pay</button>
 </div>
 
 <style>

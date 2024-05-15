@@ -10,7 +10,7 @@
 </script>
 
 <div class="filter-age-group">
-	<h2 style="text-align: center;">Age Group</h2>
+	<h1 class="title">Age Group</h1>
 	<select bind:value={currentAgeGroup} on:change={ageGroupChange}>
 		<option value="adults">Adults</option>
 		<option value="kids">Kids</option>
@@ -23,8 +23,9 @@
 		flex: 1;
 	}
 
-	h2 {
+	.title {
 		margin-bottom: 10px;
+		text-align: center;
 	}
 
 	select {

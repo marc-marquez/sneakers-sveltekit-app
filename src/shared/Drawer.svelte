@@ -135,6 +135,7 @@
 			max-height: 100%;
 			overflow-y: auto;
 			min-width: 375px;
+			justify-content: flex-start;
 		}
 
 		.right {

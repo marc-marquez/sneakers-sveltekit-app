@@ -2,7 +2,7 @@
 	export let handleClick;
 </script>
 
-<div class="overlay" on:click={handleClick} on:keydown={() => {}} />
+<div class="overlay" on:click={handleClick} />
 
 <style>
 	.overlay {

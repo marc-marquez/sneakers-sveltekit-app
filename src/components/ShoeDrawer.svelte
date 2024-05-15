@@ -62,7 +62,7 @@
 			{/if}
 
 			{#if showError}
-				<h1 style="color: red;">Select A Size</h1>
+				<h1 style="color: red; text-align: center;">Select A Size</h1>
 			{/if}
 
 			<!-- {#if $UserStore.displayFormat !== DISPLAY_FORMAT.featured} -->

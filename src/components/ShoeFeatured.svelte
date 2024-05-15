@@ -1,32 +1,16 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import { createEventDispatcher, onMount } from 'svelte';
 	import ColumnContainer from '../shared/ColumnContainer.svelte';
 
 	export let isLoading: boolean = false;
 	export let currentShoe: any = {};
 	export let currentBrand: string = '';
-
-	// let imageLoading = true;
-	// $: imgSrc = currentShoe.image;
-
-	// const toggleImageLoading = () => {
-	//     imageLoading = false;
-	// }
-
-	// let dispatch = createEventDispatcher();
-
-	// onMount(() => {
-	//     const img = new Image();
-	//     img.onload = toggleImageLoading;
-	//     img.src = imgSrc;
-	// });
 </script>
 
 <div class="shoe-featured">
 	{#if currentShoe && !isLoading}
 		<ColumnContainer>
-			<div style="max-width: 600px; text-align: center; position: relative;">
+			<div class="shoe-container">
 				{#if currentShoe.image && !currentShoe.image.includes('nft')}
 					<div class="overlap display-1">{currentBrand}.</div>
 					<div class="image-container">
@@ -58,6 +42,12 @@
 		flex-wrap: nowrap;
 	}
 
+	.shoe-container {
+		max-width: 600px;
+		text-align: center;
+		position: relative;
+	}
+
 	img {
 		object-fit: contain;
 		width: 100%;
@@ -76,7 +66,7 @@
 
 	.overlap {
 		position: absolute;
-		bottom: -2vh;
+		bottom: 4vh;
 		right: -3vw;
 		z-index: 50;
 		color: rgba(0, 0, 0, 0.1);
@@ -92,7 +82,7 @@
 		}
 
 		.display-1 {
-			bottom: -1vh;
+			bottom: 2vh;
 			right: 0;
 		}
 	}

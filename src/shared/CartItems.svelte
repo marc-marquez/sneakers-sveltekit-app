@@ -13,7 +13,7 @@
 			{/each}
 		</div>
 	{:else}
-		<h1 style="text-align: center;">Your cart is empty</h1>
+		<h1>Your cart is empty</h1>
 	{/if}
 </div>
 
@@ -22,6 +22,10 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+	}
+
+	h1 {
+		text-align: center;
 	}
 
 	.cart {

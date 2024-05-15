@@ -37,11 +37,4 @@
 		background-color: lightgrey;
 		color: white;
 	}
-
-	@media (max-width: 480px) {
-		/* .circle-button {
-			width: 30px;
-			height: 30px;
-		} */
-	}
 </style>

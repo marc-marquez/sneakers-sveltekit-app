@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import { createEventDispatcher } from 'svelte';
 	import ColumnContainer from '../shared/ColumnContainer.svelte';
 	import RowContainer from '../shared/RowContainer.svelte';
@@ -60,7 +59,6 @@
 			{#if shoe.image}
 				<button class="shoe-button" on:click={() => getShoeDetails(shoe)}>
 					<div class="image-container">
-						<!-- <img src={shoe.image} alt={shoe.name} in:fly|global={{ y: -25, duration: 2000 }} /> -->
 						<img src={shoe.image} alt={shoe.name} />
 					</div>
 				</button>

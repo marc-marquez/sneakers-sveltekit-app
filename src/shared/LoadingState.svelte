@@ -1,6 +1,6 @@
 <div class="container">
 	<h1>Loading</h1>
-	<div style="font-size: 24px">
+	<div class="icons">
 		{#each { length: 5 } as i}
 			<i class="fa-solid fa-droplet fa-beat"></i>
 		{/each}
@@ -14,5 +14,9 @@
 		height: 45vh;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.icons {
+		font-size: 24px;
 	}
 </style>

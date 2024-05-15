@@ -92,4 +92,10 @@
 		margin: 0;
 		text-align: center;
 	}
+
+	@media (max-width: 1024px) {
+		.toast {
+			width: 80vw;
+		}
+	}
 </style>

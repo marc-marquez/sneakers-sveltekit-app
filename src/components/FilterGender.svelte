@@ -10,7 +10,7 @@
 </script>
 
 <div class="filter-gender">
-	<h2 style="text-align: center;">Gender</h2>
+	<h1 class="title">Gender</h1>
 	<select bind:value={currentGender} on:change={genderChange}>
 		<option value="any">Any</option>
 		<option value="male">Male</option>
@@ -24,8 +24,9 @@
 		flex: 1;
 	}
 
-	h2 {
+	.title {
 		margin-bottom: 10px;
+		text-align: center;
 	}
 
 	select {
