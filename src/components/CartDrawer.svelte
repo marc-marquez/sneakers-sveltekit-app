@@ -8,11 +8,12 @@
 
 	const dispatch = createEventDispatcher();
 
-	const fireToast = (e) => {
-		dispatch('fireToast', e.detail);
-	};
+	// const fireToast = (e: CustomEvent) => {
+	// 	dispatch('fireToast', e.detail);
+	// };
 </script>
 
 <Drawer location="right" isDrawerOpen={isCartOpen} on:closeDrawer={toggleCart}>
-	<CartItems on:fireToast={fireToast} />
+	<!-- <CartItems on:fireToast={fireToast} /> -->
+	<CartItems />
 </Drawer>

@@ -4,7 +4,7 @@
 	export let currentGender: string = 'any';
 	const dispatch = createEventDispatcher();
 
-	const genderChange = (e) => {
+	const genderChange = (e: any) => {
 		dispatch('genderChange', e.target.value);
 	};
 </script>

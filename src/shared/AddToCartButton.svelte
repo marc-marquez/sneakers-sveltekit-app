@@ -2,8 +2,9 @@
 	import CartStore from '../stores/CartStore';
 	import UserStore from '../stores/UserStore';
 	import { createEventDispatcher } from 'svelte';
+	import type { ShoeType } from '../types/Shoe';
 
-	export let currentShoe: any = <any>{};
+	export let currentShoe: ShoeType = <ShoeType>{};
 	export let currentShoeVariant: number | null = null;
 
 	const dispatch = createEventDispatcher();

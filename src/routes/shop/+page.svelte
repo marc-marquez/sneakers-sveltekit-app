@@ -21,25 +21,30 @@
 	import UserStore from '../../stores/UserStore';
 	import ToastStore from '../../stores/ToastStore';
 
+	import type { ShoeType } from '../../types/Shoe';
+	import type { VariantType } from '../../types/Variant';
+
 	let brands = BRANDS;
-	let shoes = [];
-	let originalShoes = [];
+	let shoes: ShoeType[] = [];
+	let originalShoes: ShoeType[] = [];
 	let totalPages: number = 0;
 	let currentPage: number = 1;
 	let currentBrand = brands[0];
-	let isLoading = false;
-	let showError = false;
+	let isLoading: boolean = false;
+	let showError: boolean = false;
 
-	let currentShoeSize = '';
-	let currentGender = 'any';
-	let currentAgeGroup = 'adults';
+	let currentShoeSize: string = '';
+	let currentGender: string = 'any';
+	let currentAgeGroup: string = 'adults';
 
-	$: currentShoe = $CurrentShoeStore?.currentShoe;
-	$: currentShoeIndex = $CurrentShoeStore?.currentShoeIndex;
+	$: currentShoe = <ShoeType>$CurrentShoeStore?.currentShoe;
+	$: currentShoeIndex = $CurrentShoeStore?.currentShoeIndex || 0;
 	$: currentShoeVariant = $CurrentShoeStore?.currentShoeVariant;
 
+	$:console.log(shoes);
+
 	// DOCUMENTATION - https://stockx.vlour.me/
-	const getData = (brand, page, gender, age, size) => {
+	const getData = (brand: string, page: number, gender: string, age: string, size: string) => {
 		isLoading = true;
 		fetch(
 			`https://api.stockx.vlour.me/search?query=${brand} ${age} ${gender} ${size ? `size ${size}` : ''} shoes&page=${page}`
@@ -65,7 +70,7 @@
 					shoe.variants.forEach((variant) => {
 						variant.size = variant.size.replace(/[YCWK]/g, '');
 					});
-					shoe.variants.sort((a, b) => a.size - b.size);
+					shoe.variants.sort((a: VariantType, b: VariantType) => Number(a.size) - Number(b.size));
 				});
 
 				shoes = originalShoes;
@@ -73,7 +78,8 @@
 				CurrentShoeStore.update((shoeInfo) => {
 					return {
 						...shoeInfo,
-						currentShoe: shoes?.[$CurrentShoeStore.currentShoeIndex],
+						// currentShoe: shoes?.[$CurrentShoeStore.currentShoeIndex],
+						currentShoe: shoes?.[currentShoeIndex],
 						currentShoeVariant: null
 					};
 				});
@@ -86,7 +92,7 @@
 			});
 	};
 
-	const setBrandAndGet = (brand) => {
+	const setBrandAndGet = (brand: string) => {
 		currentBrand = brand;
 		currentPage = 1;
 		getData(currentBrand, currentPage, currentGender, currentAgeGroup, currentShoeSize);
@@ -109,7 +115,7 @@
 		setBrandAndGet(currentBrand);
 	});
 
-	const setVariant = (e) => {
+	const setVariant = (e: CustomEvent) => {
 		CurrentShoeStore.update((shoeInfo) => {
 			return {
 				...shoeInfo,
@@ -145,31 +151,31 @@
 		});
 	};
 
-	const setGender = (e) => {
+	const setGender = (e: CustomEvent) => {
 		currentGender = e.detail;
 		getData(currentBrand, 1, currentGender, currentAgeGroup, currentShoeSize);
 	};
 
-	const setAgeGroup = (e) => {
+	const setAgeGroup = (e: CustomEvent) => {
 		currentAgeGroup = e.detail;
 		getData(currentBrand, 1, currentGender, currentAgeGroup, currentShoeSize);
 	};
 
-	const setShoeSize = (e) => {
+	const setShoeSize = (e: CustomEvent) => {
 		currentShoeSize = e.detail;
 		getData(currentBrand, 1, currentGender, currentAgeGroup, currentShoeSize);
 	};
 
-	const setDisplayFormat = (e) => {
+	const setDisplayFormat = (e: CustomEvent) => {
 		UserStore.update((userInfo) => {
 			return {
 				...userInfo,
-				displayFormat: e.target.value
+				displayFormat: (e.target as HTMLSelectElement).value
 			};
 		});
 	};
 
-	const toggleError = (e) => {
+	const toggleError = (e: CustomEvent) => {
 		showError = e.detail;
 	};
 </script>
@@ -191,9 +197,7 @@
 					<option value={DISPLAY_FORMAT.list}>Deep Dive</option>
 				</select>
 				<Filters
-					{currentShoeSize}
 					{currentGender}
-					on:sizeChange={setShoeSize}
 					on:genderChange={setGender}
 					on:ageGroupChange={setAgeGroup}
 				/>

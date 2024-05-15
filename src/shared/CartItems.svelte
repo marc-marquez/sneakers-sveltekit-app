@@ -1,14 +1,15 @@
 <script lang="ts">
 	import CartStore from '../stores/CartStore';
 	import CartItem from './CartItem.svelte';
+	import type { CartItemType } from '../types/CartItem';
 
-	$: totalCost = $CartStore.reduce((total, current) => total + current.price, 0);
+	$: totalCost = $CartStore.reduce((total, current: CartItemType) => total + current?.price, 0);
 </script>
 
 <div class="cart-items">
 	{#if $CartStore.length}
 		<div class="cart">
-			{#each $CartStore as item, i (`${item.id}_${item.size}_${i}`)}
+			{#each $CartStore as item, i (`${item?.id}_${item?.size}_${i}`)}
 				<CartItem {item} {i} />
 			{/each}
 		</div>

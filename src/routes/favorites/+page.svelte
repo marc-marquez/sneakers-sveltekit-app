@@ -2,10 +2,11 @@
 	import { createEventDispatcher } from 'svelte';
 	import PageLayout from '../../shared/PageLayout.svelte';
 	import ShoeCard from '../../shared/ShoeCard.svelte';
-	import FavoritesStore from '../../stores/FavoritesStore';
+	import FavoritesStore from '../../stores/FavoritesStore.js';
 	import EmptyState from '../../shared/EmptyState.svelte';
-	import CurrentShoeStore from '../../stores/CurrentShoeStore';
-	import UserStore from '../../stores/UserStore';
+	import CurrentShoeStore from '../../stores/CurrentShoeStore.js';
+	import UserStore from '../../stores/UserStore.js';
+	import type { ShoeType } from '../../types/Shoe';
 
 	export let data;
 
@@ -19,11 +20,11 @@
 		console.log('Getting previous page');
 	};
 
-	const getShoeDetails = (e) => {
+	const getShoeDetails = (shoe: ShoeType) => {
 		CurrentShoeStore.update((store) => {
 			return {
 				...store,
-				currentShoe: e,
+				currentShoe: shoe,
 				currentShoeVariant: null,
 			};
 		});

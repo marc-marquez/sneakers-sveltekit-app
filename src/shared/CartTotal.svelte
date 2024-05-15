@@ -1,7 +1,8 @@
 <script lang="ts">
 	import CartStore from '../stores/CartStore';
+	import type { CartItemType } from '../types/CartItem';
 
-	$: subtotal = $CartStore.reduce((total, current) => total + current?.price, 0).toFixed(2);
+	$: subtotal = $CartStore.reduce((total: number, current:CartItemType) => total + current?.price, 0).toFixed(2);
 	$: tax = (Number(subtotal) * 0.0825).toFixed(2);
 	$: total = (Number(subtotal) + Number(tax)).toFixed(2);
 </script>

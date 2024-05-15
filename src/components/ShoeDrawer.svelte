@@ -11,10 +11,14 @@
 	import CurrentShoeStore from '../stores/CurrentShoeStore';
 	import DISPLAY_FORMAT from '../constants/DisplayFormat';
 
-	export let shoe: any = {};
+	import type { ShoeType } from '../types/Shoe';
+
+	export let shoe: ShoeType = <ShoeType>{};
 	export let currentShoeVariant: number | null = null;
 
 	let showError = false;
+
+	$: console.log($CurrentShoeStore);
 
 	const dispatch = createEventDispatcher();
 
@@ -27,7 +31,7 @@
 		});
 	};
 
-	const setVariant = (e) => {
+	const setVariant = (e: CustomEvent) => {
 		CurrentShoeStore.update((store) => {
 			return {
 				...store,
@@ -36,11 +40,11 @@
 		});
 	};
 
-	const fireToast = (e) => {
+	const fireToast = (e: CustomEvent) => {
 		dispatch('fireToast', e.detail);
 	};
 
-	const toggleError = (e) => {
+	const toggleError = (e: CustomEvent) => {
 		showError = e.detail;
 	};
 </script>

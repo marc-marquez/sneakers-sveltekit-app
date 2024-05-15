@@ -1,6 +1,7 @@
 <script lang="ts">
     import CurrentShoeStore from '../stores/CurrentShoeStore';
     import UserStore from '../stores/UserStore';
+	import type { ShoeType } from '../types/Shoe';
 
     export let shoe: any = <any>{};
     export let orientation: 'horizontal' | 'vertical' = 'vertical';
@@ -9,11 +10,11 @@
     export let customImageStyles: string = '';
     export let showActions: boolean = false;
 
-    const getShoeDetails = (e) => {
+    const getShoeDetails = (shoe: ShoeType) => {
         CurrentShoeStore.update((store) => {
 			return {
 				...store,
-				currentShoe: e,
+				currentShoe: shoe,
                 currentShoeVariant: null,
 			};
 		});
@@ -26,9 +27,9 @@
 		});
     }
 
-    const getLowestPrice = (shoe) => {
-		return Math.min(...shoe.variants.map((variant) => variant.price));
-	};
+    // const getLowestPrice = (shoe) => {
+	// 	return Math.min(...shoe.variants.map((variant) => variant.price));
+	// };
 </script>
 
 <div class="shoe-card {orientation} {showBorder ? 'show-border' : ''}" style={customStyles}>
@@ -39,7 +40,8 @@
     </button>
     <div class="details">
         <p style="font-size: .75rem;">{shoe.title}</p>
-        <p style="font-size: .75rem; color: grey;">From ${getLowestPrice(shoe)}</p>
+        <!-- <p style="font-size: .75rem; color: grey;">From ${getLowestPrice(shoe)}</p> -->
+        <p style="font-size: .75rem; color: grey;">From ${shoe.base_price}</p>
     </div>
     {#if showActions}
         <div class="actions">

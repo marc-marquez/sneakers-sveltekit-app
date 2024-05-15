@@ -10,7 +10,7 @@
 		sizes.push(i);
 	}
 
-	const sizeChange = (e) => {
+	const sizeChange = (e: any) => {
 		dispatch('sizeChange', e.target.value);
 	};
 </script>

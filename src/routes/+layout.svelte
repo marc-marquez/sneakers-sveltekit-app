@@ -6,9 +6,9 @@
 	import ShoeDrawer from '../components/ShoeDrawer.svelte';
 	import Toast from '../shared/Toast.svelte';
 
-	import CartStore from '../stores/CartStore';
-	import UserStore from '../stores/UserStore';
-	import CurrentShoeStore from '../stores/CurrentShoeStore';
+	import CartStore from '../stores/CartStore.ts';
+	import UserStore from '../stores/UserStore.ts';
+	import CurrentShoeStore from '../stores/CurrentShoeStore.ts';
 
 	let name: string = 'The Drip';
 
@@ -38,7 +38,7 @@
 		goto('/checkout');
 	};
 
-	const setVariant = (e) => {
+	const setVariant = (e: CustomEvent) => {
 		CurrentShoeStore.update((store) => {
 			return {
 				...store,
@@ -47,7 +47,7 @@
 		});
 	};
 
-	const fireToast = (e) => {
+	const fireToast = (e: CustomEvent) => {
 		UserStore.update((store) => {
 			return {
 				...store,
@@ -55,6 +55,8 @@
 			};
 		});
 	};
+
+	// $: currentToast = $UserStore.toast[0];
 </script>
 
 <nav>

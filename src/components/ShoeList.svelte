@@ -5,8 +5,9 @@
 	import CircleButton from '../shared/CircleButton.svelte';
 	import CurrentShoeStore from '../stores/CurrentShoeStore';
 	import UserStore from '../stores/UserStore';
+	import type { ShoeType } from '../types/Shoe';
 
-	export let shoes: Array<any> = [];
+	export let shoes: ShoeType[] = [];
 	export let currentPage: number = 0;
 	export let totalPages: number = 0;
 
@@ -24,11 +25,11 @@
 		dispatch('getNextPage');
 	};
 
-	const getShoeDetails = (e) => {
+	const getShoeDetails = (shoe: ShoeType) => {
         CurrentShoeStore.update((store) => {
 			return {
 				...store,
-				currentShoe: e,
+				currentShoe: shoe,
 				currentShoeVariant: null,
 			};
 		});
@@ -59,7 +60,7 @@
 			{#if shoe.image}
 				<button class="shoe-button" on:click={() => getShoeDetails(shoe)}>
 					<div class="image-container">
-						<img src={shoe.image} alt={shoe.name} />
+						<img src={shoe.image} alt={shoe.title} />
 					</div>
 				</button>
 			{/if}

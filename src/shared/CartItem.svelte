@@ -1,13 +1,14 @@
 <script lang="ts">
 	import CartStore from '../stores/CartStore';
 	import UserStore from '../stores/UserStore';
+	import type { CartItemType } from '../types/CartItem';
+	
+	export let item: CartItemType = <CartItemType>{};
+	export let i: Number = 0;
 
-	export let item: any = <any>{};
-	export let i: number = 0;
-
-	const removeFromCart = (cartItem) => {
+	const removeFromCart = (cartIndex: Number) => {
 		let filtered = $CartStore.filter((item, index) => {
-			return index !== cartItem;
+			return index !== cartIndex;
 		});
 
 		CartStore.update((cart) => {

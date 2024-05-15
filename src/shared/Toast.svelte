@@ -2,6 +2,7 @@
 	import { fly } from 'svelte/transition';
 	import UserStore from '../stores/UserStore';
 	import { onDestroy, onMount } from 'svelte';
+	import type { ToastType } from '../types/Toast';
 
 	export let type: string = '';
 
@@ -19,7 +20,7 @@
 	// 				   ${['add', 'favorite'].includes($UserStore.toast[0]?.type) ? 'to' : 'from'} 
 	// 				   ${['add', 'remove'].includes($UserStore.toast[0]?.type) ? 'cart' : 'favorites'}.`;
 
-	$: currentToast = $UserStore.toast[0];
+	$: currentToast = <ToastType>$UserStore.toast[0];
 	
 	$: toastMessage = `${['add', 'favorite'].includes(currentToast?.type) ? 'Added' : 'Removed'}
 					   ${currentToast?.shoe?.title} 

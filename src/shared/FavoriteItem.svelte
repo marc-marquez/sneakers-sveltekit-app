@@ -1,27 +1,28 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	// import { createEventDispatcher } from 'svelte';
 	import FavoritesStore from '../stores/FavoritesStore';
 	import ShoeCard from './ShoeCard.svelte';
+	import type { ShoeType } from '../types/Shoe';
 
-	export let item;
-	export let i: number = 0;
+	export let item: ShoeType = <ShoeType>{};
+	// export let i: number = 0;
 
-	const dispatch = createEventDispatcher();
+	// const dispatch = createEventDispatcher();
 
-	const removeFromList = (cartItem) => {
+	const removeFromList = (cartItem: Number) => {
 		let filtered = $FavoritesStore.filter((item, index) => {
 			return index !== cartItem;
 		});
 		FavoritesStore.update((cart) => {
 			return [...filtered];
 		});
-		dispatch('fireToast', {
-			type: 'unfavorite',
-			shoe: {
-				title: item.title,
-				size: item.size
-			}
-		});
+		// dispatch('fireToast', {
+		// 	type: 'unfavorite',
+		// 	shoe: {
+		// 		title: item.title,
+		// 		size: item.size
+		// 	}
+		// });
 	};
 </script>
 
@@ -36,7 +37,7 @@
 		margin: 10px 0;
 	}
 
-	.remove-button {
+	/* .remove-button {
 		border: none;
 		background-color: transparent;
 		font-size: 20px;
@@ -61,5 +62,5 @@
 		cursor: pointer;
 		background-color: #a6f0ff;
 		color: white;
-	}
+	} */
 </style>

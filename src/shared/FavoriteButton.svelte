@@ -1,14 +1,17 @@
 <script lang="ts">
 	import FavoritesStore from '../stores/FavoritesStore';
 	import UserStore from '../stores/UserStore';
+	import type { ShoeType } from '../types/Shoe';
 
 	export let shoe: any = <any>{};
 
-	$: isFavorited = $FavoritesStore.find((current) => current.id === shoe.id);
+	$: isFavorited = $FavoritesStore.find((current:ShoeType) => current.id === shoe.id);
+
+	$: console.log($FavoritesStore);
 
 	const handleClick = () => {
 		if (isFavorited) {
-			let filtered = $FavoritesStore.filter((item) => item.id !== shoe.id);
+			let filtered = $FavoritesStore.filter((item:ShoeType) => item.id !== shoe.id);
 			FavoritesStore.update((store) => {
 				return [...filtered];
 			});

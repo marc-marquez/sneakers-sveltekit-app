@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	// import { createEventDispatcher } from 'svelte';
 	import FavoritesStore from '../stores/FavoritesStore';
 	import FavoriteItem from './FavoriteItem.svelte';
 
-	const dispatch = createEventDispatcher();
+	// const dispatch = createEventDispatcher();
 
 	const emptyList = () => {
 		FavoritesStore.update(() => {
@@ -11,15 +11,16 @@
 		});
 	};
 
-	const fireToast = (e) => {
-		dispatch('fireToast', e.detail);
-	};
+	// const fireToast = (e) => {
+	// 	dispatch('fireToast', e.detail);
+	// };
 </script>
 
 <div class="favorites">
 	<div class="favorites-list">
-		{#each $FavoritesStore as item, i (`${item.id}_${item.size}_${i}`)}
-			<FavoriteItem {item} {i} on:fireToast={fireToast} />
+		{#each $FavoritesStore as item, i (`${item.id}_${item.title}_${i}`)}
+			<!-- <FavoriteItem {item} {i} on:fireToast={fireToast} /> -->
+			<FavoriteItem {item} />
 		{/each}
 	</div>
 	{#if $FavoritesStore.length}

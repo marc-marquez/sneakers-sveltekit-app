@@ -5,8 +5,9 @@
 	import AddToCartButton from './AddToCartButton.svelte';
 	import CurrentShoeStore from '../stores/CurrentShoeStore';
 	import UserStore from '../stores/UserStore';
+	import type { ShoeType } from '../types/Shoe';
 
-	export let shoe: any = {};
+	export let shoe: ShoeType = <ShoeType>{};
 	export let currentShoeVariant: number | null = null;
 
 	const dispatch = createEventDispatcher();
@@ -15,11 +16,11 @@
 		dispatch('toggleError', state);
 	};
 
-	const getShoeDetails = (e) => {
+	const getShoeDetails = (shoe: ShoeType) => {
         CurrentShoeStore.update((store) => {
 			return {
 				...store,
-				currentShoe: e,
+				currentShoe: shoe,
 			};
 		});
 
@@ -40,7 +41,7 @@
 		{currentShoeVariant}
 		on:missingSize={() => toggleError(true)}
 	/>
-	{#if shoe?.variants?.[currentShoeVariant]?.price}
+	{#if currentShoeVariant && currentShoeVariant >= 0 && shoe?.variants?.[currentShoeVariant]?.price}
 		<h1>${shoe.variants[currentShoeVariant]?.price}</h1>
 	{/if}
 </div>

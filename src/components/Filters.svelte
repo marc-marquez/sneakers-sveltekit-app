@@ -8,15 +8,15 @@
 
 	let dispatch = createEventDispatcher();
 
-	const genderChange = (e) => {
+	const genderChange = (e: CustomEvent) => {
 		dispatch('genderChange', e.detail);
 	};
 
-	const ageGroupChange = (e) => {
+	const ageGroupChange = (e: CustomEvent) => {
 		dispatch('ageGroupChange', e.detail);
 	};
 
-	const sizeChange = (e) => {
+	const sizeChange = (e: CustomEvent) => {
 		dispatch('sizeChange', e.detail);
 	};
 </script>

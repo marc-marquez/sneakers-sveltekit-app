@@ -8,7 +8,7 @@
 	export let isFavoritesOpen: boolean = false;
 	export let toggleFavorites;
 
-	const fireToast = (e) => {
+	const fireToast = (e: CustomEvent) => {
 		dispatch('fireToast', e.detail);
 	};
 </script>

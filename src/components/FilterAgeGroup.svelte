@@ -4,7 +4,7 @@
 	export let currentAgeGroup: string = '';
 	const dispatch = createEventDispatcher();
 
-	const ageGroupChange = (e) => {
+	const ageGroupChange = (e: any) => {
 		dispatch('ageGroupChange', e.target.value);
 	};
 </script>
