@@ -55,7 +55,6 @@
 	}
 
 	.drip-link:hover {
-		/* color: #fff; */
 		background-color: #a6f0ff
 	}
 
@@ -72,8 +71,7 @@
 	.two {
 		grid-column: 8/13;
 		grid-row: 1/6;
-		background: url('https://images.unsplash.com/photo-1586525198428-225f6f12cff5') no-repeat
-			center/cover;
+		background: url('../assets/images/home1.jpg') no-repeat center/cover;
 		border-radius: 25px;
 		grid-area: two;
 	}
@@ -81,8 +79,7 @@
 	.three {
 		grid-column: 1/5;
 		grid-row: 3/7;
-		background: url('https://images.unsplash.com/photo-1611510338559-2f463335092c') no-repeat
-			center/cover;
+		background: url('../assets/images/home2.jpg') no-repeat center/cover;
 		border-radius: 25px;
 		grid-area: three;
 	}
@@ -101,8 +98,7 @@
 		grid-column: 5/13;
 		grid-row: 6/9;
 		border-radius: 25px;
-		background: url('https://images.unsplash.com/photo-1599069692326-7eeb159e6991') no-repeat
-			bottom/cover;
+		background: url('../assets/images/home3.jpg') no-repeat bottom/cover;
 		grid-area: five;
 	}
 

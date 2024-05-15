@@ -65,8 +65,7 @@
 
 <style>
 	.photo {
-		background: url('https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8') no-repeat
-			center/cover;
+		background: url('../../assets/images/checkout.jpg') no-repeat center/cover;
 		grid-area: photo;
 		position: relative;
 		border-radius: 25px;

@@ -78,8 +78,7 @@
 	}
 
 	.photo {
-		background: url(https://images.unsplash.com/photo-1552346154-21d32810aba3) no-repeat
-			center/cover;
+		background: url(../../assets/images/favorites.jpg) no-repeat center/cover;
 		text-align: center;
 		position: relative;
 		border-radius: 25px;
