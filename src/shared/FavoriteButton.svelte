@@ -1,11 +1,8 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import FavoritesStore from '../stores/FavoritesStore';
-	import ShoeDrawer from '../components/ShoeDrawer.svelte';
+	import UserStore from '../stores/UserStore';
 
 	export let shoe: any = <any>{};
-
-	const dispatch = createEventDispatcher();
 
 	$: isFavorited = $FavoritesStore.find((current) => current.id === shoe.id);
 
@@ -15,13 +12,20 @@
 			FavoritesStore.update((store) => {
 				return [...filtered];
 			});
-			dispatch('fireToast', {
-				type: 'unfavorite',
-				shoe: {
-					title: shoe.title,
-					size: shoe.size
-				}
-			});
+			UserStore.update((store) => {
+			return {
+				...store,
+				toast: {
+					type: 'unfavorite',
+					shoe: {
+						title: shoe.title,
+						size: shoe.size
+					},
+					isShowing: true
+				},
+			};
+		});
+
 			return;
 		}
 
@@ -29,12 +33,18 @@
 			return [...store, shoe];
 		});
 
-		dispatch('fireToast', {
-			type: 'favorite',
-			shoe: {
-				title: shoe.title,
-				size: shoe.size
-			}
+		UserStore.update((store) => {
+			return {
+				...store,
+				toast: {
+					type: 'favorite',
+					shoe: {
+						title: shoe.title,
+						size: shoe.size
+					},
+					isShowing: true
+				}
+			};
 		});
 	};
 </script>

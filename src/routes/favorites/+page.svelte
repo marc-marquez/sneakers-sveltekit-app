@@ -11,10 +11,6 @@
 
 	const dispatch = createEventDispatcher();
 
-	const fireToast = (e) => {
-		dispatch('fireToast', e.detail);
-	};
-
 	const getNextPage = () => {
 		console.log('Getting next page');
 	};

@@ -7,14 +7,10 @@
 	import ShoeGrid from '../../components/ShoeGrid.svelte';
 	import ShoeList from '../../components/ShoeList.svelte';
 	import PageLayout from '../../shared/PageLayout.svelte';
-	import FavoritesDrawer from '../../components/FavoritesDrawer.svelte';
-
 	import StarRating from '../../shared/StarRating.svelte';
 	import CircleButton from '../../shared/CircleButton.svelte';
 	import LoadingState from '../../shared/LoadingState.svelte';
 	import EmptyState from '../../shared/EmptyState.svelte';
-	import CartDrawer from '../../components/CartDrawer.svelte';
-	import Toast from '../../shared/Toast.svelte';
 	import ShoeVariants from '../../shared/ShoeVariants.svelte';
 	import ShoeActions from '../../shared/ShoeActions.svelte';
 
@@ -31,25 +27,16 @@
 	let totalPages: number = 0;
 	let currentPage: number = 1;
 	let currentBrand = brands[0];
-	let isDetailsDrawerOpen = false;
-	let isCartOpen = false;
-	let isFavoritesOpen = false;
 	let isLoading = false;
-
-	let isMenuDrawerOpen = false;
 	let showError = false;
-	let showToast = '';
 
 	let currentShoeSize = '';
+	let currentGender = 'any';
+	let currentAgeGroup = 'adults';
 
 	$: currentShoe = $CurrentShoeStore?.currentShoe;
 	$: currentShoeIndex = $CurrentShoeStore?.currentShoeIndex;
 	$: currentShoeVariant = $CurrentShoeStore?.currentShoeVariant;
-
-	$: toastMessage = `${['add', 'favorite'].includes(showToast?.type) ? 'Added' : 'Removed'} ${showToast?.shoe?.title} ${['add', 'favorite'].includes(showToast?.type) ? 'to' : 'from'} ${['add', 'remove'].includes(showToast?.type) ? 'cart' : 'favorites'}.`;
-
-	let currentGender = 'any';
-	let currentAgeGroup = 'adults';
 
 	// DOCUMENTATION - https://stockx.vlour.me/
 	const getData = (brand, page, gender, age, size) => {
@@ -104,29 +91,6 @@
 		currentPage = 1;
 		getData(currentBrand, currentPage, currentGender, currentAgeGroup, currentShoeSize);
 	};
-
-	// const getShoeDetails = (e) => {
-	// 	if (!e) {
-	// 		console.error('No shoe provided.');
-	// 		return;
-	// 	}
-
-	// 	CurrentShoeStore.update((shoeInfo) => {
-	// 		return {
-	// 			...shoeInfo,
-	// 			currentShoe: e,
-	// 			currentShoeIndex: originalShoes.findIndex((shoe) => shoe.id === e.id),
-	// 			currentShoeVariant: null
-	// 		};
-	// 	});
-
-	// 	UserStore.update((userInfo) => {
-	// 		return {
-	// 			...userInfo,
-	// 			isDetailsDrawerOpen: true
-	// 		};
-	// 	});
-	// };
 
 	const getNextPage = () => {
 		currentPage += 1;
@@ -197,7 +161,6 @@
 	};
 
 	const setDisplayFormat = (e) => {
-		console.log('On change triggered.');
 		UserStore.update((userInfo) => {
 			return {
 				...userInfo,
@@ -206,61 +169,9 @@
 		});
 	};
 
-	const toggleCart = () => {
-		isCartOpen = !isCartOpen;
-	};
-
-	const getShoeById = (id: string) => {
-		if (!id) {
-			console.error('No id sent in getShoeById');
-			return;
-		}
-
-		let found = shoes.find((shoe) => shoe.id === id);
-
-		if (!found) {
-			console.error('No shoe found in getShoeById');
-			return;
-		}
-
-		return found;
-	};
-
-	const toggleFavorites = () => {
-		isFavoritesOpen = !isFavoritesOpen;
-	};
-
 	const toggleError = (e) => {
 		showError = e.detail;
 	};
-
-	
-	// Add toast to queue
-	const fireToast = (e) => {
-		// ToastStore.update((store) => {
-		// 	return {
-		// 		queue: [...store.queue, e.detail]
-		// 	}
-		// });
-		showToast = e.detail;
-		setTimeout(() => {
-			showToast = '';
-		}, 3000);
-	};
-
-	// Show toast and then remove after 3 seconds
-	// $: if ($ToastStore.queue.length > 0) {
-	// 	showToast = $ToastStore.queue[0];
-	// 	setTimeout(() => {
-	// 		ToastStore.update((store) => {
-	// 			return {
-	// 				queue: store.queue.slice(1)
-	// 			}
-	// 		});
-	// 		showToast = '';
-	// 	}, 5000);
-	// }
-
 </script>
 
 <PageLayout>
@@ -346,13 +257,12 @@
 								shoe={currentShoe}
 								{currentShoeVariant}
 								on:toggleError={toggleError}
-								on:fireToast={fireToast}
 							/>
 						</div>
 					</div>
 				</div>
 			{:else if $UserStore.displayFormat === 'grid'}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px 20px; width: 100%;">
+				<div class="view-container">
 					<ShoeGrid
 						{shoes}
 						{currentPage}
@@ -362,7 +272,7 @@
 					/>
 				</div>
 			{:else if $UserStore.displayFormat === 'list'}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px 20px; width: 100%;">
+				<div class="view-container">
 					<ShoeList
 						{shoes}
 						{currentPage}
@@ -376,18 +286,6 @@
 			{/if}
 		</div>
 	</main>
-
-	{#if isCartOpen}
-		<CartDrawer {isCartOpen} {toggleCart} on:fireToast={fireToast} />
-	{/if}
-
-	{#if isFavoritesOpen}
-		<FavoritesDrawer {isFavoritesOpen} {toggleFavorites} on:fireToast={fireToast} />
-	{/if}
-
-	{#if showToast}
-		<Toast type={showToast?.type} message={toastMessage} />
-	{/if}
 </PageLayout>
 
 <style>
@@ -434,6 +332,13 @@
 	.variants-container,
 	.actions-container {
 		width: 50%;
+	}
+
+	.view-container {
+		flex:2 1 0%;
+		background-color: white;
+		margin: 10px 20px;
+		width: 100%;
 	}
 
 	.display-select {

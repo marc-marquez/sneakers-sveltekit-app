@@ -1,11 +1,14 @@
 <script lang="ts">
 	import '../app.css';
+	import { goto } from '$app/navigation';
+
 	import MenuDrawer from '../components/MenuDrawer.svelte';
 	import ShoeDrawer from '../components/ShoeDrawer.svelte';
+	import Toast from '../shared/Toast.svelte';
+
 	import CartStore from '../stores/CartStore';
 	import UserStore from '../stores/UserStore';
 	import CurrentShoeStore from '../stores/CurrentShoeStore';
-	import { goto } from '$app/navigation';
 
 	let name: string = 'The Drip';
 
@@ -88,6 +91,10 @@
 		on:setVariant={setVariant}
 		on:fireToast={fireToast}
 	/>
+{/if}
+
+{#if $UserStore.toast && $UserStore?.toast?.isShowing}
+	<Toast type={$UserStore?.toast?.type} />
 {/if}
 
 <style>

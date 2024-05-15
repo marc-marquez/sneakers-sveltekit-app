@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CartStore from '../stores/CartStore';
+	import UserStore from '../stores/UserStore';
 	import { createEventDispatcher } from 'svelte';
 
 	export let currentShoe: any = <any>{};
@@ -29,13 +30,19 @@
 		CartStore.update((cart) => {
 			return [...cart, order];
 		});
-
-		dispatch('fireToast', {
-			type: 'add',
-			shoe: {
-				title: currentShoe.title,
-				size: currentShoe.variants[currentShoeVariant].size
-			}
+		
+		UserStore.update((store) => {
+			return {
+				...store,
+				toast: {
+					type: 'add',
+					shoe: {
+						title: currentShoe.title,
+						size: currentShoe.variants[currentShoeVariant].size
+					},
+					isShowing: true
+				}
+			};
 		});
 	};
 </script>

@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	export let message: string = 'test message';
+	import UserStore from '../stores/UserStore';
+	import { onDestroy, onMount } from 'svelte';
+
 	export let type: string = '';
+
+	let timeoutId: number;
 
 	let icons = {
 		add: 'fa-cart-plus',
@@ -9,6 +13,36 @@
 		favorite: 'fa-heart',
 		unfavorite: 'fa-heart-crack'
 	};
+
+	$: toastMessage = `${['add', 'favorite'].includes($UserStore.toast?.type) ? 'Added' : 'Removed'}
+					   ${$UserStore?.toast?.shoe?.title} 
+					   ${['add', 'favorite'].includes($UserStore.toast?.type) ? 'to' : 'from'} 
+					   ${['add', 'remove'].includes($UserStore.toast?.type) ? 'cart' : 'favorites'}.`;
+
+	onMount(() => {
+		timeoutId = setTimeout(() => {
+			UserStore.update((store) => {
+				return {
+					...store,
+					toast: {
+						isShowing: false,
+						type: store?.toast?.type,
+						shoe: store?.toast?.shoe,
+					}
+				};
+			});
+		}, 4000);
+	});
+
+	onDestroy(() => {
+		clearTimeout(timeoutId);
+		UserStore.update((store) => {
+				return {
+					...store,
+					toast: {}
+				};
+			});
+	});
 </script>
 
 <div
@@ -17,13 +51,15 @@
 	out:fly|global={{ y: -20, duration: 2000 }}
 >
 	<i class={`fa-solid ${icons[type]}`} style="margin-right: 10px;"></i>
-	<p class="message">{message}</p>
+	<p class="message">{toastMessage}</p>
 </div>
 
 <style>
 	.toast {
-		position: fixed;
-		top: 5vh;
+		position: absolute;
+		top: 2vh;
+		left: 50%;
+		transform: translateX(-50%);
 		width: 50vw;
 		height: 40px;
 		padding: 10px 20px;
@@ -55,13 +91,5 @@
 	.message {
 		margin: 0;
 		text-align: center;
-	}
-
-	@media (max-width: 1024px) {
-		.toast {
-			width: 80vw;
-			/* top: unset; */
-			/* bottom: 10vh; */
-		}
 	}
 </style>

@@ -15,10 +15,6 @@
 		dispatch('toggleError', state);
 	};
 
-	const fireToast = (e) => {
-		dispatch('fireToast', e.detail);
-	};
-
 	const getShoeDetails = (e) => {
         CurrentShoeStore.update((store) => {
 			return {
@@ -38,11 +34,10 @@
 
 <div class="shoe-actions">
 	<button on:click={() => getShoeDetails(shoe)} disabled={$UserStore.isDetailsDrawerOpen}><i class="fa-solid fa-circle-info"></i></button>
-	<FavoriteButton {shoe} on:fireToast={fireToast} />
+	<FavoriteButton {shoe} />
 	<AddToCartButton
 		currentShoe={shoe}
 		{currentShoeVariant}
-		on:fireToast={fireToast}
 		on:missingSize={() => toggleError(true)}
 	/>
 	{#if shoe?.variants?.[currentShoeVariant]?.price}
