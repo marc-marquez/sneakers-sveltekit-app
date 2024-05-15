@@ -93,8 +93,8 @@
 	/>
 {/if}
 
-{#if $UserStore.toast && $UserStore?.toast?.isShowing}
-	<Toast type={$UserStore?.toast?.type} />
+{#if $UserStore.toast.length > 0 && $UserStore?.toast[0]?.isShowing}
+	<Toast type={$UserStore?.toast[0]?.type} />
 {/if}
 
 <style>

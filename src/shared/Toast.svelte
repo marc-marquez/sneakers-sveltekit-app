@@ -14,21 +14,30 @@
 		unfavorite: 'fa-heart-crack'
 	};
 
-	$: toastMessage = `${['add', 'favorite'].includes($UserStore.toast?.type) ? 'Added' : 'Removed'}
-					   ${$UserStore?.toast?.shoe?.title} 
-					   ${['add', 'favorite'].includes($UserStore.toast?.type) ? 'to' : 'from'} 
-					   ${['add', 'remove'].includes($UserStore.toast?.type) ? 'cart' : 'favorites'}.`;
+	// $: toastMessage = `${['add', 'favorite'].includes($UserStore.toast[0]?.type) ? 'Added' : 'Removed'}
+	// 				   ${$UserStore?.toast[0]?.shoe?.title} 
+	// 				   ${['add', 'favorite'].includes($UserStore.toast[0]?.type) ? 'to' : 'from'} 
+	// 				   ${['add', 'remove'].includes($UserStore.toast[0]?.type) ? 'cart' : 'favorites'}.`;
+
+	$: currentToast = $UserStore.toast[0];
+	
+	$: toastMessage = `${['add', 'favorite'].includes(currentToast?.type) ? 'Added' : 'Removed'}
+					   ${currentToast?.shoe?.title} 
+					   ${currentToast?.shoe?.size ? `(size: ${currentToast?.shoe?.size})` : ''} 
+					   ${['add', 'favorite'].includes(currentToast?.type) ? 'to' : 'from'} 
+					   ${['add', 'remove'].includes(currentToast?.type) ? 'cart' : 'favorites'}.`;
+
 
 	onMount(() => {
 		timeoutId = setTimeout(() => {
 			UserStore.update((store) => {
 				return {
 					...store,
-					toast: {
+					toast: [{
 						isShowing: false,
-						type: store?.toast?.type,
-						shoe: store?.toast?.shoe,
-					}
+						type: store?.toast[0]?.type,
+						shoe: store?.toast[0]?.shoe,
+					}, ...store.toast.slice(1, store.toast.length)]
 				};
 			});
 		}, 4000);
@@ -39,7 +48,7 @@
 		UserStore.update((store) => {
 			return {
 				...store,
-				toast: null
+				toast: [...store.toast.slice(1)]
 			};
 		});
 	});
@@ -57,7 +66,7 @@
 <style>
 	.toast {
 		position: fixed;
-		top: 10vh;
+		top: 8vh;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 50vw;

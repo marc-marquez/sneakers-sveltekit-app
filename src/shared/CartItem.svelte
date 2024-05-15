@@ -17,14 +17,14 @@
 		UserStore.update((store) => {
 			return {
 				...store,
-				toast: {
+				toast: [ ...store?.toast, {
 					type: 'remove',
 					shoe: {
 						title: item.title,
 						size: item.size
 					},
 					isShowing: true
-				}
+				}]
 			};
 		});
 	};

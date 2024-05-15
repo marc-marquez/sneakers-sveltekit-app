@@ -5,7 +5,7 @@ const UserStore = writable({
 	displayFormat: DISPLAY_FORMAT.featured,
 	isMenuOpen: false,
 	isDetailsDrawerOpen: false,
-	toast: {},
+	toast: [],
 });
 
 export default UserStore;

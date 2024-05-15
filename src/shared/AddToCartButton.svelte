@@ -34,14 +34,14 @@
 		UserStore.update((store) => {
 			return {
 				...store,
-				toast: {
+				toast: [...store?.toast, {
 					type: 'add',
 					shoe: {
 						title: currentShoe.title,
 						size: currentShoe.variants[currentShoeVariant].size
 					},
 					isShowing: true
-				}
+				}]
 			};
 		});
 	};

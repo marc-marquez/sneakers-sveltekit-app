@@ -13,19 +13,18 @@
 				return [...filtered];
 			});
 			UserStore.update((store) => {
-			return {
-				...store,
-				toast: {
-					type: 'unfavorite',
-					shoe: {
-						title: shoe.title,
-						size: shoe.size
-					},
-					isShowing: true
-				},
-			};
-		});
-
+				return {
+					...store,
+					toast: [ ...store.toast, {
+						type: 'unfavorite',
+						shoe: {
+							title: shoe.title,
+							size: shoe.size
+						},
+						isShowing: true
+					}],
+				};
+			});
 			return;
 		}
 
@@ -36,14 +35,14 @@
 		UserStore.update((store) => {
 			return {
 				...store,
-				toast: {
+				toast: [ ...store.toast, {
 					type: 'favorite',
 					shoe: {
 						title: shoe.title,
 						size: shoe.size
 					},
 					isShowing: true
-				}
+				}]
 			};
 		});
 	};
