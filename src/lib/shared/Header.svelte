@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import CartStore from '../stores/CartStore';
+	import CartStore from '$lib/stores/CartStore';
 
 	export let name: string = '';
 

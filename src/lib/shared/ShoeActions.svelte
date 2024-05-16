@@ -3,8 +3,8 @@
 
 	import FavoriteButton from './FavoriteButton.svelte';
 	import AddToCartButton from './AddToCartButton.svelte';
-	import CurrentShoeStore from '../stores/CurrentShoeStore';
-	import UserStore from '../stores/UserStore';
+	import CurrentShoeStore from '$lib/stores/CurrentShoeStore';
+	import UserStore from '$lib/stores/UserStore';
 
 	export let shoe: any = {};
 	export let currentShoeVariant: number | null = null;

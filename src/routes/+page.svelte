@@ -71,7 +71,7 @@
 	.two {
 		grid-column: 8/13;
 		grid-row: 1/6;
-		background: url('../assets/images/home1.jpg') no-repeat center/cover;
+		background: url('$lib/assets/images/home1.jpg') no-repeat center/cover;
 		border-radius: 25px;
 		grid-area: two;
 	}
@@ -79,7 +79,7 @@
 	.three {
 		grid-column: 1/5;
 		grid-row: 3/7;
-		background: url('../assets/images/home2.jpg') no-repeat center/cover;
+		background: url('$lib/assets/images/home2.jpg') no-repeat center/cover;
 		border-radius: 25px;
 		grid-area: three;
 	}
@@ -98,7 +98,7 @@
 		grid-column: 5/13;
 		grid-row: 6/9;
 		border-radius: 25px;
-		background: url('../assets/images/home3.jpg') no-repeat bottom/cover;
+		background: url('$lib/assets/images/home3.jpg') no-repeat bottom/cover;
 		grid-area: five;
 	}
 

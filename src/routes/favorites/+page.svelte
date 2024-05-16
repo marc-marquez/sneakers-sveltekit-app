@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import PageLayout from '../../shared/PageLayout.svelte';
-	import ShoeCard from '../../shared/ShoeCard.svelte';
-	import FavoritesStore from '../../stores/FavoritesStore';
-	import EmptyState from '../../shared/EmptyState.svelte';
-	import CurrentShoeStore from '../../stores/CurrentShoeStore';
-	import UserStore from '../../stores/UserStore';
+	import PageLayout from '$lib/shared/PageLayout.svelte';
+	import ShoeCard from '$lib/shared/ShoeCard.svelte';
+	import FavoritesStore from '$lib/stores/FavoritesStore'
+	import EmptyState from '$lib/shared/EmptyState.svelte';
+	import CurrentShoeStore from '$lib/stores/CurrentShoeStore'
+	import UserStore from '$lib/stores/UserStore'
 
 	export let data;
 
@@ -78,7 +78,7 @@
 	}
 
 	.photo {
-		background: url(../../assets/images/favorites.jpg) no-repeat center/cover;
+		background: url('$lib/assets/images/favorites.jpg') no-repeat center/cover;
 		text-align: center;
 		position: relative;
 		border-radius: 25px;
@@ -89,7 +89,7 @@
 		grid-area: favorites;
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		grid-auto-rows: minmax(50px, auto);
+		grid-auto-rows: minmax(auto, 300px);
 		grid-gap: 1rem;
 		margin-top: 50px;
 	}

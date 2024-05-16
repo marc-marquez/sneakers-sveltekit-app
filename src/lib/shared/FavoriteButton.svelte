@@ -1,6 +1,6 @@
 <script lang="ts">
-	import FavoritesStore from '../stores/FavoritesStore';
-	import UserStore from '../stores/UserStore';
+	import FavoritesStore from '$lib/stores/FavoritesStore';
+	import UserStore from '$lib/stores/UserStore';
 
 	export let shoe: any = <any>{};
 

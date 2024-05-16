@@ -7,9 +7,9 @@
 	import ShoeVariants from '../shared/ShoeVariants.svelte';
 	import ShoeActions from '../shared/ShoeActions.svelte';
 
-	import UserStore from '../stores/UserStore';
-	import CurrentShoeStore from '../stores/CurrentShoeStore';
-	import DISPLAY_FORMAT from '../constants/DisplayFormat';
+	import UserStore from '$lib/stores/UserStore';
+	import CurrentShoeStore from '$lib/stores/CurrentShoeStore';
+	import DISPLAY_FORMAT from '$lib/constants/DisplayFormat';
 
 	export let shoe: any = {};
 	export let currentShoeVariant: number | null = null;

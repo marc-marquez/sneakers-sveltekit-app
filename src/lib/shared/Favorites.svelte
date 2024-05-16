@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import FavoritesStore from '../stores/FavoritesStore';
+	import FavoritesStore from '$lib/stores/FavoritesStore';
 	import FavoriteItem from './FavoriteItem.svelte';
 
 	const dispatch = createEventDispatcher();

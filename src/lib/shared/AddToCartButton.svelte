@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CartStore from '../stores/CartStore';
-	import UserStore from '../stores/UserStore';
+	import CartStore from '$lib/stores/CartStore';
+	import UserStore from '$lib/stores/UserStore';
 	import { createEventDispatcher } from 'svelte';
 
 	export let currentShoe: any = <any>{};

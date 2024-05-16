@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import UserStore from '../stores/UserStore';
+	import UserStore from '$lib/stores/UserStore';
 	import { onDestroy, onMount } from 'svelte';
 
 	export let type: string = '';

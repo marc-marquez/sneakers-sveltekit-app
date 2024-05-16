@@ -2,13 +2,13 @@
 	import '../app.css';
 	import { goto } from '$app/navigation';
 
-	import MenuDrawer from '../components/MenuDrawer.svelte';
-	import ShoeDrawer from '../components/ShoeDrawer.svelte';
-	import Toast from '../shared/Toast.svelte';
+	import MenuDrawer from '$lib/components/MenuDrawer.svelte';
+	import ShoeDrawer from '$lib/components/ShoeDrawer.svelte';
+	import Toast from '$lib/shared/Toast.svelte';
 
-	import CartStore from '../stores/CartStore';
-	import UserStore from '../stores/UserStore';
-	import CurrentShoeStore from '../stores/CurrentShoeStore';
+	import CartStore from '$lib/stores/CartStore';
+	import UserStore from '$lib/stores/UserStore';
+	import CurrentShoeStore from '$lib/stores/CurrentShoeStore';
 
 	let name: string = 'The Drip';
 

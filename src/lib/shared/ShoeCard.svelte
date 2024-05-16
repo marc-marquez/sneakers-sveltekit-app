@@ -1,6 +1,6 @@
 <script lang="ts">
-    import CurrentShoeStore from '../stores/CurrentShoeStore';
-    import UserStore from '../stores/UserStore';
+    import CurrentShoeStore from '$lib/stores/CurrentShoeStore';
+    import UserStore from '$lib/stores/UserStore';
 
     export let shoe: any = <any>{};
     export let orientation: 'horizontal' | 'vertical' = 'vertical';

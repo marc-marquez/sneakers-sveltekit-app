@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CartStore from '../stores/CartStore';
+	import CartStore from '$lib/stores/CartStore';
 
 	export let showEmptyCart = false;
 

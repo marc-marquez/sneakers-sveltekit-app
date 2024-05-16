@@ -1,9 +1,9 @@
 <script lang="ts">
-	import PageLayout from '../../shared/PageLayout.svelte';
-	import CartItems from '../../shared/CartItems.svelte';
-	import CollapsibleCard from '../../shared/CollapsibleCard.svelte';
-	import CartTotal from '../../shared/CartTotal.svelte';
-	import CartActions from '../../shared/CartActions.svelte';
+	import PageLayout from '$lib/shared/PageLayout.svelte';
+	import CartItems from '$lib/shared/CartItems.svelte';
+	import CollapsibleCard from '$lib/shared/CollapsibleCard.svelte';
+	import CartTotal from '$lib/shared/CartTotal.svelte';
+	import CartActions from '$lib/shared/CartActions.svelte';
 
 	let personFields = ['first', 'last', 'email'];
 	let creditFields = ['number', 'month', 'year', 'cvv'];
@@ -65,7 +65,7 @@
 
 <style>
 	.photo {
-		background: url('../../assets/images/checkout.jpg') no-repeat center/cover;
+		background: url('$lib/assets/images/checkout.jpg') no-repeat center/cover;
 		grid-area: photo;
 		position: relative;
 		border-radius: 25px;

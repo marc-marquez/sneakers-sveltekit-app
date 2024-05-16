@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import ColumnContainer from '../shared/ColumnContainer.svelte';
-	import RowContainer from '../shared/RowContainer.svelte';
-	import CircleButton from '../shared/CircleButton.svelte';
-	import CurrentShoeStore from '../stores/CurrentShoeStore';
-	import UserStore from '../stores/UserStore';
+	import ColumnContainer from '$lib/shared/ColumnContainer.svelte';
+	import RowContainer from '$lib/shared/RowContainer.svelte';
+	import CircleButton from '$lib/shared/CircleButton.svelte';
+	import CurrentShoeStore from '$lib/stores/CurrentShoeStore';
+	import UserStore from '$lib/stores/UserStore';
 
 	export let shoes: Array<any> = [];
 	export let currentPage: number = 0;

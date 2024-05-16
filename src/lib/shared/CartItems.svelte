@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CartStore from '../stores/CartStore';
+	import CartStore from '$lib/stores/CartStore';
 	import CartItem from './CartItem.svelte';
 
 	$: totalCost = $CartStore.reduce((total, current) => total + current.price, 0);

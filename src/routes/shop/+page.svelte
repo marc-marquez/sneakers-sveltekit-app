@@ -1,25 +1,24 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import Brands from '../../components/Brands.svelte';
-	import ShoeFeatured from '../../components/ShoeFeatured.svelte';
-	import Filters from '../../components/Filters.svelte';
-	import ShoeGrid from '../../components/ShoeGrid.svelte';
-	import ShoeList from '../../components/ShoeList.svelte';
-	import PageLayout from '../../shared/PageLayout.svelte';
-	import StarRating from '../../shared/StarRating.svelte';
-	import CircleButton from '../../shared/CircleButton.svelte';
-	import LoadingState from '../../shared/LoadingState.svelte';
-	import EmptyState from '../../shared/EmptyState.svelte';
-	import ShoeVariants from '../../shared/ShoeVariants.svelte';
-	import ShoeActions from '../../shared/ShoeActions.svelte';
+	import Brands from '$lib/components/Brands.svelte';
+	import ShoeFeatured from '$lib/components/ShoeFeatured.svelte';
+	import Filters from '$lib/components/Filters.svelte';
+	import ShoeGrid from '$lib/components/ShoeGrid.svelte';
+	import ShoeList from '$lib/components/ShoeList.svelte';
+	import PageLayout from '$lib/shared/PageLayout.svelte';
+	import StarRating from '$lib/shared/StarRating.svelte';
+	import CircleButton from '$lib/shared/CircleButton.svelte';
+	import LoadingState from '$lib/shared/LoadingState.svelte';
+	import EmptyState from '$lib/shared/EmptyState.svelte';
+	import ShoeVariants from '$lib/shared/ShoeVariants.svelte';
+	import ShoeActions from '$lib/shared/ShoeActions.svelte';
 
-	import BRANDS from '../../constants/Brands';
-	import DISPLAY_FORMAT from '../../constants/DisplayFormat';
+	import BRANDS from '$lib/constants/Brands';
+	import DISPLAY_FORMAT from '$lib/constants/DisplayFormat';
 
-	import CurrentShoeStore from '../../stores/CurrentShoeStore';
-	import UserStore from '../../stores/UserStore';
-	import ToastStore from '../../stores/ToastStore';
+	import CurrentShoeStore from '$lib/stores/CurrentShoeStore';
+	import UserStore from '$lib/stores/UserStore';
 
 	let brands = BRANDS;
 	let shoes = [];

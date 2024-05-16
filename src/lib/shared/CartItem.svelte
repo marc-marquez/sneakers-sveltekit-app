@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CartStore from '../stores/CartStore';
-	import UserStore from '../stores/UserStore';
+	import CartStore from '$lib/stores/CartStore';
+	import UserStore from '$lib/stores/UserStore';
 
 	export let item: any = <any>{};
 	export let i: number = 0;
