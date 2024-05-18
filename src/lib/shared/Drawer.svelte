@@ -62,6 +62,9 @@
 		transition: bottom 0.3s ease;
 		box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
 		width: 100%;
+		max-width: 1280px;
+		transform: translateX(-50%);
+		left: 50%;
 	}
 
 	.action {

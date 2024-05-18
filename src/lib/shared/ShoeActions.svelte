@@ -33,7 +33,7 @@
 </script>
 
 <div class="shoe-actions">
-	<button on:click={() => getShoeDetails(shoe)} disabled={$UserStore.isDetailsDrawerOpen}><i class="fa-solid fa-circle-info"></i></button>
+	<button style="background-color: transparent;" on:click={() => getShoeDetails(shoe)} disabled={$UserStore.isDetailsDrawerOpen}><i class="fa-solid fa-circle-info"></i></button>
 	<FavoriteButton {shoe} />
 	<AddToCartButton
 		currentShoe={shoe}

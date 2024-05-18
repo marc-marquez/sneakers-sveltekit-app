@@ -34,7 +34,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background-color: white;
+		background-color: #f0f0f0;
 		padding: 10px 30px;
 	}
 
@@ -56,7 +56,7 @@
 	}
 
 	.card-body {
-		background-color: white;
+		background-color: #f0f0f0;
 		padding: 10px 20px;
 		border-radius: 0px 0px 10px 10px;
 	}

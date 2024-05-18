@@ -49,19 +49,20 @@
 </script>
 
 <button class="favorite-button {isFavorited ? 'selected' : ''}" on:click={handleClick}>
-	<i class="fa-solid fa-heart" />
+	<i class="{isFavorited ? 'fa-solid' : 'fa-regular'} fa-heart" />
 </button>
 
 <style>
 	.favorite-button {
 		border: none;
-		background-color: white;
+		background-color: transparent;
 		font-size: 24px;
 		color: black;
 	}
 
 	.favorite-button:hover {
 		cursor: pointer;
+		color: red;
 	}
 
 	.selected {

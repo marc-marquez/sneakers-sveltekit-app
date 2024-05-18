@@ -14,6 +14,7 @@
 		height: 45vh;
 		align-items: center;
 		justify-content: center;
+		background-color: transparent;
 	}
 
 	.icons {

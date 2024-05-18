@@ -198,7 +198,7 @@
 				/>
 			</div>
 			{#if isLoading}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px;">
+				<div class="featured-container" style="top: 0;">	
 					<LoadingState />
 				</div>
 			{:else if $UserStore.displayFormat === 'featured'}
@@ -290,7 +290,7 @@
 	main {
 		display: flex;
 		flex-direction: column;
-		margin-top: 40px;
+		/* margin-top: 40px; */
 		margin-bottom: 20px;
 		width: 100%;
 	}
@@ -309,10 +309,10 @@
 
 	.featured-container {
 		flex: 2 1 0%;
-		background-color: white;
+		background-color: transparent;
 		margin: 10px;
 		position: relative;
-		top: 0px;
+		top: -70px;
 	}
 
 	.options-container {
@@ -334,7 +334,7 @@
 
 	.view-container {
 		flex:2 1 0%;
-		background-color: white;
+		background-color: transparent;
 		margin: 10px 20px;
 		width: 100%;
 	}

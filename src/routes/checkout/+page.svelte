@@ -4,6 +4,7 @@
 	import CollapsibleCard from '$lib/shared/CollapsibleCard.svelte';
 	import CartTotal from '$lib/shared/CartTotal.svelte';
 	import CartActions from '$lib/shared/CartActions.svelte';
+	import CartStore from '$lib/stores/CartStore';
 
 	let personFields = ['first', 'last', 'email'];
 	let creditFields = ['number', 'month', 'year', 'cvv'];
@@ -16,7 +17,7 @@
 			<div class="wording">Checkout</div>
 		</div>
 		<div class="info">
-			<h1 style="text-align: left;">The Details</h1>
+			<h1 style="text-align: center;">The Details</h1>
 			<CollapsibleCard title="Contact Info">
 				<div class="fields">
 					{#each personFields as field}
@@ -49,6 +50,9 @@
 			</CollapsibleCard>
 		</div>
 		<div class="cart">
+			{#if $CartStore.length > 0}
+			<h1 style="text-align: center;">The Cart</h1>
+			{/if}
 			<CartItems />
 			<div style="text-align: right;">
 				<CartTotal />
@@ -73,12 +77,13 @@
 	}
 
 	.info {
-		background-color: #efefef;
+		background-color: white;
 		padding: 20px;
 		grid-area: info;
 		border-radius: 25px;
 		display: flex;
 		flex-direction: column;
+		height: max-content
 	}
 
 	.cart {
@@ -87,6 +92,8 @@
 		grid-area: cart;
 		display: flex;
 		flex-direction: column;
+		border-radius: 25px;
+		height: max-content
 	}
 
 	.checkout {
@@ -123,7 +130,7 @@
 	label,
 	input {
 		margin: 10px;
-		font-size: 16px;
+		font-size: clamp(1rem, 2vw, 1.5rem);
 		font-weight: 900;
 	}
 
@@ -162,6 +169,7 @@
 		.cart {
 			grid-column: 1/5;
 			grid-row: 4/7;
+			border-radius: 0;
 		}
 	}
 </style>

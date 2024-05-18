@@ -17,12 +17,13 @@
 						<img
 							src={currentShoe.image}
 							alt={currentShoe.title}
+							loading="lazy"
 							in:fly|global={{ y: -25, duration: 2000 }}
 						/>
 					</div>
 				{:else}
 					<div class="no-image-container">
-						<h1>No image found.</h1>
+						<h1>No image found</h1>
 						<i class="fa-solid fa-image"></i>
 					</div>
 				{/if}
@@ -52,12 +53,14 @@
 		object-fit: contain;
 		width: 100%;
 		aspect-ratio: 1;
+		mix-blend-mode: multiply;
 	}
 
 	.no-image-container {
 		font-size: 150px;
 		color: grey;
-		height: 30vh;
+		/* height: 30vh; */
+		height: 600px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -84,6 +87,11 @@
 		.display-1 {
 			bottom: 2vh;
 			right: 0;
+		}
+
+		.no-image-container {
+			font-size: 100px;
+			height: 400px;
 		}
 	}
 </style>

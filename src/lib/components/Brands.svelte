@@ -23,6 +23,12 @@
 					alt="{brand} logo"
 					src="https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Jumpman_logo.svg/250px-Jumpman_logo.svg.png"
 				/>
+			{:else if brand === 'Adidas'}
+			<img
+				class="brand-image"
+				alt="{brand} logo"
+				src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/320px-Adidas_Logo.svg.png"
+			/>
 			{:else}
 				<img
 					class="brand-image"
@@ -49,11 +55,10 @@
 	}
 
 	.brand-button {
-		background-color: white;
-		border-left: 5px solid white;
+		background-color: transparent;
 		border: none;
 		margin-bottom: 10px;
-		border-left: 5px solid white;
+		border-left: 5px solid transparent;
 		width: 75px;
 		align-self: center;
 	}
@@ -61,6 +66,8 @@
 	.brand-image {
 		object-fit: contain;
 		width: 100%;
+		aspect-ratio: 1;
+		mix-blend-mode: multiply;
 	}
 
 	.brand-button:hover {
@@ -82,7 +89,7 @@
 
 		.brand-button {
 			margin-right: 5px;
-			border-bottom: 5px solid white;
+			border-bottom: 5px solid transparent;
 		}
 
 		.brand-button:hover {

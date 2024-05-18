@@ -90,6 +90,8 @@
 	img {
 		object-fit: contain;
 		width: 100%;
+		aspect-ratio: 1;
+		mix-blend-mode: multiply;
 	}
 
 	.shoe-button {
@@ -101,6 +103,7 @@
 	.shoe-button:hover {
 		transform: scale(1.1);
 		cursor: pointer;
+		mix-blend-mode: multiply;
 	}
 
 	@media (max-width: 1024px) {

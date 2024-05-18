@@ -26,12 +26,15 @@
 		display: flex;
 		flex-direction: row;
 		font-size: 24px;
+		background-color: white;
+		border-radius: 25px;
+		padding: .5rem 1rem;
 	}
 
 	.star-button {
 		color: black;
 		border: none;
-		background-color: white;
+		background-color: transparent;
 	}
 
 	.star-button:hover {
