@@ -51,6 +51,7 @@
 		justify-content: space-between;
 		flex: 1;
 		align-items: center;
+		mix-blend-mode: multiply;
 	}
 
 	button {

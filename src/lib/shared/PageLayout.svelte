@@ -13,6 +13,7 @@
 		max-width: 1280px;
 		margin-top: 90px;
 		margin-bottom: 5px;
+		background-color: transparent;
 	}
 
 	@media (max-width: 1024px) {

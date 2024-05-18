@@ -1,7 +1,5 @@
 import { writable } from 'svelte/store';
 
-const CartStore = writable([
-
-]);
+const CartStore = writable([]);
 
 export default CartStore;

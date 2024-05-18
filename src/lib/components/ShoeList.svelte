@@ -90,12 +90,14 @@
 	img {
 		object-fit: contain;
 		width: 100%;
+		mix-blend-mode: multiply;
 	}
 
 	.shoe-button {
 		background-color: transparent;
 		border: none;
 		margin-left: 10px;
+		mix-blend-mode: multiply;
 	}
 
 	.shoe-button:hover {

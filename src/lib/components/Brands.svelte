@@ -42,6 +42,7 @@
 		align-items: center;
 		flex-wrap: wrap;
 		margin-bottom: 20px;
+		mix-blend-mode: multiply;
 	}
 
 	.brands-container::-webkit-scrollbar {

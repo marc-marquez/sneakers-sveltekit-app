@@ -37,7 +37,7 @@
 	};
 </script>
 
-<PageLayout>
+<!-- <PageLayout> -->
 	{#if $FavoritesStore.length === 0}
 		<EmptyState message="No favorites added" />
 	{:else}
@@ -60,7 +60,7 @@
 			</div>
 		</div>
 	{/if}
-</PageLayout>
+<!-- </PageLayout> -->
 
 <style>
 	.favorites-page {

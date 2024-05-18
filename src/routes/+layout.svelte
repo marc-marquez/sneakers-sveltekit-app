@@ -1,6 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 	import { goto } from '$app/navigation';
+	import { navigating } from '$app/stores';
+	import { page } from '$app/stores';
 
 	import MenuDrawer from '$lib/components/MenuDrawer.svelte';
 	import ShoeDrawer from '$lib/components/ShoeDrawer.svelte';
@@ -9,6 +11,10 @@
 	import CartStore from '$lib/stores/CartStore';
 	import UserStore from '$lib/stores/UserStore';
 	import CurrentShoeStore from '$lib/stores/CurrentShoeStore';
+	import { loading } from '$lib/stores/LoadingStore';
+	import LoadingState from '$lib/shared/LoadingState.svelte';
+
+	import ROUTES from '$lib/constants/Routes';
 
 	let name: string = 'The Drip';
 
@@ -31,11 +37,11 @@
 	};
 
 	const goToFavorites = () => {
-		goto('/favorites');
+		goto(ROUTES.favorites.path);
 	};
 
 	const goToCart = () => {
-		goto('/checkout');
+		goto(ROUTES.checkout.path);
 	};
 
 	const setVariant = (e) => {
@@ -55,6 +61,8 @@
 			};
 		});
 	};
+
+	$: $loading = !!$navigating;
 </script>
 
 <nav>
@@ -62,8 +70,9 @@
 		<button class="mobile-button" on:click={toggleMenu}><i class="fa-solid fa-bars"></i></button>
 		<h1 class="title">{name}</h1>
 		<div class="menu-items">
-			<a href="/">Home</a>
-			<a href="/shop">Shop</a>
+			{#each ['home', 'shop'] as item}
+				<a class:active={$page.url.pathname === ROUTES[item].path} href={ROUTES[item].path}>{ROUTES[item].name}</a>
+			{/each}
 		</div>
 	</div>
 	<div style="display: flex; flex-wrap: nowrap;">
@@ -78,7 +87,13 @@
 		</button>
 	</div>
 </nav>
-<slot />
+<div class="layout-container">
+	{#if $loading}
+		<LoadingState />
+	{:else}
+		<slot />
+	{/if}
+</div>
 {#if $UserStore.isMenuOpen}
 	<MenuDrawer isMenuDrawerOpen={$UserStore.isMenuOpen} toggleMenuDrawer={toggleMenu} />
 {/if}
@@ -103,8 +118,10 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 20px 10px;
-		background-color: #a6f0ff;
-		box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+		/* background-color: #a6f0ff; */
+		background-color: white;
+		background-color: #efefef;
+		/* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); */
 		flex-wrap: nowrap;
 		position: fixed;
 		top: 0;
@@ -141,8 +158,19 @@
 
 	a:hover {
 		cursor: pointer;
-		border-bottom: 5px solid white;
+		/* border-bottom: 5px solid white; */
+		border-bottom: 5px solid lightgrey;
 	}
+
+	.active {
+		cursor: not-allowed;
+		border-bottom: 5px solid #a6f0ff;
+	}
+
+	/* .unselected {
+		cursor: not-allowed;
+		border-bottom: 5px solid white;
+	} */
 
 	.mobile-button {
 		display: none;
@@ -160,9 +188,22 @@
 		cursor: pointer;
 	}
 
+	.layout-container {
+		display: grid;
+		grid-template-columns: 1fr;
+		place-items: center start;
+		margin-top: 100px;
+		padding: 0 20px 0 20px
+	}
+
 	@media (max-width: 1024px) {
 		nav {
-			padding: 20px 10px;
+			/* padding: 20px 10px; */
+		}
+
+		.layout-container {
+			margin-top: 70px;
+			padding: 0;
 		}
 
 		.title {

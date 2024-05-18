@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	// import ROUTES from '$lib/constants/Routes';
 	import Drawer from '../shared/Drawer.svelte';
 
 	export let isMenuDrawerOpen: boolean = false;
@@ -33,7 +35,7 @@
 <Drawer location="left" isDrawerOpen={isMenuDrawerOpen} on:closeDrawer={toggleMenuDrawer}>
 	<div class="container">
 		{#each routes as route}
-			<div class="item" on:click={() => goToLink(route.link)}>{route.name}</div>
+			<div class="item" class:active={$page.url.pathname === route.link} on:click={() => goToLink(route.link)}>{route.name}</div>
 		{/each}
 	</div>
 </Drawer>
@@ -58,9 +60,15 @@
 		padding-left: 10px;
 	}
 
+	.active {
+		cursor: not-allowed;
+		background-color: #a6f0ff;
+		color: white;
+	}
+
 
 	.item:hover {
-		background-color: #a6f0ff;
+		background-color: lightgrey;
 		color: white;
 		cursor: pointer;
 	}

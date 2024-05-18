@@ -1,4 +1,4 @@
-<div class="container">
+<div class="loading-state">
 	<h1>Loading</h1>
 	<div class="icons">
 		{#each { length: 5 } as i}
@@ -8,12 +8,13 @@
 </div>
 
 <style>
-	.container {
+	.loading-state {
 		display: flex;
 		flex-direction: column;
 		height: 45vh;
 		align-items: center;
 		justify-content: center;
+		background-color: transparent;
 	}
 
 	.icons {

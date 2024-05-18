@@ -44,10 +44,22 @@
 <style>
 	.grid {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(150px, 1fr));
+		grid-template-columns: repeat(5, minmax(150px, 1fr));
 		grid-auto-rows: 250px;
 		gap: 20px;
 		place-items: center;
+	}
+
+	@media (max-width: 1280px) {
+		.grid {
+			grid-template-columns: repeat(4, minmax(150px, 1fr));
+		}
+	}
+
+	@media (max-width: 1024px) {
+		.grid {
+			grid-template-columns: repeat(3, minmax(150px, 1fr));
+		}
 	}
 
 	@media (max-width: 768px) {

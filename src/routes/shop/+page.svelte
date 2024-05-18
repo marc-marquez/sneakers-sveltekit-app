@@ -173,134 +173,138 @@
 	};
 </script>
 
-<PageLayout>
-	<main>
-		<div class="container">
-			<div class="options-container">
-				<h1 class="hide-show-titles">Select Brand</h1>
-				<Brands {brands} {currentBrand} on:handleSetBrand={(e) => setBrandAndGet(e.detail)} />
-				<h1 style="text-align: center">View</h1>
-				<select
-					class="display-select"
-					bind:value={$UserStore.displayFormat}
-					on:change={setDisplayFormat}
-				>
-					<option value={DISPLAY_FORMAT.featured}>Spotlight</option>
-					<option value={DISPLAY_FORMAT.grid}>Window Shopping</option>
-					<option value={DISPLAY_FORMAT.list}>Deep Dive</option>
-				</select>
-				<Filters
-					{currentShoeSize}
-					{currentGender}
-					on:sizeChange={setShoeSize}
-					on:genderChange={setGender}
-					on:ageGroupChange={setAgeGroup}
-				/>
+<!-- <main> -->
+	<div class="container">
+		<div class="options-container">
+			<h1 class="hide-show-titles">Select Brand</h1>
+			<Brands {brands} {currentBrand} on:handleSetBrand={(e) => setBrandAndGet(e.detail)} />
+			<h1 style="text-align: center">View</h1>
+			<select
+				class="display-select"
+				bind:value={$UserStore.displayFormat}
+				on:change={setDisplayFormat}
+			>
+				<option value={DISPLAY_FORMAT.featured}>Spotlight</option>
+				<option value={DISPLAY_FORMAT.grid}>Window Shopping</option>
+				<option value={DISPLAY_FORMAT.list}>Deep Dive</option>
+			</select>
+			<Filters
+				{currentShoeSize}
+				{currentGender}
+				on:sizeChange={setShoeSize}
+				on:genderChange={setGender}
+				on:ageGroupChange={setAgeGroup}
+			/>
+		</div>
+		{#if isLoading}
+			<!-- <div style="flex:2 1 0%; background-color: transparent; margin: 10px;"> -->
+			<div class="featured-container">
+				<LoadingState />
 			</div>
-			{#if isLoading}
-				<div style="flex:2 1 0%; background-color: white; margin: 10px;">
-					<LoadingState />
-				</div>
-			{:else if $UserStore.displayFormat === 'featured'}
-				<div class="featured-container">
-					<div
-						style="display: flex; flex-direction: column; align-items: center; justify-content: center;"
-					>
-						<ShoeFeatured
-							{currentShoe}
-							{isLoading}
-							{currentBrand}
-							on:getNextShoe={nextShoe}
-							on:getPrevShoe={prevShoe}
-						/>
-						<div class="row-container" style="flex-wrap: nowrap;">
-							<CircleButton handleClick={() => prevShoe()} disabled={currentShoeIndex <= 0}>
-								<i class="fas fa-chevron-left" />
-							</CircleButton>
-							<CircleButton
-								handleClick={() => nextShoe()}
-								disabled={currentShoeIndex >= shoes.length - 1}
-							>
-								<i class="fas fa-chevron-right" />
-							</CircleButton>
+		{:else if $UserStore.displayFormat === 'featured'}
+			<div class="featured-container">
+				<div
+					style="display: flex; flex-direction: column; align-items: center; justify-content: center;"
+				>
+					<ShoeFeatured
+						{currentShoe}
+						{isLoading}
+						{currentBrand}
+						on:getNextShoe={nextShoe}
+						on:getPrevShoe={prevShoe}
+					/>
+					<div class="row-container" style="flex-wrap: nowrap;">
+						<CircleButton handleClick={() => prevShoe()} disabled={currentShoeIndex <= 0}>
+							<i class="fas fa-chevron-left" />
+						</CircleButton>
+						<CircleButton
+							handleClick={() => nextShoe()}
+							disabled={currentShoeIndex >= shoes.length - 1}
+						>
+							<i class="fas fa-chevron-right" />
+						</CircleButton>
+					</div>
+					{#if shoes[currentShoeIndex]?.title}
+						<div class="row-container">
+							<h1 style="text-align: center; margin-bottom: 0">
+								{shoes[currentShoeIndex].title}
+							</h1>
 						</div>
-						{#if shoes[currentShoeIndex]?.title}
-							<div class="row-container">
-								<h1 style="text-align: center; margin-bottom: 0">
-									{shoes[currentShoeIndex].title}
-								</h1>
-							</div>
-							<div class="row-container">
-								<StarRating currentRating={currentShoe?.rating} />
-							</div>
-						{/if}
+						<div class="row-container">
+							<StarRating currentRating={currentShoe?.rating} />
+						</div>
+					{/if}
 
-						{#if showError}
-							<h1 style="color: red;">Select A Size</h1>
-						{/if}
+					{#if showError}
+						<h1 style="color: red;">Select A Size</h1>
+					{/if}
 
-						{#if shoes[currentShoeIndex]?.variants}
-							<div class="row-container variants-container">
-								<ShoeVariants
-									shoe={currentShoe}
-									{currentShoeVariant}
-									on:setVariant={setVariant}
-									on:toggleError={toggleError}
-								/>
-							</div>
-						{/if}
-
-						<div class="row-container actions-container">
-							<ShoeActions
+					{#if shoes[currentShoeIndex]?.variants}
+						<div class="row-container variants-container">
+							<ShoeVariants
 								shoe={currentShoe}
 								{currentShoeVariant}
+								on:setVariant={setVariant}
 								on:toggleError={toggleError}
 							/>
 						</div>
+					{/if}
+
+					<div class="row-container actions-container">
+						<ShoeActions
+							shoe={currentShoe}
+							{currentShoeVariant}
+							on:toggleError={toggleError}
+						/>
 					</div>
 				</div>
-			{:else if $UserStore.displayFormat === 'grid'}
-				<div class="view-container">
-					<ShoeGrid
-						{shoes}
-						{currentPage}
-						{totalPages}
-						on:getNextPage={getNextPage}
-						on:getPrevPage={getPrevPage}
-					/>
-				</div>
-			{:else if $UserStore.displayFormat === 'list'}
-				<div class="view-container">
-					<ShoeList
-						{shoes}
-						{currentPage}
-						{totalPages}
-						on:getNextPage={getNextPage}
-						on:getPrevPage={getPrevPage}
-					/>
-				</div>
-			{:else if shoes.length === 0 && !isLoading}
-				<EmptyState message="No shoe found." />
-			{/if}
-		</div>
-	</main>
-</PageLayout>
+			</div>
+		{:else if $UserStore.displayFormat === 'grid'}
+			<div class="view-container">
+				<ShoeGrid
+					{shoes}
+					{currentPage}
+					{totalPages}
+					on:getNextPage={getNextPage}
+					on:getPrevPage={getPrevPage}
+				/>
+			</div>
+		{:else if $UserStore.displayFormat === 'list'}
+			<div class="view-container">
+				<ShoeList
+					{shoes}
+					{currentPage}
+					{totalPages}
+					on:getNextPage={getNextPage}
+					on:getPrevPage={getPrevPage}
+				/>
+			</div>
+		{:else if shoes.length === 0 && !isLoading}
+			<EmptyState message="No shoe found." />
+		{/if}
+	</div>
+<!-- </main> -->
 
 <style>
 	main {
 		display: flex;
 		flex-direction: column;
-		margin-top: 40px;
-		margin-bottom: 20px;
+		/* margin-top: 40px; */
+		/* margin-bottom: 20px; */
 		width: 100%;
 	}
 
 	.container {
-		display: flex;
+		/* display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: start;
-		flex-wrap: nowrap;
+		flex-wrap: nowrap; */
+		display: grid;
+		grid-template-columns: 1fr 6fr;
+		grid-gap: 20px;
+		justify-items: start;
+		width: 100%;
 	}
 
 	.hide-show-titles {
@@ -308,15 +312,19 @@
 	}
 
 	.featured-container {
-		flex: 2 1 0%;
-		background-color: white;
+		/* flex: 2 1 0%; */
+		/* background-color: white; */
+		background-color: transparent;
 		margin: 10px;
-		position: relative;
-		top: 0px;
+		/* position: relative;
+		top: 0px; */
+		display: grid;
+		place-items: center;
+		width: 100%;
 	}
 
 	.options-container {
-		margin-right: 20px;
+		/* margin-right: 20px; */
 	}
 
 	.row-container {
@@ -334,9 +342,12 @@
 
 	.view-container {
 		flex:2 1 0%;
-		background-color: white;
+		background-color: transparent;
 		margin: 10px 20px;
 		width: 100%;
+		overflow-y: auto;
+		height: 150vh;
+		padding-top: 1rem;
 	}
 
 	.display-select {
@@ -357,6 +368,9 @@
 			flex-direction: column;
 			align-items: center;
 			padding: 0 10px;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: nowrap;
 		}
 
 		.hide-show-titles {

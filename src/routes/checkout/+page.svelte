@@ -10,58 +10,55 @@
 	let shippingFields = ['street', 'city', 'state', 'zip', 'country'];
 </script>
 
-<PageLayout>
-	<div class="checkout">
-		<div class="photo">
-			<div class="wording">Checkout</div>
-		</div>
-		<div class="info">
-			<h1 style="text-align: left;">The Details</h1>
-			<CollapsibleCard title="Contact Info">
-				<div class="fields">
-					{#each personFields as field}
-						<div class="field">
-							<label for={field}>{field}</label>
-							<input style="margin-left: 20px;" type="text" id={field} name={field} required />
-						</div>
-					{/each}
-				</div>
-			</CollapsibleCard>
-			<CollapsibleCard title="Shipping Info">
-				<div class="fields">
-					{#each shippingFields as field}
-						<div class="field">
-							<label for={field}>{field}</label>
-							<input style="margin-left: 20px;" type="text" id={field} name={field} required />
-						</div>
-					{/each}
-				</div>
-			</CollapsibleCard>
-			<CollapsibleCard title="Payment Method">
-				<div class="fields">
-					{#each creditFields as field}
-						<div class="field">
-							<label for={field}>{field}</label>
-							<input style="margin-left: 20px;" type="text" id={field} name={field} required />
-						</div>
-					{/each}
-				</div>
-			</CollapsibleCard>
-		</div>
-		<div class="cart">
-			<CartItems />
-			<div style="text-align: right;">
+<div class="checkout">
+	<div class="photo">
+		<div class="wording">Checkout</div>
+	</div>
+	<div class="info">
+		<h1 style="text-align: left;">The Details</h1>
+		<CollapsibleCard title="Contact Info">
+			<div class="fields">
+				{#each personFields as field}
+					<div class="field">
+						<label for={field}>{field}</label>
+						<input style="margin-left: 20px;" type="text" id={field} name={field} required />
+					</div>
+				{/each}
+			</div>
+		</CollapsibleCard>
+		<CollapsibleCard title="Shipping Info">
+			<div class="fields">
+				{#each shippingFields as field}
+					<div class="field">
+						<label for={field}>{field}</label>
+						<input style="margin-left: 20px;" type="text" id={field} name={field} required />
+					</div>
+				{/each}
+			</div>
+		</CollapsibleCard>
+		<CollapsibleCard title="Payment Method">
+			<div class="fields">
+				{#each creditFields as field}
+					<div class="field">
+						<label for={field}>{field}</label>
+						<input style="margin-left: 20px;" type="text" id={field} name={field} required />
+					</div>
+				{/each}
+			</div>
+		</CollapsibleCard>
+	</div>
+	<div class="cart">
+		<CartItems />
+		<div class="cart-end">
+			<div class="cart-total">
 				<CartTotal />
 			</div>
-			<div class="desktop-cart-actions">
+			<div class="cart-actions">
 				<CartActions />
 			</div>
 		</div>
-		<div class="mobile-cart-actions">
-			<CartActions />
-		</div>
-	</div></PageLayout
->
+	</div>
+</div>
 
 <style>
 	.photo {
@@ -69,16 +66,18 @@
 		grid-area: photo;
 		position: relative;
 		border-radius: 25px;
-		max-height: 70vh;
+		height: 30vh;
+		margin-bottom: 10px;
 	}
 
 	.info {
-		background-color: #efefef;
+		background-color: #fff;
 		padding: 20px;
 		grid-area: info;
 		border-radius: 25px;
 		display: flex;
 		flex-direction: column;
+		height: fit-content;
 	}
 
 	.cart {
@@ -87,19 +86,30 @@
 		grid-area: cart;
 		display: flex;
 		flex-direction: column;
+		border-radius: 25px;
+		justify-content: space-between;
+		height: fit-content;
+	}
+
+	.cart-total {
+		text-align: right;
+	}
+
+	.cart-actions {
+		display: block;
 	}
 
 	.checkout {
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		grid-auto-rows: minmax(150px, auto);
 		grid-gap: 10px;
 		width: 100%;
 		margin: 0 auto;
 		grid-template-areas:
-			'photo photo photo photo'
-			'photo photo photo photo'
-			'info info cart cart';
+			'photo photo'
+			'photo photo'
+			'info cart';
 		width: 100%;
 	}
 
@@ -127,15 +137,11 @@
 		font-weight: 900;
 	}
 
-	.mobile-cart-actions {
+	/* .mobile-cart-actions {
 		display: none;
-	}
+	} */
 
-	.desktop-cart-actions {
-		display: block;
-	}
 
-	
 
 	@media (max-width: 1024px) {
 		.checkout {
@@ -147,21 +153,23 @@
 		}
 
 		.photo {
-			grid-column: 1/5;
-			grid-row: 1/3;
+			/* grid-column: 1/5;
+			grid-row: 1/3; */
 			border-radius: 0;
+			margin-bottom: 0;
 		}
 
 		.info {
 			border-radius: 0;
-			grid-column: 1/5;
-			grid-row: 3/4;
+			/* grid-column: 1/5;
+			grid-row: 3/4; */
 			
 		}
 
 		.cart {
-			grid-column: 1/5;
-			grid-row: 4/7;
+			/* grid-column: 1/5;
+			grid-row: 4/7; */
+			border-radius: 0;
 		}
 	}
 </style>

@@ -1,6 +1,9 @@
 <script lang="ts">
     import CurrentShoeStore from '$lib/stores/CurrentShoeStore';
     import UserStore from '$lib/stores/UserStore';
+	import FavoriteButton from './FavoriteButton.svelte';
+	import StarRating from './StarRating.svelte';
+	import StarRatingSimple from './StarRatingSimple.svelte';
 
     export let shoe: any = <any>{};
     export let orientation: 'horizontal' | 'vertical' = 'vertical';
@@ -32,6 +35,14 @@
 </script>
 
 <div class="shoe-card {orientation} {showBorder ? 'show-border' : ''}" style={customStyles}>
+    <!-- <div class="favorite-button">
+        <FavoriteButton shoe={shoe} />
+    </div> -->
+    <div style="display: flex; justify-content: space-between; width: 100%;">
+        <!-- <StarRating shoe={shoe} /> -->
+        <StarRatingSimple currentRating={shoe.rating} />
+        <FavoriteButton shoe={shoe} />
+    </div>
     <button on:click={() => getShoeDetails(shoe)}>
         <div class="image-container">
             <img src={shoe.image} alt={shoe.name} style={customImageStyles} />
@@ -57,6 +68,16 @@
         place-items: center;
         /* background-color: #f0f0f0; */
         /* width: 100%; */
+        position: relative;
+        margin: .5rem;
+    }
+
+    .favorite-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        mix-blend-mode: multiply;
     }
 
     img {

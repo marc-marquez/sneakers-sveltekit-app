@@ -1,6 +1,6 @@
 <script lang="ts"></script>
 
-<div class="content">
+<div class="homepage">
 	<div class="one">
 		<h1 class="display-text">Authentically.</h1>
 		<h1 class="display-text">You.</h1>
@@ -22,12 +22,12 @@
 </div>
 
 <style>
-	.content {
+	.homepage {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
-		grid-auto-rows: minmax(150px, auto);
+		grid-auto-rows: minmax(118px, auto);
 		grid-gap: 20px;
-		margin: 120px auto 20px auto;
+		/* margin: 120px auto 20px auto; */
 		grid-template-areas:
 			'one one one one one one one one two two two two'
 			'one one one one one one one one two two two two'
@@ -37,7 +37,9 @@
 			'three three three three three five five five five five five five'
 			'six six six six six five five five five five five five'
 			'six six six six six five five five five five five five';
-		max-width: 1280px;
+		max-width: 1920px;
+		width: 100%;
+		margin-top: 0px;
 	}
 
 	.display-text {
@@ -59,8 +61,8 @@
 	}
 
 	.one {
-		grid-column: 1/8;
-		grid-row: 1/3;
+		/* grid-column: 1/8;
+		grid-row: 1/3; */
 		background-color: black;
 		border-radius: 25px;
 		display: grid;
@@ -69,24 +71,24 @@
 	}
 
 	.two {
-		grid-column: 8/13;
-		grid-row: 1/6;
+		/* grid-column: 8/13;
+		grid-row: 1/6; */
 		background: url('$lib/assets/images/home1.jpg') no-repeat center/cover;
 		border-radius: 25px;
 		grid-area: two;
 	}
 
 	.three {
-		grid-column: 1/5;
-		grid-row: 3/7;
+		/* grid-column: 1/5;
+		grid-row: 3/7; */
 		background: url('$lib/assets/images/home2.jpg') no-repeat center/cover;
 		border-radius: 25px;
 		grid-area: three;
 	}
 
 	.four {
-		grid-column: 5/8;
-		grid-row: 3/6;
+		/* grid-column: 5/8;
+		grid-row: 3/6; */
 		background-color: blueviolet;
 		display: grid;
 		place-content: center;
@@ -95,16 +97,17 @@
 	}
 
 	.five {
-		grid-column: 5/13;
-		grid-row: 6/9;
+		/* grid-column: 5/13;
+		grid-row: 6/9; */
 		border-radius: 25px;
 		background: url('$lib/assets/images/home3.jpg') no-repeat bottom/cover;
+		background-position: center bottom -9rem;
 		grid-area: five;
 	}
 
 	.six {
-		grid-column: 1/5;
-		grid-row: 7/9;
+		/* grid-column: 1/5;
+		grid-row: 7/9; */
 		border-radius: 25px;
 		background-color: #9e1938;
 		display: grid;
@@ -121,7 +124,7 @@
 	}
 
 	@media (max-width: 1024px) {
-		.content {
+		.homepage {
 			grid-template-columns: 1fr;
 			grid-gap: 5px;
 			grid-template-areas:
@@ -131,13 +134,15 @@
 				'four'
 				'three'
 				'six';
-			margin: 80px 0 10px 0;
+			/* margin: 80px 0 10px 0; */
+			/* margin-top: 75px; */
 		}
 
-		.content > div {
+		.homepage > div {
 			margin-top: 0;
-			padding: 15px 0;
+			padding: 30px 0;
 			border-radius: 0;
+			height: 20vh;
 		}
 
 		.four {
@@ -150,7 +155,13 @@
 		}
 
 		.five {
-			background-position: center bottom -6rem;
+			background-position: center bottom -11rem;
+		}
+	}
+
+	@media (max-width: 540px) {
+		.five {
+			background-position: center bottom -7rem;
 		}
 	}
 </style>

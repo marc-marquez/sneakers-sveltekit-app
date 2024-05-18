@@ -26,6 +26,7 @@
 		display: flex;
 		flex-direction: row;
 		font-size: 24px;
+		mix-blend-mode: multiply;
 	}
 
 	.star-button {
