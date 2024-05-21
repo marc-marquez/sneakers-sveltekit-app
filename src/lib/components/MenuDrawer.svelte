@@ -50,7 +50,6 @@
 		margin-bottom: 5px;
 		padding: 10px 0;
 		color: black;
-		width: 100%;
 		align-items: center;
 		justify-content: center;
 		font-size: 24px;
