@@ -1,38 +1,60 @@
-# create-svelte
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+# Sneakers Ecommerce Store
 
-## Creating a project
+A side project to build an ecommerce store using Sveltekit, Typescript, and CSS.
 
-If you're seeing this, you've probably already done this step. Congrats!
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Demo
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+https://sneakers-sveltekit-app.vercel.app/
 
-## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Screenshots
 
-```bash
-npm run dev
+<img src="./static/demo/desktop-homepage.png" width="300" height="300">
+<img src="./static/demo/desktop-shopping.png" width="300" height="300">
+<img src="./static/demo/desktop-favorites.png" width="300" height="300">
+<img src="./static/demo/desktop-checkout.png" width="300" height="300">
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+<img src="./static/demo/mobile-homepage.png" width="150" height="300">
+<img src="./static/demo/mobile-shopping.png" width="150" height="300">
+<img src="./static/demo/mobile-favorites.png" width="150" height="300">
+<img src="./static/demo/mobile-checkout.png" width="150" height="300">
 
-## Building
+## Run Locally
 
-To create a production version of your app:
+Clone the project
 
 ```bash
-npm run build
+  git clone https://github.com/marc-marquez/sneakers-sveltekit-app.git
 ```
 
-You can preview the production build with `npm run preview`.
+Go to the project directory
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+  cd sneakers-sveltekit-app
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+## Authors
+
+- [@marc-marquez](https://www.github.com/marc-marquez)
+
+
+## Acknowledgements
+
+ - [StockX API](https://stockx.vlour.me/)
+ - [Design Inspiration](https://dribbble.com/search/Shoe-store)
+
